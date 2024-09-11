@@ -1,0 +1,27 @@
+.error-main {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-logo {
+  width: 50%;
+}
+
+.error-title {
+  color: black;
+  size: 20px;
+}
+
+.error-subtitle {
+  color: black;
+  size: 15px;
+}
+
+.error-text {
+  color: black;
+  size: 20px;
+}
