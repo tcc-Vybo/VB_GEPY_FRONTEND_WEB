@@ -12,8 +12,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background-color: rgb(127, 15, 183);
+
   background-color: none;
   border: 2px solid #6700b2;
+
   border-radius: 50%;
   width: 70px;
   height: 70px;
