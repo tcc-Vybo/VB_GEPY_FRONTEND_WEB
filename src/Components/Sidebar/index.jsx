@@ -1,3 +1,4 @@
+import { Link} from 'react-router-dom';
 import React from "react";
 import "./style.css";
 import {
@@ -15,37 +16,42 @@ export default function Sidebar() {
       <ul className="ul-sidebar">
         <li>
           <button className="button-sidebar">
-            <User />
+            <Link to="/alunos"><User /></Link>
           </button>
           Alunos
         </li>
         <li>
           <button className="button-sidebar">
-            <Users />
+            
+            <Link to="/turmas"><Users /></Link>
           </button>
           Turmas
         </li>
         <li>
           <button className="button-sidebar">
-            <Contact />
+            
+            <Link to="/funcionarios"><Contact /></Link>
           </button>
           Funcionários
         </li>
         <li>
           <button className="button-sidebar">
-            <Newspaper />
+            
+            <Link to="/newsletter"><Newspaper /></Link>
           </button>
           Newsletter
         </li>
         <li>
           <button className="button-sidebar">
-            <NotebookPen />
+            
+            <Link to="/Agenda"><NotebookPen /></Link>
           </button>
           Agenda
         </li>
         <li>
           <button className="button-sidebar">
-            <LogOut />
+            
+            <Link to="/alunos"><LogOut /></Link>
           </button>
           LogOff
         </li>
