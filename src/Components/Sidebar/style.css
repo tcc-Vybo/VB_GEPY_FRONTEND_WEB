@@ -1,0 +1,50 @@
+.sidebar-style {
+  width: 20vw;
+  height: 75vh;
+  background-color: white;
+  border-radius: 50px;
+  margin-right: 2%;
+  padding: 1%;
+}
+
+.button-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(127, 15, 183);
+
+  background-color: none;
+  border: 2px solid #6700b2;
+
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.lucide {
+  color: #6700b2;
+  width: 35px;
+  height: 35px;
+}
+
+.ul-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 35px;
+  gap: 15px;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 1%;
+  color: #6700b2;
+  font-weight: bold;
+}

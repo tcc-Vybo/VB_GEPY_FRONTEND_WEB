@@ -1,0 +1,48 @@
+.main-form {
+  min-width: 75vw;
+  min-height: 70vh;
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-pattern {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6700b2;
+}
+
+.button-home {
+  border: 2px solid #6700b2;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.button-icon-home {
+  width: 100px;
+  height: 100px;
+}
+
+.icons-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+}
+
+.icons-down {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+}
