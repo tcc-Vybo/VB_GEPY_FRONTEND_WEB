@@ -22,7 +22,7 @@ export default function LoginPage() {
           <label>Usuário: </label>
           <input placeholder="digite o usuário de droga" type="text"></input>
 
-          <label>Senha: </label>
+          <label className = "password">Senha: </label>
           <input placeholder="digite sua senha" type="password"></input>
 
           <button className="button-login-in" onClick={goToSecondPage}>Entrar</button>
