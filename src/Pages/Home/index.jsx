@@ -16,9 +16,8 @@ export default function Home() {
       <div className="container-row">
         <Sidebar />
         <div className="container-principal">
-          {alunos && <Turmas />}
-          {/* <InitialButtons /> */}
-          {/* <Outlet /> */}
+          <div>teste</div>
+          <Outlet />
         </div>
       </div>
       <Footer />
