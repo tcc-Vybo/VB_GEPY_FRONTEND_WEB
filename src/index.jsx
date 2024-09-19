@@ -8,7 +8,6 @@ import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
 import Funcionarios from './Components/Funcionarios';
 import Newsletter from './Components/Newsletter';
 import Turmas from './Components/Turmas';
-import BuscarAlunos from './Componexnts/Alunos/components-alunos/buscar';
 import './index.css';
 import ErrorPage from './Pages/ErrorPage';
 import Home from './Pages/Home';
@@ -18,6 +17,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import InitialButtons from './Components/Card';
+import BuscarAlunos from './Components/Alunos/components-alunos/buscar';
 
 const router = createBrowserRouter([
   {
@@ -42,15 +42,15 @@ const router = createBrowserRouter([
             element: <CadastrarAlunos />,
           },
           {
-            path: '/alunos/alterar',
+            path: '/alunos/buscar',
             element: <BuscarAlunos />,
           },
           {
-            path: '/alunos/cadastrar',
+            path: '/alunos/alterar',
             element: <AlterarAlunos />,
           },
           {
-            path: '/alunos/cadastrar',
+            path: '/alunos/deletar',
             element: <DeletarAlunos />,
           },
         ],
