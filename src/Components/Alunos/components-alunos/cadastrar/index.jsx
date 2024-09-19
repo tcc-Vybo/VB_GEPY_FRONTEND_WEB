@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export default function Alunos() {
+export default function CadastroAlunos() {
   return (
     <div className="container-principal">
       <h1>Alunos</h1>
