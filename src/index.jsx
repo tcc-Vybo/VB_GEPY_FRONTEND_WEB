@@ -10,9 +10,18 @@ import Funcionarios from './Components/Funcionarios';
 import Newsletter from './Components/Newsletter';
 import Agenda from './Components/Agenda';
 import ErrorPage from './Pages/ErrorPage';
+<<<<<<< Updated upstream
+import CadastrarAlunos from './Components/Alunos/components-alunos/cadastrar';
+import BuscarAlunos from './Componexnts/Alunos/components-alunos/buscar';
+import AlterarAlunos from './Components/Alunos/components-alunos/alterar';
+import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+=======
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import InitialButtons from './Components/Card';
+>>>>>>> Stashed changes
 
 const router = createBrowserRouter([
   {
@@ -25,12 +34,49 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+<<<<<<< Updated upstream
+=======
         path: '/tela-inicial',
         element: <InitialButtons />,
       },
       {
+>>>>>>> Stashed changes
         path: '/alunos',
         element: <Alunos />,
+        children: [
+          {
+<<<<<<< Updated upstream
+            path: '/cadastrar',
+            element: <CadastrarAlunos />,
+          },
+          {
+            path: '/buscar',
+            element: <BuscarAlunos />,
+          },
+          {
+            path: '/alterar',
+            element: <AlterarAlunos />,
+          },
+          {
+            path: '/cadastrar',
+=======
+            path: '/alunos/cadastrar',
+            element: <CadastrarAlunos />,
+          },
+          {
+            path: '/alunos/alterar',
+            element: <BuscarAlunos />,
+          },
+          {
+            path: '/alunos/cadastrar',
+            element: <AlterarAlunos />,
+          },
+          {
+            path: '/alunos/cadastrar',
+>>>>>>> Stashed changes
+            element: <DeletarAlunos />,
+          },
+        ],
       },
       {
         path: '/turmas',
