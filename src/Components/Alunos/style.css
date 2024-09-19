@@ -1,3 +1,24 @@
-h1{
-    color: yellow;
+.header-alunos {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  border-bottom: 2px solid #6700b3;
+  padding-bottom: 15px;
+}
+
+.header-alunos button {
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px;
+  border: 2px solid #6700b3;
+  border-radius: 15px;
+  color: #6700b3;
+  font-weight: bold;
+}
+
+.header-alunos button:focus {
+  background-color: #d7a1ff;
+  color: white;
+  border: none;
+  box-shadow: inset 1px 1px 6px -2.5px #000;
 }
