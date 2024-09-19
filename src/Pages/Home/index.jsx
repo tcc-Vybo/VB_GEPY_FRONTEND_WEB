@@ -16,7 +16,7 @@ export default function Home() {
       <div className="container-row">
         <Sidebar />
         <div className="container-principal">
-          <div>teste</div>
+          {/* <div>teste</div> */}
           <Outlet />
         </div>
       </div>
