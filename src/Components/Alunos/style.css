@@ -1,8 +1,8 @@
 .header-alunos {
   display: flex;
-  justify-content: space-around;
   margin: 20px;
   border-bottom: 2px solid #6700b3;
+  border-right: 2px solid #6700b3;
   padding-bottom: 15px;
 }
 
