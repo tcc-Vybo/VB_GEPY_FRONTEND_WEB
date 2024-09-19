@@ -10,12 +10,9 @@ import Funcionarios from './Components/Funcionarios';
 import Newsletter from './Components/Newsletter';
 import Agenda from './Components/Agenda';
 import ErrorPage from './Pages/ErrorPage';
-import CadastrarAlunos from './Components/Alunos/components-alunos/cadastrar';
-import BuscarAlunos from './Components/Alunos/components-alunos/buscar';
-import AlterarAlunos from './Components/Alunos/components-alunos/alterar';
-import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import InitialButtons from './Components/Card';
 
 const router = createBrowserRouter([
   {
@@ -28,26 +25,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/tela-inicial',
+        element: <InitialButtons />,
+      },
+      {
         path: '/alunos',
         element: <Alunos />,
-        children: [
-          {
-            path: '/cadastrar',
-            element: <CadastrarAlunos />,
-          },
-          {
-            path: '/buscar',
-            element: <BuscarAlunos />,
-          },
-          {
-            path: '/alterar',
-            element: <AlterarAlunos />,
-          },
-          {
-            path: '/cadastrar',
-            element: <DeletarAlunos />,
-          },
-        ],
       },
       {
         path: '/turmas',
