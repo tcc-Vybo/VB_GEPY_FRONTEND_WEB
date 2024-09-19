@@ -1,27 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import LoginPage from './Pages/Login';
-import Home from './Pages/Home';
+import Agenda from './Components/Agenda';
 import Alunos from './Components/Alunos';
-import Turmas from './Components/Turmas';
+import AlterarAlunos from './Components/Alunos/components-alunos/alterar';
+import CadastrarAlunos from './Components/Alunos/components-alunos/cadastrar';
+import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
 import Funcionarios from './Components/Funcionarios';
 import Newsletter from './Components/Newsletter';
-import Agenda from './Components/Agenda';
-import ErrorPage from './Pages/ErrorPage';
-<<<<<<< Updated upstream
-import CadastrarAlunos from './Components/Alunos/components-alunos/cadastrar';
+import Turmas from './Components/Turmas';
 import BuscarAlunos from './Componexnts/Alunos/components-alunos/buscar';
-import AlterarAlunos from './Components/Alunos/components-alunos/alterar';
-import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
+import './index.css';
+import ErrorPage from './Pages/ErrorPage';
+import Home from './Pages/Home';
+import LoginPage from './Pages/Login';
+import reportWebVitals from './reportWebVitals';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-=======
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import InitialButtons from './Components/Card';
->>>>>>> Stashed changes
 
 const router = createBrowserRouter([
   {
@@ -34,32 +30,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-<<<<<<< Updated upstream
-=======
         path: '/tela-inicial',
         element: <InitialButtons />,
       },
       {
->>>>>>> Stashed changes
         path: '/alunos',
         element: <Alunos />,
         children: [
           {
-<<<<<<< Updated upstream
-            path: '/cadastrar',
-            element: <CadastrarAlunos />,
-          },
-          {
-            path: '/buscar',
-            element: <BuscarAlunos />,
-          },
-          {
-            path: '/alterar',
-            element: <AlterarAlunos />,
-          },
-          {
-            path: '/cadastrar',
-=======
             path: '/alunos/cadastrar',
             element: <CadastrarAlunos />,
           },
@@ -73,7 +51,6 @@ const router = createBrowserRouter([
           },
           {
             path: '/alunos/cadastrar',
->>>>>>> Stashed changes
             element: <DeletarAlunos />,
           },
         ],
