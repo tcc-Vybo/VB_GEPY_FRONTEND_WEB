@@ -1,61 +1,77 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import LoginPage from "./Pages/Login";
-import Home from "./Pages/Home";
-import Alunos from "./Components/Alunos";
-import Turmas from "./Components/Turmas";
-import Funcionarios from "./Components/Funcionarios";
-import Newsletter from "./Components/Newsletter";
-import Agenda from "./Components/Agenda";
-import ErrorPage from "./Pages/ErrorPage";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import LoginPage from './Pages/Login';
+import Home from './Pages/Home';
+import Alunos from './Components/Alunos';
+import Turmas from './Components/Turmas';
+import Funcionarios from './Components/Funcionarios';
+import Newsletter from './Components/Newsletter';
+import Agenda from './Components/Agenda';
+import ErrorPage from './Pages/ErrorPage';
+import CadastrarAlunos from './Components/Alunos/components-alunos/cadastrar';
+import BuscarAlunos from './Components/Alunos/components-alunos/buscar';
+import AlterarAlunos from './Components/Alunos/components-alunos/alterar';
+import DeletarAlunos from './Components/Alunos/components-alunos/deletar';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import InitialButtons from "./Components/Card";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
   {
-    path: "/",
+    path: '/',
     element: <Home />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/tela-inicial",
-        element: <InitialButtons />,
-      },
-      {
-        path: "/alunos",
+        path: '/alunos',
         element: <Alunos />,
+        children: [
+          {
+            path: '/cadastrar',
+            element: <CadastrarAlunos />,
+          },
+          {
+            path: '/buscar',
+            element: <BuscarAlunos />,
+          },
+          {
+            path: '/alterar',
+            element: <AlterarAlunos />,
+          },
+          {
+            path: '/cadastrar',
+            element: <DeletarAlunos />,
+          },
+        ],
       },
       {
-        path: "/turmas",
+        path: '/turmas',
         element: <Turmas />,
       },
       {
-        path: "/funcionarios",
+        path: '/funcionarios',
         element: <Funcionarios />,
       },
       {
-        path: "/newsletter",
+        path: '/newsletter',
         element: <Newsletter />,
       },
       {
-        path: "/Agenda",
+        path: '/Agenda',
         element: <Agenda />,
       },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
     <RouterProvider router={router} />
   </React.StrictMode>
 );
