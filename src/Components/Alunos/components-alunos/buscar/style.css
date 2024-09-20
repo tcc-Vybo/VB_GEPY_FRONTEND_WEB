@@ -57,7 +57,7 @@
   margin-inline: 30px;
   margin-top: 10px;
   width: 100%;
-  height: 100px;
+  height: 10%;
 }
 
 .inputs-searchs{
@@ -65,4 +65,25 @@
   gap: 10px;
   margin-top: 1%;
   padding-left: 20px;
+}
+
+.response-container{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.response-map{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+}
+
+.actions-btn {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 5px 50px;
+  border: 2px solid #6700b3;
+  border-radius: 20px;
 }
