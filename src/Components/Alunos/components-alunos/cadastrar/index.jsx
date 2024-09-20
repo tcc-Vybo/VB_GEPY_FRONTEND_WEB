@@ -323,7 +323,6 @@ export default function CadastrarAlunos() {
         </div>
       </div>
       <div className='alunos-button'>
-        <button className='alunos-btn'>Voltar</button>
         <input className='alunos-btn' type='submit' value="Gravar"/>
       </div>
     </form>
