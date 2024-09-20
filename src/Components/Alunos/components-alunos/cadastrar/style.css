@@ -1,3 +1,12 @@
-.cadastro {
-  color: #ecd2ff;
+.container-alunos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.container-secundario {
+  width: 95%;
+  height: 50%;
+  background-color: #ecd2ff;
 }

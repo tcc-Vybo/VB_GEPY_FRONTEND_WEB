@@ -3,8 +3,10 @@ import './style.css';
 
 export default function CadastrarAlunos() {
   return (
-    <div className="container-principal">
-      <h1 className="cadastro">Cadastro</h1>
+    <div className="container-alunos">
+      <div className="container-secundario">
+        <h1>a</h1>
+      </div>
     </div>
   );
 }
