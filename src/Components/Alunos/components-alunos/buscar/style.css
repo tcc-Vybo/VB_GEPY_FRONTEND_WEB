@@ -1,10 +1,41 @@
 .buscar {
-  color: #ecd2ff;
+  color: #ffffff;
+}
+
+.container-secundario {
+  background-color: #ecd2ff;
+  width: 71vw;
+  height: 60vh;
+  margin-left: 30px;
+  align-self: center;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.input-buscar {
+  width: 60px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid color(#6700b2);
 }
 
 .container-secundario {
   display: flex;
-  flex-direction: column;
+}
+
+.container-terciario {
+  background-color: #d7a1ff;
+  width: 68vw;
+  height: 48vh;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  margin: auto;
+  border-radius: 40px;
+  margin-top: 15px;
 }
 
 .pesquisa {
@@ -14,9 +45,21 @@
 .label-buscar {
   color: #6700b2;
   font-weight: bold;
+  display: flex;
 }
 
 .input-buscar {
   width: 400px;
   border: 2px solid color(#6700b2);
+  padding-left: 15px;
+}
+
+.nav-buscar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-inline: 30px;
+  margin-top: 10px;
+  width: 100%;
+  height: 100px;
 }
