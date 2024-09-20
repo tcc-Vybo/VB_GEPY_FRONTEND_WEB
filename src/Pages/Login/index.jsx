@@ -30,6 +30,7 @@ export default function LoginPage() {
 
           <label className="password">Senha: </label>
           <input
+            className="login-input"
             placeholder="digite sua senha"
             type="password"
           ></input>

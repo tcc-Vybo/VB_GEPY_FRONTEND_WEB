@@ -13,7 +13,32 @@
   height: 100%;
   background-color: #ecd2ff;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding: 5px 20px 20px 20px;
+}
+.container-secundario h1 {
+  color: #6700b3;
+  font-size: 25px;
+  margin-top: 15px;
+}
+
+.inputs-identificacao {
+  display: flex;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.input-cadastro {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  color: #6700b3;
+  font-size: 20px;
+}
+
+.input-cadastro input {
+  border-radius: 5px;
+  border: 2px solid #6700b3;
 }
 
 .alunos-button {
@@ -26,7 +51,7 @@
 
 .alunos-button button {
   background-color: rgba(0, 0, 0, 0);
-  padding: 10px 50px;
+  padding: 5px 50px;
   border: 2px solid #6700b3;
   border-radius: 20px;
 }

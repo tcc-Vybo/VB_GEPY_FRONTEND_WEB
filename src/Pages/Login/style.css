@@ -63,10 +63,9 @@ label {
 }
 
 .password {
-
 }
 
-input {
+.login-input {
   width: 15vw;
   height: 5vh;
   border-radius: 30px;
