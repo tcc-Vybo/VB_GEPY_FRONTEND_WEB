@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
+import Swal from 'sweetalert2'
 
 export default function CadastrarAlunos() {
 
@@ -35,7 +36,7 @@ export default function CadastrarAlunos() {
     const insertNewStudentUrl = `https://vb-gepy-backend-web.onrender.com/aluno`
 
     try {
-      const response = await fetch(insertNewStudentUrl, {
+      fetch(insertNewStudentUrl, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -65,18 +66,26 @@ export default function CadastrarAlunos() {
           nomeResponsavel: stateStudentNewParentName,
           cpfResponsavel: stateStudentNewParentCPF,
           relacao: stateStudentNewRelation,
-          telefoneResponsavel: stateStudentNewParentTel,
-        }),
+          telefoneResponsavel: stateStudentNewParentTel
+        })
+      }).then((resp) =>{
+        console.log(resp)
+        if(resp.status === 200 && resp.ok === true){
+          Swal.fire({
+            title: 'Success!',
+            text: 'Aluno inserido!!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+        }else{
+          Swal.fire({
+            title: 'ERRO!',
+            text: 'Aluno não inserido!!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
+        }
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Error response:", errorText);
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log("Success:", data);
     } catch (err) {
       console.error("ERROR FETCHING DATA:", err);
     }
@@ -314,8 +323,8 @@ export default function CadastrarAlunos() {
         </div>
       </div>
       <div className='alunos-button'>
-        <button>Voltar</button>
-        <input type='submit' value="Gravar"/>
+        <button className='alunos-btn'>Voltar</button>
+        <input className='alunos-btn' type='submit' value="Gravar"/>
       </div>
     </form>
   );
