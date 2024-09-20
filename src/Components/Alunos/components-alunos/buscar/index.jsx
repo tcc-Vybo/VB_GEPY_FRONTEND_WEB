@@ -3,21 +3,23 @@ import "./style.css";
 
 export default function BuscarAlunos() {
   return (
-    <div className="container-alunos">
+    <div className="container-principal">
       <div className="container-secundario">
-        <div className="pesquisa">
-          <label className="label-buscar">Nome do Aluno: </label>
+        <label className="label-buscar">
+          Nome:
           <input
             type="text"
-            placeholder="Digite o Nome do Aluno"
+            placeholder="Digite o nome do aluno"
             className="input-buscar"
           ></input>
+        </label>
+        <div className="container-terciario">
+          <div className="nav-buscar">
+            <p>Nome</p>
+            <p>Responsáveis</p>
+            <p>Ações</p>
+          </div>
         </div>
-        <div className="resultados"></div>
-      </div>
-      <div className="alunos-button">
-        <button>Voltar</button>
-        <button>Salvar</button>
       </div>
     </div>
   );
