@@ -16,7 +16,7 @@ export default function Sidebar() {
       <ul className="ul-sidebar">
         <li>
           <button className="button-sidebar">
-            <Link to="/alunos">
+            <Link to="/alunos/cadastrar">
               <User />
             </Link>
           </button>

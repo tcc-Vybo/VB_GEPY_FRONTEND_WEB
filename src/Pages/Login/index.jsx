@@ -7,7 +7,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   function goToSecondPage() {
-    navigate("/");
+    navigate("/home");
   }
 
   return (

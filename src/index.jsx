@@ -11,6 +11,7 @@ import Turmas from "./Components/Turmas";
 import "./index.css";
 import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home";
+import HomeInicial from "./Components/Card";
 import LoginPage from "./Pages/Login";
 import reportWebVitals from "./reportWebVitals";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     element: <Home />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/home",
+        element: <HomeInicial />,
+      },
       {
         path: "/alunos",
         element: <Alunos />,
