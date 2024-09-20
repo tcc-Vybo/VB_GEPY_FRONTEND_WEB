@@ -1,5 +1,5 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
 export default function CadastrarAlunos() {
   return (
@@ -77,9 +77,9 @@ export default function CadastrarAlunos() {
         </div>
       </div>
       <div className="alunos-button">
-        <button>Voltar</button>
-        <button>Salvar</button>
-      </div>
+          <button>Voltar</button>
+          <button>Salvar</button>
+        </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function BuscarAlunos() {
   return (
-    <div className="container-principal">
+    <div >
       <div className="container-secundario">
         <label className="label-buscar">
           Nome:

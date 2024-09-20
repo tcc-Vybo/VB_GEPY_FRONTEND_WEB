@@ -4,8 +4,8 @@
 
 .container-secundario {
   background-color: #ecd2ff;
-  width: 71vw;
-  height: 60vh;
+  min-width: 71vw;
+  min-height: 50vh;
   margin-left: 30px;
   align-self: center;
   border-radius: 40px;
@@ -28,8 +28,8 @@
 
 .container-terciario {
   background-color: #d7a1ff;
-  width: 68vw;
-  height: 48vh;
+  min-width: 68vw;
+  min-height: 40vh;
   display: flex;
   align-content: center;
   justify-content: space-around;

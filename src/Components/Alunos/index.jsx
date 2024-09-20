@@ -6,7 +6,7 @@ export default function Alunos() {
   return (
     <div className="container-principal">
       <header className="header-alunos">
-        <div className="alunos-button">
+        <div className="alunos-header-button">
           <Link to="/alunos/cadastrar">
             <button>Cadastrar Alunos</button>
           </Link>
