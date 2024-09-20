@@ -6,8 +6,12 @@ export default function Alunos() {
   return (
     <div className="container-principal">
       <header className="header-alunos">
-        <button>Cadastrar Alunos</button>
-        <button>Buscar Alunos</button>
+        <div className="alunos-button">
+          <button>Cadastrar Alunos</button>
+        </div>
+        <div className="alunos-button">
+          <button>Buscar Alunos</button>
+        </div>
       </header>
       <Outlet />
     </div>
