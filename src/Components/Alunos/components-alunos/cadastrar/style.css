@@ -1,12 +1,23 @@
 .container-alunos {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100%;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 350px;
 }
 
 .container-secundario {
+  display: flex;
+  align-self: center;
   width: 95%;
-  height: 50%;
+  height: 100%;
   background-color: #ecd2ff;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.alunos-button {
+  display: flex;
+  align-self: flex-end;
+  color: #6700b3;
 }

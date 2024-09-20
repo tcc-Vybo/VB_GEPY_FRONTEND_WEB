@@ -11,7 +11,7 @@ export default function Alunos() {
             <button>Cadastrar Alunos</button>
           </Link>
         </div>
-        <div className="alunos-button">
+        <div className="alunos-header-button">
           <Link to="/alunos/buscar">
             <button>Buscar Alunos</button>
           </Link>
