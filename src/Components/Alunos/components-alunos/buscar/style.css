@@ -1,3 +1,22 @@
 .buscar {
   color: #ecd2ff;
 }
+
+.container-secundario {
+  display: flex;
+  flex-direction: column;
+}
+
+.pesquisa {
+  width: 100%;
+}
+
+.label-buscar {
+  color: #6700b2;
+  font-weight: bold;
+}
+
+.input-buscar {
+  width: 400px;
+  border: 2px solid color(#6700b2);
+}

@@ -6,23 +6,9 @@
 
 .container-principal {
   min-width: 75vw;
-  min-height: 74vh;
+  min-height: 70vh;
   background-color: rgb(255, 255, 255);
   border-radius: 50px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mensagem-bemvindo {
-  text-align: center;
-}
-
-.bemvindo {
-  font-size: 40px;
-  color: #6700b2;
-}
-
-.logo {
-  width: 400px;
+  flex-direction: column;
 }
