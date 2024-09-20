@@ -1,18 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import LoginPage from "./Pages/Login";
-import Home from "./Pages/Home";
+import Agenda from "./Components/Agenda";
 import Alunos from "./Components/Alunos";
-import Turmas from "./Components/Turmas";
+import AlterarAlunos from "./Components/Alunos/components-alunos/alterar";
+import CadastrarAlunos from "./Components/Alunos/components-alunos/cadastrar";
+import DeletarAlunos from "./Components/Alunos/components-alunos/deletar";
 import Funcionarios from "./Components/Funcionarios";
 import Newsletter from "./Components/Newsletter";
-import Agenda from "./Components/Agenda";
+import Turmas from "./Components/Turmas";
+import "./index.css";
 import ErrorPage from "./Pages/ErrorPage";
+import Home from "./Pages/Home";
+import LoginPage from "./Pages/Login";
+import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import InitialButtons from "./Components/Card";
+
+import BuscarAlunos from "./Components/Alunos/components-alunos/buscar";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +29,26 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/tela-inicial",
-        element: <InitialButtons />,
-      },
-      {
         path: "/alunos",
         element: <Alunos />,
+        children: [
+          {
+            path: "/alunos/cadastrar",
+            element: <CadastrarAlunos />,
+          },
+          {
+            path: "/alunos/buscar",
+            element: <BuscarAlunos />,
+          },
+          {
+            path: "/alunos/alterar",
+            element: <AlterarAlunos />,
+          },
+          {
+            path: "/alunos/deletar",
+            element: <DeletarAlunos />,
+          },
+        ],
       },
       {
         path: "/turmas",
@@ -55,7 +73,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-
     <RouterProvider router={router} />
   </React.StrictMode>
 );

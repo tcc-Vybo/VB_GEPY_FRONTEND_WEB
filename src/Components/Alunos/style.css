@@ -1,19 +1,25 @@
 .header-alunos {
   display: flex;
-  justify-content: space-around;
   margin: 20px;
   border-bottom: 2px solid #6700b3;
   padding-bottom: 15px;
 }
 
 .header-alunos button {
-  width: 20%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0);
   padding: 10px;
-  border: 2px solid #6700b3;
-  border-radius: 15px;
   color: #6700b3;
   font-weight: bold;
+  border-radius: 15px;
+  border: 2px solid #6700b3;
+}
+
+.alunos-header-button {
+  width: 20%;
+  padding-right: 15px;
+  margin-right: 15px;
+  border-right: 2px solid #6700b3;
 }
 
 .header-alunos button:focus {
