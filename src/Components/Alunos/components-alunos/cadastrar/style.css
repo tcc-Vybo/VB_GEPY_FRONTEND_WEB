@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  height: 70%;
+  height: 80%;
   width: 100%;
 }
 
@@ -24,18 +24,22 @@
 
 .inputs-identificacao {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin-top: 15px;
 }
 
 .input-cadastro {
   display: flex;
   flex-direction: column;
-  width: 250px;
   color: #6700b3;
   font-size: 20px;
 }
-
+.tipo-um {
+  width: 250px;
+}
+.tipo-dois {
+  width: 155px;
+}
 .input-cadastro input {
   border-radius: 5px;
   border: 2px solid #6700b3;
