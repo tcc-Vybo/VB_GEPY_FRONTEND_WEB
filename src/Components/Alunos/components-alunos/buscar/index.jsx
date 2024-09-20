@@ -1,20 +1,20 @@
-import React from "react";
-import "./style.css";
+import React from 'react';
+import './style.css';
 
 export default function BuscarAlunos() {
   return (
-    <div >
-      <div className="container-secundario">
-        <label className="label-buscar">
+    <div className='container-primario'>
+      <div className='container-secundario'>
+        <label className='label-buscar'>
           Nome:
           <input
-            type="text"
-            placeholder="Digite o nome do aluno"
-            className="input-buscar"
+            type='text'
+            placeholder='Digite o nome do aluno'
+            className='input-buscar'
           ></input>
         </label>
-        <div className="container-terciario">
-          <div className="nav-buscar">
+        <div className='container-terciario'>
+          <div className='nav-buscar'>
             <p>Nome</p>
             <p>Responsáveis</p>
             <p>Ações</p>
