@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from '../../Components/Footer';
-import Navbar from '../../Components/Navbar';
-import Sidebar from '../../Components/Sidebar';
-import './style.css';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import Sidebar from "../../Components/Sidebar";
+import "./style.css";
 
 export default function Home() {
   return (

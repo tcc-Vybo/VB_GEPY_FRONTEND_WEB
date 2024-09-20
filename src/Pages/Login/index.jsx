@@ -1,22 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Logo from '../../Assets/Images/Logo.png';
-import './style.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../../Assets/Images/Logo.png";
+import "./style.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
 
   function goToSecondPage() {
-    navigate('/');
+    navigate("/");
   }
 
   return (
     <div className="container-login">
       <div className="container-left">
-        <img
-          className="logo-login"
-          src={Logo}
-        />
+        <img className="logo-login" src={Logo} />
       </div>
 
       <div className="container-right">
@@ -24,21 +21,18 @@ export default function LoginPage() {
           <h1>Acesso ao sistema</h1>
           <label>Usuário: </label>
           <input
-            placeholder="digite o usuário de droga"
+            className="login-input"
+            placeholder="Digite seu usuário"
             type="text"
           ></input>
-
           <label className="password">Senha: </label>
           <input
             className="login-input"
-            placeholder="digite sua senha"
+            placeholder="Digite sua senha"
             type="password"
           ></input>
 
-          <button
-            className="button-login-in"
-            onClick={goToSecondPage}
-          >
+          <button className="button-login-in" onClick={goToSecondPage}>
             Entrar
           </button>
 
