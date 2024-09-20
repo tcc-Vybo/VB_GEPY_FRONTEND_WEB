@@ -3,7 +3,7 @@
   justify-content: center;
   flex-direction: column;
   /* align-items: center; */
-  height: 350px;
+  height: 390px;
 }
 
 .container-secundario {
@@ -13,11 +13,20 @@
   height: 100%;
   background-color: #ecd2ff;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .alunos-button {
   display: flex;
   align-self: flex-end;
+  margin-right: 3%;
   color: #6700b3;
+  gap: 20px;
+}
+
+.alunos-button button {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px 50px;
+  border: 2px solid #6700b3;
+  border-radius: 20px;
 }
