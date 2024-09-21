@@ -91,8 +91,6 @@ export default function CadastrarAlunos() {
     }
   }
 
-
-
   return (
     <form className='container-alunos' onSubmit={handleIsertNewStudent} method='POST'>
       <div className='container-secundario-cad'>
