@@ -2,18 +2,24 @@ import './style.css';
 
 function Login() {
   return (
-    <div className='login-container'>
-      <form action=''>
-        <h1>Login de Usuários</h1>
+    <div className="login-container">
+      <form
+        action=""
+        className="login-form"
+      >
+        <h1>Acesso</h1>
+        <label>Usuário</label>
         <input
-          type='text'
-          name='usuario'
+          type="text"
+          name="usuario"
         />
+        <label>Senha</label>
         <input
-          type='password'
-          name='senha'
+          type="password"
+          name="senha"
         />
-        <button type='button'>Entrar</button>
+        <span>Esqueceu sua senha?</span>
+        <button type="button">Entrar</button>
       </form>
     </div>
   );
