@@ -1,0 +1,6 @@
+.aluno-input {
+  display: flex;
+  flex-direction: column;
+  color: #6700b3;
+  font-size: 20px;
+}
