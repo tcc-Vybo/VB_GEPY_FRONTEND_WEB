@@ -1,6 +1,8 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .logged-user {
@@ -14,4 +16,16 @@
 .user-logo-icon {
   width: 64px;
   height: 64px;
+}
+
+.sidebar-navigation {
+  border-bottom: 1px solid black;
+}
+
+.sidebar-buttons {
+  margin-bottom: 40px;
+  padding: 0px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
