@@ -1,6 +1,6 @@
 import './style.css';
 
-function Login() {
+export default function Login() {
   return (
     <div className="login-container">
       <form
@@ -24,5 +24,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

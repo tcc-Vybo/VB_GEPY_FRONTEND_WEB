@@ -1,3 +1,7 @@
+.inputs-area {
+  width: 100%;
+}
+
 .aluno-input {
   display: flex;
   flex-direction: column;

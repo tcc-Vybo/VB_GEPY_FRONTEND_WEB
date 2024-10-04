@@ -1,6 +1,6 @@
 import './style.css';
 
-function CadastroAlunoInput({ name }) {
+export default function CadastroAlunoInput({ name }) {
   return (
     <div className="aluno-input">
       <p>{name}</p>
@@ -8,5 +8,3 @@ function CadastroAlunoInput({ name }) {
     </div>
   );
 }
-
-export default CadastroAlunoInput;

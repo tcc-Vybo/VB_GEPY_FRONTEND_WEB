@@ -25,12 +25,5 @@
   height: 80%;
   background-color: #fff;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.action {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
+  padding: 30px;
 }

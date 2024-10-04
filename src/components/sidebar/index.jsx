@@ -2,7 +2,7 @@ import './style.css';
 import Logo from '../../assets/logged-icon.png';
 import SidebarIcon from './sidebar-icons';
 
-function Sidebar() {
+export default function Sidebar() {
   return (
     <div className="sidebar">
       <div>
@@ -29,5 +29,3 @@ function Sidebar() {
     </div>
   );
 }
-
-export default Sidebar;

@@ -1,6 +1,6 @@
 import './style.css';
 
-function SidebarIcon({ name }) {
+export default function SidebarIcon({ name }) {
   return (
     <div className="sidebar-icon">
       <img
@@ -11,5 +11,3 @@ function SidebarIcon({ name }) {
     </div>
   );
 }
-
-export default SidebarIcon;

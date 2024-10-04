@@ -1,16 +1,8 @@
-import CadastroAlunoInput from '../../components/cadastro-aluno-input';
+import CadastroAlunos from '../../components/cadastro-alunos';
 import Sidebar from '../../components/sidebar';
 import './style.css';
-import { useState } from 'react';
 
-function Home() {
-  const [indentificationVisisble, setIndentificationVisible] = useState(false);
-
-  const handleClick = (e) => {
-    e.stopPropagation();
-    setIndentificationVisible(!indentificationVisisble);
-  };
-
+export default function Home() {
   return (
     <div className="main-page">
       <div className="sidebar-container">
@@ -18,22 +10,9 @@ function Home() {
       </div>
       <div className="main-content">
         <div className="content-container">
-          <div
-            className="action"
-            onClick={handleClick}
-          >
-            <h1>Indentificação</h1>
-            <p>S</p>
-          </div>
-          <div className="indentification-inputs">
-            {indentificationVisisble && (
-              <CadastroAlunoInput name={'Nome Completo'} />
-            )}
-          </div>
+          <CadastroAlunos />
         </div>
       </div>
     </div>
   );
 }
-
-export default Home;
