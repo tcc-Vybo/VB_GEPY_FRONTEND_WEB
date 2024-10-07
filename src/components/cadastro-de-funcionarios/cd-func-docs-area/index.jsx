@@ -1,21 +1,17 @@
 import CadastroAlunoInput from '../../cd-input';
 
-export default function AlunosInputAreaDocuments() {
+export default function FuncionariosInputAreaDocs() {
   return (
     <div className="inputs-area">
       <div className="input-line">
-        <CadastroAlunoInput name={'RG '} />
+        <CadastroAlunoInput name={'RG'} />
         <CadastroAlunoInput name={'CPF'} />
         <CadastroAlunoInput name={'Data de Expedição'} />
-        <CadastroAlunoInput name={'Orgão Expedidor'} />
+        <CadastroAlunoInput name={'Orgão Expeditor'} />
         <button>Selecionar Arquivo</button>
       </div>
       <div className="input-line doc">
-        <p>Carteirinha de vacina</p>
-        <button>Selecionar Arquivo</button>
-      </div>
-      <div className="input-line doc">
-        <p>Histórico escolar</p>
+        <p>Carteira de vacina</p>
         <button>Selecionar Arquivo</button>
       </div>
     </div>

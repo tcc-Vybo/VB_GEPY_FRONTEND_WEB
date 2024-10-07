@@ -14,9 +14,3 @@
   gap: 30px;
   margin-top: 15px;
 }
-
-.doc {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-}

@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import AlunosInputAreaContacts from './cd-aluno-contact-area';
 import AlunosInputAreaDocuments from './cd-aluno-docs-area';
 import AlunosInputAreaIdentific from './cd-aluno-ident-area';
 import AlunosInputAreaResidence from './cd-aluno-res-area';
 import './style.css';
-import AlunosInputAreaContacts from './cd-aluno-contact-area';
 
 export default function CadastroAlunos() {
   const [identificationVisisble, setIndentificationVisible] = useState(false);

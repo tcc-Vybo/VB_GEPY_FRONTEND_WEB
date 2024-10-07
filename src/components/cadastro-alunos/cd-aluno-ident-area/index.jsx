@@ -1,21 +1,20 @@
-import CadastroAlunoInput from '../cd-aluno-input';
-import './style.css';
+import CadastroInput from '../../cd-input';
 
 export default function AlunosInputAreaIdentific() {
   return (
     <div className="inputs-area">
       <div className="input-line">
-        <CadastroAlunoInput name={'Nome Completo'} />
-        <CadastroAlunoInput name={'Data de Nascimento'} />
-        <CadastroAlunoInput name={'Cidade de Nascimento'} />
-        <CadastroAlunoInput name={'UF'} />
+        <CadastroInput name={'Nome Completo'} />
+        <CadastroInput name={'Data de Nascimento'} />
+        <CadastroInput name={'Cidade de Nascimento'} />
+        <CadastroInput name={'UF'} />
       </div>
       <div className="input-line">
-        <CadastroAlunoInput name={'Nacionalidade'} />
-        <CadastroAlunoInput name={'Gênero'} />
-        <CadastroAlunoInput name={'Cor/Raça'} />
-        <CadastroAlunoInput name={'Necessidades'} />
-        <CadastroAlunoInput name={'Turma'} />
+        <CadastroInput name={'Nacionalidade'} />
+        <CadastroInput name={'Gênero'} />
+        <CadastroInput name={'Cor/Raça'} />
+        <CadastroInput name={'Necessidades'} />
+        <CadastroInput name={'Turma'} />
       </div>
     </div>
   );

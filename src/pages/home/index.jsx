@@ -1,4 +1,5 @@
 import CadastroAlunos from '../../components/cadastro-alunos';
+import CadastroFuncionarios from '../../components/cadastro-de-funcionarios';
 import Sidebar from '../../components/sidebar';
 import './style.css';
 
@@ -10,7 +11,7 @@ export default function Home() {
       </div>
       <div className="main-content">
         <div className="content-container">
-          <CadastroAlunos />
+          <CadastroFuncionarios />
         </div>
       </div>
     </div>
