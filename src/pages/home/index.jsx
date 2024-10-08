@@ -1,3 +1,4 @@
+import BuscaAluno from '../../components/busca-alunos';
 import CadastroAlunos from '../../components/cadastro-alunos';
 import CadastroFuncionarios from '../../components/cadastro-de-funcionarios';
 import Sidebar from '../../components/sidebar';
@@ -11,7 +12,7 @@ export default function Home() {
       </div>
       <div className="main-content">
         <div className="content-container">
-          <CadastroFuncionarios />
+          <BuscaAluno />
         </div>
       </div>
     </div>
