@@ -14,9 +14,9 @@ export default function BuscaAluno() {
       </div>
       <div className="display-alunos">
         <div className="busca-aluno-linha">
-          <p className="nome">Nome</p>
-          <p className="responsavel">Responsável</p>
-          <p className="acoes">Ações</p>
+          <p className="nome title">Nome</p>
+          <p className="responsavel title">Responsável</p>
+          <p className="acoes title">Ações</p>
         </div>
         <BuscaAlunoLinha
           nome={'Manuela Chagas Dias'}

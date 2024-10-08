@@ -52,3 +52,7 @@
   height: 100%;
   border-left: 2px solid #3f97ff;
 }
+
+.display-alunos .title {
+  font-weight: bold;
+}
