@@ -32,7 +32,7 @@
   padding-left: 3%;
 }
 
-.nome,
+.display-alunos .nome,
 .responsavel {
   width: 46%;
 }
@@ -43,13 +43,17 @@
   gap: 60%;
 }
 
-.nome,
-.acoes,
-.responsavel {
+.display-alunos .nome,
+.responsavel .acoes {
   display: flex;
   align-items: center;
   padding-left: 2%;
   height: 100%;
+}
+
+.busca-aluno-linha .nome,
+.acoes,
+.responsavel {
   border-left: 2px solid #3f97ff;
 }
 
