@@ -1,12 +1,9 @@
-import './style.css';
+import "./style.css";
 
-function SidebarIcon({ name }) {
+function SidebarIcon({ name, icon }) {
   return (
     <div className="sidebar-icon">
-      <img
-        src=""
-        alt=""
-      />
+      {icon}
       <p>{name}</p>
     </div>
   );
