@@ -1,6 +1,14 @@
 import './style.css';
 import Logo from '../../assets/logged-icon.png';
 import SidebarIcon from './sidebar-icons';
+import {
+  Contact,
+  LogOut,
+  Newspaper,
+  NotebookPen,
+  User,
+  Users,
+} from "lucide-react";
 
 function Sidebar() {
   return (
@@ -22,9 +30,9 @@ function Sidebar() {
           <SidebarIcon name="Newsletter" />
         </div>
       </div>
-      <div className="sidebar-buttons">
-        <button>Sair</button>
-        <button>Mudar senha</button>
+      <div>
+        <button className='b-sair'>Sair</button>
+        <button className='b-mudarSenha'>Mudar senha</button>
       </div>
     </div>
   );
