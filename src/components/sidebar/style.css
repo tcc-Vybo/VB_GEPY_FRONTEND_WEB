@@ -26,7 +26,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: 0.7s;
+  transition: 0.4s;
 }
 
 .b-sair:hover{
@@ -43,7 +43,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: 0.7s;
+  transition: 0.4s;
 }
 
 .b-mudarSenha:hover{
@@ -53,10 +53,3 @@
   color: white;
 }
 
-.sidebar-buttons {
-  margin-bottom: 40px;
-  padding: 0px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
