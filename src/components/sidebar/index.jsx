@@ -35,9 +35,9 @@ function Sidebar() {
             <LogOut /> Sair
           </span>
         </button>
-        <button className="b-mudarSenha">
+        <button className="b-alterarSenha">
           {" "}
-          <Lock /> Mudar senha
+          <Lock /> Alterar Senha
         </button>
       </div>
     </div>
