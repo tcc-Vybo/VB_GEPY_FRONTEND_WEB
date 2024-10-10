@@ -26,6 +26,7 @@
   cursor: pointer;
   transition: 0.4s;
   padding: 5px;
+  margin-left: 30px;
 }
 
 .b-sair:hover {
@@ -43,6 +44,7 @@
   cursor: pointer;
   transition: 0.4s;
   padding: 5px;
+  margin-left: 30px;
 }
 
 .b-mudarSenha:hover {
@@ -53,7 +55,7 @@
 }
 .sidebar-footer-buttons {
   display: flex;
-  width: 60%;
+  width: 90%;
   justify-content: space-around;
 }
 

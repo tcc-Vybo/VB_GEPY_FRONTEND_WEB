@@ -9,6 +9,7 @@ import {
   User,
   Users,
   Home,
+  Lock,
 } from "lucide-react";
 
 function Sidebar() {
@@ -29,12 +30,15 @@ function Sidebar() {
       </div>
       <div className="sidebar-footer-buttons">
         <button className="b-sair">
-          <span className="espaco"> 
-            <Home />
-            Sair
-          </span>    
+          <span className="espaco">
+            {" "}
+            <LogOut /> Sair
+          </span>
         </button>
-        <button className="b-mudarSenha">Mudar senha</button>
+        <button className="b-mudarSenha">
+          {" "}
+          <Lock /> Mudar senha
+        </button>
       </div>
     </div>
   );
