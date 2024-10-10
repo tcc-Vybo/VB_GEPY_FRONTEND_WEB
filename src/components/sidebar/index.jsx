@@ -21,14 +21,14 @@ function Sidebar() {
         </div>
         <div className="sidebar-navigation">
           <SidebarIcon name="Início" icon={<Home />} />
-          <SidebarIcon name="Cadastros" />
-          <SidebarIcon name="Turmas" />
-          <SidebarIcon name="Agenda" />
-          <SidebarIcon name="Newsletter" />
+          <SidebarIcon name="Cadastro" icon={<User />} />
+          <SidebarIcon name="Turmas" icon={<Users />} />
+          <SidebarIcon name="Agenda" icon={<NotebookPen />} />
+          <SidebarIcon name="Newsletter" icon={<Newspaper />} />
         </div>
       </div>
       <div className="sidebar-footer-buttons">
-        <button className="b-sair">Sair</button>
+        <SidebarIcon className="b-sair" name="Sair" icon={<LogOut />} />
         <button className="b-mudarSenha">Mudar senha</button>
       </div>
     </div>
