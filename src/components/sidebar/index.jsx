@@ -20,6 +20,7 @@ function Sidebar() {
           <p>Diretora Xaxa</p>
         </div>
         <div className="sidebar-navigation">
+<<<<<<< Updated upstream
           <SidebarIcon name="Início" icon={<Home />} />
           <SidebarIcon name="Cadastro" icon={<User />} />
           <SidebarIcon name="Turmas" icon={<Users />} />
@@ -29,6 +30,17 @@ function Sidebar() {
       </div>
       <div className="sidebar-footer-buttons">
         <SidebarIcon className="b-sair" name="Sair" icon={<LogOut />} />
+=======
+          <SidebarIcon name="Início" source={User} />
+          <SidebarIcon name="Cadastros" />
+          <SidebarIcon name="Turmas" />
+          <SidebarIcon name="Agenda" />
+          <SidebarIcon name="Newsletter" />
+        </div>
+      </div>
+      <div>
+        <button className="b-sair">Sair</button>
+>>>>>>> Stashed changes
         <button className="b-mudarSenha">Mudar senha</button>
       </div>
     </div>
