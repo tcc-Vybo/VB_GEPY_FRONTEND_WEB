@@ -31,12 +31,10 @@ function Sidebar() {
       <div className="sidebar-footer-buttons">
         <button className="b-sair">
           <span className="espaco">
-            {" "}
             <LogOut /> Sair
           </span>
         </button>
         <button className="b-mudarSenha">
-          {" "}
           <Lock /> Mudar senha
         </button>
       </div>

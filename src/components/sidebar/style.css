@@ -5,6 +5,12 @@
   justify-content: space-between;
 }
 
+.sidebar-navigation {
+  display: flex;
+  flex-direction: column;
+  
+}
+
 .logged-user {
   display: flex;
   flex-direction: column;
