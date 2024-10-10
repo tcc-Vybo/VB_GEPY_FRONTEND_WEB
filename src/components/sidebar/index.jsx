@@ -28,8 +28,12 @@ function Sidebar() {
         </div>
       </div>
       <div className="sidebar-footer-buttons">
-        <SidebarIcon className="b-sair" name="Sair" icon={<LogOut />} />
-
+        <button className="b-sair">
+          <span className="espaco"> 
+            <Home />
+            Sair
+          </span>    
+        </button>
         <button className="b-mudarSenha">Mudar senha</button>
       </div>
     </div>
