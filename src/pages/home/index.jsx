@@ -1,5 +1,6 @@
-import Sidebar from '../../components/sidebar';
-import './style.css';
+import Sidebar from "../../components/sidebar";
+import "./style.css";
+import Footer from "../../components/footer";
 
 function Home() {
   return (
