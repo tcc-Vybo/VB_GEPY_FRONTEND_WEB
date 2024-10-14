@@ -1,6 +1,7 @@
 import "./style.css";
 import Logo from "../../assets/logged-icon.png";
 import SidebarIcon from "./sidebar-icons";
+import { Link } from "react-router-dom";
 import {
   Contact,
   LogOut,
@@ -31,7 +32,6 @@ function Sidebar() {
       <div className="sidebar-footer-buttons">
         <button className="b-sair">
           <span className="espaco">
-            {" "}
             <LogOut /> Sair
           </span>
         </button>
