@@ -1,28 +1,28 @@
 import './style.css';
 import Logo from '../../assets/logged-icon.png';
-import SidebarIcon from './sidebar-icons';
+import SidebarItem from './sidebar-icons';
 
 export default function Sidebar() {
   return (
-    <div className="sidebar">
+    <div className='sidebar'>
       <div>
-        <div className="logged-user">
+        <div className='logged-user'>
           <img
-            className="user-logo-icon"
+            className='user-logo-icon'
             src={Logo}
-            alt=""
+            alt=''
           />
           <p>Diretora Xaxa</p>
         </div>
-        <div className="sidebar-navigation">
-          <SidebarIcon name="Início" />
-          <SidebarIcon name="Cadastros" />
-          <SidebarIcon name="Turmas" />
-          <SidebarIcon name="Agenda" />
-          <SidebarIcon name="Newsletter" />
+        <div className='sidebar-navigation'>
+          <SidebarItem name='Início' />
+          <SidebarItem name='Cadastros' />
+          <SidebarItem name='Turmas' />
+          <SidebarItem name='Agenda' />
+          <SidebarItem name='Newsletter' />
         </div>
       </div>
-      <div className="sidebar-buttons">
+      <div className='sidebar-buttons'>
         <button>Sair</button>
         <button>Mudar senha</button>
       </div>

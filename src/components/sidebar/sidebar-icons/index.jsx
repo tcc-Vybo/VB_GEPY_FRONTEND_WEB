@@ -1,11 +1,11 @@
 import './style.css';
 
-export default function SidebarIcon({ name }) {
+export default function SidebarItem({ name }) {
   return (
-    <div className="sidebar-icon">
+    <div className='sidebar-item'>
       <img
-        src=""
-        alt=""
+        src=''
+        alt=''
       />
       <p>{name}</p>
     </div>
