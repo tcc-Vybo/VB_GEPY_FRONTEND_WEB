@@ -47,11 +47,12 @@
 }
 
 .sidebar-title:hover,
-.focused {
+.active {
   background-color: #efefef;
 }
 
-.sidebar-title .toggle-btn {
+.sidebar-title,
+.toggle-btn {
   cursor: pointer;
   transition: transform 0.3s;
 }
@@ -69,7 +70,7 @@
 }
 
 .sidebar-item-sub:hover,
-.sidebar-item-sub.focused {
+.sidebar-item-sub.active {
   background-color: #efefef;
   border-left: 2px solid #6700b3;
 }

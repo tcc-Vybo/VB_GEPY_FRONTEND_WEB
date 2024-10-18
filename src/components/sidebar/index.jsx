@@ -45,7 +45,7 @@ export default function Sidebar() {
           <div className="sidebar-item">
             <div
               className={
-                cadastroOpen ? 'sidebar-title opened focused' : 'sidebar-title'
+                cadastroOpen ? 'sidebar-title opened' : 'sidebar-title'
               }
             >
               <img
@@ -79,9 +79,7 @@ export default function Sidebar() {
           </div>
           <div className="sidebar-item">
             <div
-              className={
-                turmasOpen ? 'sidebar-title opened focused' : 'sidebar-title'
-              }
+              className={turmasOpen ? 'sidebar-title opened' : 'sidebar-title'}
             >
               <img
                 src=""
