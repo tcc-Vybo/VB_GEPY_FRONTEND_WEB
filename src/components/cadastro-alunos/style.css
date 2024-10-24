@@ -15,7 +15,10 @@
 
 .inputs-area {
   margin-left: 2%;
-  padding: 10px 0px;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .input-line {

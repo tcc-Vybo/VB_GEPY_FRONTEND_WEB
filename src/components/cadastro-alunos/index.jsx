@@ -15,19 +15,19 @@ export default function CadastroAlunos() {
             <AlunosInputAreaIdentific />
           </div>
         </div>
-        <div className="cadastro-hider">
+        <div className="cadastro-title">
           <h1>Endereço Residencial</h1>
         </div>
         <div className="cadastro-inputs">
           <AlunosInputAreaResidence />
         </div>
-        <div className="cadastro-hider">
+        <div className="cadastro-title">
           <h1>Documentos</h1>
         </div>
         <div className="cadastro-inputs">
           <AlunosInputAreaDocuments />
         </div>
-        <div className="cadastro-hider">
+        <div className="cadastro-title">
           <h1>Contato</h1>
         </div>
         <div className="cadastro-inputs">
