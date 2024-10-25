@@ -4,159 +4,147 @@ import Chevron from '../../assets/chevron-right.svg';
 import { useState } from 'react';
 
 export default function Sidebar() {
-  const [cadastroOpen, setCadastroOpen] = useState(false);
+  const [alunosOpen, setAlunosOpen] = useState(false);
+  const [funcionariosOpen, setFuncionariosOpen] = useState(false);
   const [turmasOpen, setTurmasOpen] = useState(false);
 
-  const handleCadastroClick = () => {
+  const handleAlunosClick = () => {
     if (turmasOpen) {
-      setTurmasOpen(cadastroOpen);
+      setTurmasOpen(alunosOpen);
     }
-    setCadastroOpen(!cadastroOpen);
+    if (funcionariosOpen) {
+      setFuncionariosOpen(alunosOpen);
+    }
+    setAlunosOpen(!alunosOpen);
+  };
+
+  const handleFuncionariosClick = () => {
+    if (alunosOpen) {
+      setAlunosOpen(funcionariosOpen);
+    }
+    if (turmasOpen) {
+      setTurmasOpen(funcionariosOpen);
+    }
+    setFuncionariosOpen(!funcionariosOpen);
   };
 
   const handleTurmasClick = () => {
-    if (cadastroOpen) {
-      setCadastroOpen(turmasOpen);
+    if (alunosOpen) {
+      setAlunosOpen(turmasOpen);
+    }
+    if (funcionariosOpen) {
+      setFuncionariosOpen(turmasOpen);
     }
     setTurmasOpen(!turmasOpen);
   };
 
   return (
-    <div className="sidebar">
+    <div className='sidebar'>
       <div>
-        <div className="logged-user">
-          <img
-            className="user-logo-icon"
-            src={Logo}
-            alt=""
-          />
+        <div className='logged-user'>
+          <img className='user-logo-icon' src={Logo} alt='' />
           <p>Diretora Xaxa</p>
         </div>
-        <div className="sidebar-navigation">
-          <div className="sidebar-item">
-            <div className="sidebar-title">
-              <img
-                src=""
-                alt=""
-              />
+        <div className='sidebar-navigation'>
+          <div className='sidebar-item'>
+            <div className='sidebar-title'>
+              <img src='' alt='' />
               <p>Início</p>
             </div>
           </div>
-          <div className="sidebar-item">
+          <div className='sidebar-item'>
             <div
-              className={
-                cadastroOpen ? 'sidebar-title opened' : 'sidebar-title'
-              }
+              className={alunosOpen ? 'sidebar-title opened' : 'sidebar-title'}
             >
+              <img src='' alt='' />
+              <p>Alunos</p>
               <img
-                src=""
-                alt=""
-              />
-              <p>Cadastro</p>
-              <img
-                className="toggle-btn"
+                className='toggle-btn'
                 src={Chevron}
-                alt=""
-                onClick={handleCadastroClick}
+                alt=''
+                onClick={handleAlunosClick}
                 on
               />
             </div>
-            <div className={cadastroOpen ? 'sub-area opened' : 'sub-area'}>
-              <div className="sidebar-item-sub">
-                <p>Alunos</p>
-              </div>
-              <div className="sidebar-item-sub">
-                <p>Funcionários</p>
-              </div>
-              <div className="sidebar-item-sub">
-                <p>Turmas</p>
+            <div className={alunosOpen ? 'sub-area opened' : 'sub-area'}>
+              <div>
+                <div className='sidebar-item-sub'>
+                  <p>Cadastro</p>
+                </div>
+                <div className='sidebar-item-sub'>
+                  <p>Busca</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="sidebar-item">
+          <div className='sidebar-item'>
             <div
               className={
-                cadastroOpen ? 'sidebar-title opened' : 'sidebar-title'
+                funcionariosOpen ? 'sidebar-title opened' : 'sidebar-title'
               }
             >
+              <img src='' alt='' />
+              <p>Funcionários</p>
               <img
-                src=""
-                alt=""
-              />
-              <p>Busca</p>
-              <img
-                className="toggle-btn"
+                className='toggle-btn'
                 src={Chevron}
-                alt=""
-                onClick={handleCadastroClick}
+                alt=''
+                onClick={handleFuncionariosClick}
               />
             </div>
-            {cadastroOpen && (
-              <>
-                <div className="sidebar-item-sub">
-                  <p>Alunos</p>
+            <div className={funcionariosOpen ? 'sub-area opened' : 'sub-area'}>
+              <div>
+                <div className='sidebar-item-sub'>
+                  <p>Cadastro</p>
                 </div>
-                <div className="sidebar-item-sub">
-                  <p>Funcionários</p>
+                <div className='sidebar-item-sub'>
+                  <p>Busca</p>
                 </div>
-
-                <div className="sidebar-item-sub">
-                  <p>Turmas</p>
-                </div>
-              </>
-            )}
+              </div>
+            </div>
           </div>
-          <div className="sidebar-item">
+          <div className='sidebar-item'>
             <div
               className={turmasOpen ? 'sidebar-title opened' : 'sidebar-title'}
             >
-              <img
-                src=""
-                alt=""
-              />
+              <img src='' alt='' />
               <p>Turmas</p>
               <img
-                className="toggle-btn"
+                className='toggle-btn'
                 src={Chevron}
-                alt=""
+                alt=''
                 onClick={handleTurmasClick}
               />
             </div>
-            {turmasOpen && (
-              <>
-                <div className="sidebar-item-sub">
+            <div className={turmasOpen ? 'sub-area opened' : 'sub-area'}>
+              <div>
+                <div className='sidebar-item-sub'>
                   <p>Boletim</p>
                 </div>
-                <div className="sidebar-item-sub">
+                <div className='sidebar-item-sub'>
                   <p>Recados</p>
                 </div>
-                <div className="sidebar-item-sub">
+                <div className='sidebar-item-sub'>
                   <p>Atividades</p>
                 </div>
-              </>
-            )}
+              </div>
+            </div>
           </div>
-          <div className="sidebar-item">
-            <div className="sidebar-title">
-              <img
-                src=""
-                alt=""
-              />
+          <div className='sidebar-item'>
+            <div className='sidebar-title'>
+              <img src='' alt='' />
               <p>Agenda</p>
             </div>
           </div>
-          <div className="sidebar-item">
-            <div className="sidebar-title">
-              <img
-                src=""
-                alt=""
-              />
+          <div className='sidebar-item'>
+            <div className='sidebar-title'>
+              <img src='' alt='' />
               <p>Newsletter</p>
             </div>
           </div>
         </div>
       </div>
-      <div className="sidebar-buttons">
+      <div className='sidebar-buttons'>
         <button>Sair</button>
         <button>Mudar senha</button>
       </div>

@@ -47,9 +47,16 @@
 }
 
 .sub-area {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.5s;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 300ms ease-in-out;
+  > div {
+    overflow: hidden;
+  }
+}
+
+.sub-area.opened {
+  grid-template-rows: 1fr;
 }
 
 .sidebar-title:hover,
@@ -61,12 +68,6 @@
 .toggle-btn {
   cursor: pointer;
   transition: transform 0.3s;
-}
-
-.sub-area.opened {
-  height: auto;
-  max-height: 9999px;
-  transition: all 0.5s;
 }
 
 .sidebar-title.opened .toggle-btn {
