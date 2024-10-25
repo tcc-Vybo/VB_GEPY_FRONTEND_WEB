@@ -58,6 +58,37 @@ export default function Sidebar() {
                 src={Chevron}
                 alt=""
                 onClick={handleCadastroClick}
+                on
+              />
+            </div>
+            <div className={cadastroOpen ? 'sub-area opened' : 'sub-area'}>
+              <div className="sidebar-item-sub">
+                <p>Alunos</p>
+              </div>
+              <div className="sidebar-item-sub">
+                <p>Funcionários</p>
+              </div>
+              <div className="sidebar-item-sub">
+                <p>Turmas</p>
+              </div>
+            </div>
+          </div>
+          <div className="sidebar-item">
+            <div
+              className={
+                cadastroOpen ? 'sidebar-title opened' : 'sidebar-title'
+              }
+            >
+              <img
+                src=""
+                alt=""
+              />
+              <p>Busca</p>
+              <img
+                className="toggle-btn"
+                src={Chevron}
+                alt=""
+                onClick={handleCadastroClick}
               />
             </div>
             {cadastroOpen && (
@@ -68,11 +99,9 @@ export default function Sidebar() {
                 <div className="sidebar-item-sub">
                   <p>Funcionários</p>
                 </div>
+
                 <div className="sidebar-item-sub">
-                  <p>Professores</p>
-                </div>
-                <div className="sidebar-item-sub">
-                  <p>Disciplina</p>
+                  <p>Turmas</p>
                 </div>
               </>
             )}
@@ -95,9 +124,6 @@ export default function Sidebar() {
             </div>
             {turmasOpen && (
               <>
-                <div className="sidebar-item-sub">
-                  <p>Cadastrar nova</p>
-                </div>
                 <div className="sidebar-item-sub">
                   <p>Boletim</p>
                 </div>

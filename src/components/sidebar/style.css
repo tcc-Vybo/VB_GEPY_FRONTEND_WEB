@@ -46,6 +46,12 @@
   gap: 30px;
 }
 
+.sub-area {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
 .sidebar-title:hover,
 .active {
   background-color: #efefef;
@@ -55,6 +61,12 @@
 .toggle-btn {
   cursor: pointer;
   transition: transform 0.3s;
+}
+
+.sub-area.opened {
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s;
 }
 
 .sidebar-title.opened .toggle-btn {

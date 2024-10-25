@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       <div className="main-content">
         <div className="content-container">
-          <BuscaTurma />
+          <CadastroAlunos />
         </div>
       </div>
     </div>
