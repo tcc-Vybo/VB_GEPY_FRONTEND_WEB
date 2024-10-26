@@ -119,13 +119,16 @@ export default function Sidebar() {
             <div className={turmasOpen ? 'sub-area opened' : 'sub-area'}>
               <div>
                 <div className='sidebar-item-sub'>
-                  <p>Boletim</p>
+                  <p>Cadastro</p>
+                </div>
+                <div className='sidebar-item-sub'>
+                  <p>Busca</p>
                 </div>
                 <div className='sidebar-item-sub'>
                   <p>Recados</p>
                 </div>
                 <div className='sidebar-item-sub'>
-                  <p>Atividades</p>
+                  <p>Boletim</p>
                 </div>
               </div>
             </div>

@@ -44,7 +44,8 @@
 }
 
 .display-alunos .nome,
-.responsavel .acoes {
+.responsavel,
+.acoes {
   display: flex;
   align-items: center;
   padding-left: 2%;

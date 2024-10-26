@@ -1,3 +1,4 @@
+import Boletim from '../../components/boletim';
 import BuscaAluno from '../../components/busca-alunos';
 import BuscaFuncionario from '../../components/busca-funcionarios';
 import BuscaTurma from '../../components/busca-turma';
@@ -8,13 +9,13 @@ import './style.css';
 
 export default function Home() {
   return (
-    <div className="main-page">
-      <div className="sidebar-container">
+    <div className='main-page'>
+      <div className='sidebar-container'>
         <Sidebar />
       </div>
-      <div className="main-content">
-        <div className="content-container">
-          <CadastroAlunos />
+      <div className='main-content'>
+        <div className='content-container'>
+          <Boletim />
         </div>
       </div>
     </div>
