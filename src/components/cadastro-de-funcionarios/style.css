@@ -1,0 +1,15 @@
+.cadastro-hider {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cadastro-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.input-line {
+  display: flex;
+  gap: 30px;
+}
