@@ -55,6 +55,7 @@ export default function Sidebar() {
           <div className='sidebar-item'>
             <div
               className={alunosOpen ? 'sidebar-title opened' : 'sidebar-title'}
+              onClick={handleAlunosClick}
             >
               <img src='' alt='' />
               <p>Alunos</p>
@@ -62,8 +63,6 @@ export default function Sidebar() {
                 className='toggle-btn'
                 src={Chevron}
                 alt=''
-                onClick={handleAlunosClick}
-                on
               />
             </div>
             <div className={alunosOpen ? 'sub-area opened' : 'sub-area'}>
@@ -79,9 +78,8 @@ export default function Sidebar() {
           </div>
           <div className='sidebar-item'>
             <div
-              className={
-                funcionariosOpen ? 'sidebar-title opened' : 'sidebar-title'
-              }
+              className={funcionariosOpen ? 'sidebar-title opened' : 'sidebar-title'}
+              onClick={handleFuncionariosClick}
             >
               <img src='' alt='' />
               <p>Funcionários</p>
@@ -89,7 +87,6 @@ export default function Sidebar() {
                 className='toggle-btn'
                 src={Chevron}
                 alt=''
-                onClick={handleFuncionariosClick}
               />
             </div>
             <div className={funcionariosOpen ? 'sub-area opened' : 'sub-area'}>
@@ -106,6 +103,7 @@ export default function Sidebar() {
           <div className='sidebar-item'>
             <div
               className={turmasOpen ? 'sidebar-title opened' : 'sidebar-title'}
+              onClick={handleTurmasClick}
             >
               <img src='' alt='' />
               <p>Turmas</p>
@@ -113,7 +111,6 @@ export default function Sidebar() {
                 className='toggle-btn'
                 src={Chevron}
                 alt=''
-                onClick={handleTurmasClick}
               />
             </div>
             <div className={turmasOpen ? 'sub-area opened' : 'sub-area'}>
