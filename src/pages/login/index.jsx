@@ -1,14 +1,18 @@
 import { useState } from "react";
 import "./style.css";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [stateResponseEmail, setStateResponseEmail] = useState();
-  const [stateResponseCPF, setStateResponseCPF] = useState();
+
+  const navigate = useNavigate()
 
   const [stateValidationEmail, setStateValidationEmail] = useState();
   const [stateValidationCPF, setStateValidationCPF] = useState();
 
   const [statePermission, setStatePermission] = useState();
+
+  const [stateLoged, setStateLoged] = useState(false)
 
   const handleLogin = () => {
     const urlToGetEmployee = `https://vb-gepy-backend-web.onrender.com/funcionario/login/${stateValidationCPF}/${stateValidationEmail}`;
@@ -19,9 +23,26 @@ export default function Login() {
           console.log("Response received:", response);
 
           if(response.ok === true){
-            alert("BEM VINDO AO SISTEMA!!")
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Sucesso!",
+              text: "Login bem sucedido!",
+              showConfirmButton: false,
+              timer: 1800
+            });
+
+            navigate('/home')
+            
           }else{
-            alert("ERRO!!")
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "ERRO!",
+              text: "Login não efetuado!",
+              showConfirmButton: false,
+              timer: 1800
+            });
           }
 
           return response.json();
