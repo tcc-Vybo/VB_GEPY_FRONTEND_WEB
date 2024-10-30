@@ -1,4 +1,4 @@
-import CadastroAlunoInput from '../../cd-input';
+import CadastroAlunoInput from '../../../cd-input';
 
 export default function FuncionariosInputAreaDadosPes() {
   return (

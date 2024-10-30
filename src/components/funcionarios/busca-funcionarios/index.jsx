@@ -1,4 +1,3 @@
-import BuscaAlunoLinha from "../alunos/busca-alunos/bu-aluno-line";
 import BuscaFuncLinha from "./bu-func-line";
 import "./style.css";
 

@@ -1,9 +1,9 @@
-import Boletim from "../../components/turmas/boletim";
+import Boletim from "../../components/turmas/boletim/index";
 import BuscaAluno from "../../components/alunos/busca-alunos";
-import BuscaFuncionario from "../../components/busca-funcionarios";
+import BuscaFuncionario from "../../components/funcionarios/busca-funcionarios/";
 import BuscaTurma from "../../components/turmas/busca-turma";
-import CadastroAlunos from "../../components/cadastro-alunos";
-import CadastroFuncionarios from "../../components/cadastro-de-funcionarios";
+import CadastroAlunos from "../../components/alunos/cadastro-alunos";
+import CadastroFuncionarios from "../../components/funcionarios/cadastro-de-funcionarios";
 import Sidebar from "../../components/sidebar";
 import "./style.css";
 
