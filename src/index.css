@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Nunito-Medium";
 }
 
 body {
@@ -22,4 +23,10 @@ body {
   background: #6700b3;
   border: 3px solid #d7a1ff;
   border-radius: 100vh;
+}
+
+@font-face {
+  font-family: "Nunito-Medium";
+  src: local("Nunito-Medium"), 
+  url("./fonts/static/Nunito-Medium.ttf");
 }

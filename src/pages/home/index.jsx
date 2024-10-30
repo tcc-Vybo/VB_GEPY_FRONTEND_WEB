@@ -13,9 +13,9 @@ export default function Home() {
       <div className="sidebar-container">
         <Sidebar />
       </div>
-      <div className="main-content">
-        <div className="content-container">
-          <Boletim />
+      <div className='main-content'>
+        <div className='content-container'>
+          <CadastroFuncionarios />
         </div>
       </div>
     </div>
