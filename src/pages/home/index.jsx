@@ -15,7 +15,7 @@ export default function Home() {
       </div>
       <div className='main-content'>
         <div className='content-container'>
-          <Boletim />
+          <CadastroAlunos />
         </div>
       </div>
     </div>

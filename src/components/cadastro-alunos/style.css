@@ -16,9 +16,13 @@
 }
 
 .inputs-area {
+  display: none;
+}
+
+.inputs-area.expanded {
+  display: flex;
   margin-left: 2%;
   padding: 20px 0px;
-  display: flex;
   flex-direction: column;
   gap: 20px;
 }
