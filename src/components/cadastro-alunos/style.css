@@ -1,0 +1,35 @@
+.cadastro-container {
+  background-color: #dedede;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.cadastro-title h1 {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 5px 20px;
+}
+
+.cadastro-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.inputs-area {
+  margin-left: 2%;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-line {
+  display: flex;
+  gap: 30px;
+}
+
+.doc {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
