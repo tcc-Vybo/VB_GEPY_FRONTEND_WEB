@@ -21,15 +21,18 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .cadastro-documentos-input-left{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
+  width: 70%;
 }
 
 .cadastro-documentos-input-right{
   display: flex;
   flex-direction: column;
+  margin-top: 20%;
 }
