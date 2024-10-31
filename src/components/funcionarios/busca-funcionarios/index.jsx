@@ -1,8 +1,7 @@
-import BuscaAlunoLinha from "../alunos/busca-alunos/bu-aluno-line";
 import BuscaFuncLinha from "./bu-func-line";
 import "./style.css";
 
-export default function BuscaFuncionario() {
+export default function BuscaFuncionarios() {
   return (
     <div className="busca-funcionario">
       <div className="busca-funcionario-header">

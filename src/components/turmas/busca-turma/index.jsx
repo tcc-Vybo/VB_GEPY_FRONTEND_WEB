@@ -1,7 +1,7 @@
-import BuscaTurmaLinha from './bu-turma-line';
-import './style.css';
+import BuscaTurmaLinha from "./bu-turma-line";
+import "./style.css";
 
-export default function BuscaTurma() {
+export default function BuscaTurmas() {
   return (
     <div className="busca-turmas">
       <div className="busca-turmas-header">
@@ -16,9 +16,9 @@ export default function BuscaTurma() {
           <p className="editar title">Editar</p>
         </div>
         <BuscaTurmaLinha
-          aluno={'gusta'}
-          responsavel={'quem quiser'}
-          necessidades={'NÃO'}
+          aluno={"gusta"}
+          responsavel={"quem quiser"}
+          necessidades={"NÃO"}
         />
       </div>
     </div>
