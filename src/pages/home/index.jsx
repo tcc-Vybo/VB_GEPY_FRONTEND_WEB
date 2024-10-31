@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import Boletim from "../../components/turmas/boletim/index";
 import BuscaAluno from "../../components/alunos/busca-alunos";
 import BuscaFuncionario from "../../components/funcionarios/busca-funcionarios/";
@@ -13,9 +15,9 @@ export default function Home() {
       <div className="sidebar-container">
         <Sidebar />
       </div>
-      <div className='main-content'>
-        <div className='content-container'>
-          <CadastroFuncionarios />
+      <div className="main-content">
+        <div className="content-container">
+          <Outlet />
         </div>
       </div>
     </div>
