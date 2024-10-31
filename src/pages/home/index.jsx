@@ -1,21 +1,23 @@
-import Boletim from '../../components/boletim';
-import BuscaAluno from '../../components/busca-alunos';
-import BuscaFuncionario from '../../components/busca-funcionarios';
-import BuscaTurma from '../../components/busca-turma';
-import CadastroAlunos from '../../components/cadastro-alunos';
-import CadastroFuncionarios from '../../components/cadastro-de-funcionarios';
-import Sidebar from '../../components/sidebar';
-import './style.css';
+import { Outlet } from "react-router-dom";
+
+import Boletim from "../../components/turmas/boletim/index";
+import BuscaAluno from "../../components/alunos/busca-alunos";
+import BuscaFuncionario from "../../components/funcionarios/busca-funcionarios/";
+import BuscaTurma from "../../components/turmas/busca-turma";
+import CadastroAlunos from "../../components/alunos/cadastro-alunos";
+import CadastroFuncionarios from "../../components/funcionarios/cadastro-de-funcionarios";
+import Sidebar from "../../components/sidebar";
+import "./style.css";
 
 export default function Home() {
   return (
-    <div className='main-page'>
-      <div className='sidebar-container'>
+    <div className="main-page">
+      <div className="sidebar-container">
         <Sidebar />
       </div>
-      <div className='main-content'>
-        <div className='content-container'>
-          <CadastroAlunos />
+      <div className="main-content">
+        <div className="content-container">
+          <Outlet />
         </div>
       </div>
     </div>
