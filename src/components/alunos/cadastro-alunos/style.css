@@ -4,6 +4,10 @@
   border-radius: 10px;
 }
 
+.cadastro-title {
+  cursor: pointer;
+}
+
 .cadastro-title h1 {
   background-color: #fff;
   border-radius: 10px;
