@@ -1,5 +1,6 @@
 import CadastroAlunoInput from "../../../cd-input/index";
 
+
 export default function FuncionariosInputAreaDocs() {
   return (
     <div className="inputs-area">

@@ -1,4 +1,4 @@
-import CadastroInput from "../../../cd-input";
+import CadastroInput from '../../../cd-input';
 
 export default function AlunosInputAreaContacts() {
   return (

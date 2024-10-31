@@ -1,5 +1,6 @@
 import CadastroInput from "../../../cd-input/index";
 
+
 export default function AlunosInputAreaIdentific() {
   return (
     <div className="inputs-area">
