@@ -11,5 +11,25 @@
 
 .input-line {
   display: flex;
-  gap: 30px;
+  flex-direction: row;
+  justify-content: start;
+  gap: 10px;
+}
+
+.cadastro-documentos-input{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cadastro-documentos-input-left{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-documentos-input-right{
+  display: flex;
+  flex-direction: column;
 }
