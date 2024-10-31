@@ -4,6 +4,10 @@
   border-radius: 10px;
 }
 
+.cadastro-title {
+  cursor: pointer;
+}
+
 .cadastro-title h1 {
   background-color: #fff;
   border-radius: 10px;
@@ -16,9 +20,13 @@
 }
 
 .inputs-area {
+  display: none;
+}
+
+.inputs-area.expanded {
+  display: flex;
   margin-left: 2%;
   padding: 20px 0px;
-  display: flex;
   flex-direction: column;
   gap: 20px;
 }
