@@ -8,6 +8,7 @@ export const CustomButton = styled(Button)(({ theme }) => ({
     height: '50px',
     '&:hover': {
       backgroundColor: 'rgba(103, 0, 179, 0.1)',  // Cor de fundo ao passar o mouse
-      borderColor: '#6700b3',  // Cor da borda ao passar o mouse
+      borderColor: '#6700b3',
+      color: 'black',   // Cor da borda ao passar o mouse
     },
   }));

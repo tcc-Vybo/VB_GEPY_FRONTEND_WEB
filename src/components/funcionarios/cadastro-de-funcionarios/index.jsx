@@ -1,19 +1,26 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { CustomButton } from "../../submitButton/index";
+import { BackButton } from "../../backButton/index";
 import { CustomTextField } from "../../customTextField/index";
+import { CustomAccordion } from "../../customAccordion/index"
+import { CustomAccordionSummary } from "../../customAccordion/index"
+import { CustomAccordionDetails } from "../../customAccordion/index"
+
 import MenuItem from "@mui/material/MenuItem";
 import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Typography,
+  Box
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 import Swal from "sweetalert2";
+
 
 const generoArray = [
   {
@@ -44,8 +51,8 @@ const orgaoExpedidor = [
     label: "IFP",
   },
   {
-    value: "Polícia Civil",
-    label: "Polícia Civil",
+    value: "PC",
+    label: "PC",
   },
   {
     value: "DETRAN",
@@ -54,6 +61,7 @@ const orgaoExpedidor = [
 ];
 
 export default function CadastroFuncionarios() {
+  const navigate = useNavigate();
   //Dados Pessoais
   const [stateNewNome, setStateNewNome] = useState();
   const [stateNewDtNasc, setStateNewDtNasc] = useState();
@@ -80,11 +88,6 @@ export default function CadastroFuncionarios() {
   const [stateNewCPF, setStateNewCPF] = useState();
   const [stateNewDtExpedicao, setStateNewDtExpedicao] = useState();
   const [stateNewOrgaoExpedidor, setStateOrgaoExpedidor] = useState();
-
-  //Accordion
-  const [expanded, setExpanded] = useState(false);
-
-  
 
   const objectEmployeeData = {
     nomeCompleto: stateNewNome,
@@ -141,294 +144,360 @@ export default function CadastroFuncionarios() {
             showConfirmButton: false,
             timer: 1800,
           });
+          navigate("/");
         }
         console.log("Success:", data);
       });
   };
 
-  const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true)
-  const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true)
-  const [statePanel3IsOpen, setStatePanel3IsOpen] = useState(true)
-  const [statePanel4IsOpen, setStatePanel4IsOpen] = useState(true)
+  const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
+  const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true);
+  const [statePanel3IsOpen, setStatePanel3IsOpen] = useState(true);
+  const [statePanel4IsOpen, setStatePanel4IsOpen] = useState(true);
 
   const handleChange1 = () => (event, isExpanded) => {
-    setStatePanel1IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+    setStatePanel1IsOpen(isExpanded); // Se expandir, marca o painel. Se fechar, define como false
   };
 
   const handleChange2 = () => (event, isExpanded) => {
-    setStatePanel2IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+    setStatePanel2IsOpen(isExpanded); // Se expandir, marca o painel. Se fechar, define como false
   };
   const handleChange3 = () => (event, isExpanded) => {
-    setStatePanel3IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+    setStatePanel3IsOpen(isExpanded); // Se expandir, marca o painel. Se fechar, define como false
   };
   const handleChange4 = () => (event, isExpanded) => {
-    setStatePanel4IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+    setStatePanel4IsOpen(isExpanded); // Se expandir, marca o painel. Se fechar, define como false
   };
+
+  const handleClear = () => {
+     // Dados Pessoais
+     setStateNewNome(null);
+     setStateNewDtNasc(null);
+     setStateNewGenero(null);
+     setStateNewTelefone(null);
+     setStateNewEmail(null);
+
+     // Dados Profissionais
+     setStateNewCargo(null);
+     setStateNewDepartamento(null);
+     setStateNewDtAdmissao(null);
+
+     // Dados Endereço
+     setStateNewCEP(null);
+     setStateNewEndereco(null);
+     setStateNewstateNewNumero(null);
+     setStateNewComplemento(null);
+     setStateNewBairro(null);
+     setStateNewMunicipio(null);
+     setStateNewUF(null);
+
+     // Dados Registro
+     setStateNewRG(null);
+     setStateNewCPF(null);
+     setStateNewDtExpedicao(null);
+     setStateOrgaoExpedidor(null);
+  }
 
   return (
     <div className="cadastro-container">
-      <form method="POST">
-        <Accordion
-          expanded={statePanel1IsOpen}
-          onChange={handleChange1()}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <CustomAccordion expanded={statePanel1IsOpen} onChange={handleChange1()}>
+          <CustomAccordionSummary
+            expandIcon={statePanel1IsOpen === true ? <RemoveIcon /> : <AddIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
             <Typography>{"Dados Pessoais"}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="cadastro-inputs">
-              <CustomTextField
-                label="Nome"
-                onChange={(e) => {
-                  setStateNewNome(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Nascimento"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewDtNasc(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Genero"
-                variant="outlined"
-                select
-                sx={{ width: 200 }}
-                onChange={(e) => {
-                  setStateNewGenero(e.target.value);
-                }}
-              >
-                {generoArray.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </CustomTextField>
-              <CustomTextField
-                label="Telefone"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewTelefone(e.target.value);
-                }}
-                type="text"
-              />
-
-              <CustomTextField
-                label="Email"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewEmail(e.target.value);
-                }}
-                type="text"
-              />
-            </div>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          expanded={statePanel2IsOpen}
-          onChange={handleChange2()}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>{"Dados Profissionais"}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="cadastro-inputs">
-              <CustomTextField
-                label="Cargo"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewCargo(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Departamento"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewDepartamento(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Data de Admissão"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewDtAdmissao(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-            </div>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          expanded={statePanel3IsOpen}
-          onChange={handleChange3()}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography>{"Endereço Residencial"}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="cadastro-inputs">
-              <CustomTextField
-                label="CEP"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewCEP(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Endereço"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewEndereco(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Nº"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewstateNewNumero(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="number"
-              />
-              <CustomTextField
-                label="Complemento"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewComplemento(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Bairro"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewBairro(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="Município"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewMunicipio(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-              <CustomTextField
-                label="UF"
-                variant="outlined"
-                onChange={(e) => {
-                  setStateNewUF(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-              />
-            </div>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          expanded={statePanel4IsOpen}
-          onChange={handleChange4()}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4a-content"
-            id="panel4a-header"
-          >
-            <Typography>{"Documentos"}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="cadastro-documentos-input">
-              <div className="cadastro-documentos-input-left">
+          </CustomAccordionSummary>
+          <CustomAccordionDetails>
+            <div className="cadastro-dados-pessoais-content">
+              <div className="cadastro-dados-pessoais-content-top">
                 <CustomTextField
-                  label="RG"
-                  variant="outlined"
+                  label="Nome"
+                  value={stateNewNome}
                   onChange={(e) => {
-                    setStateNewRG(e.target.value);
-                    console.log(e.target.value);
+                    setStateNewNome(e.target.value);
                   }}
                   type="text"
+                  sx={{ width: "60%" }}
                 />
                 <CustomTextField
-                  label="CPF"
+                  label="Email"
                   variant="outlined"
+                  value={stateNewEmail}
                   onChange={(e) => {
-                    setStateNewCPF(e.target.value);
-                    console.log(e.target.value);
+                    setStateNewEmail(e.target.value);
                   }}
                   type="text"
+                  sx={{ width: "40%" }}
                 />
+              </div>
+              <div className="cadastro-dados-pessoais-content-bottom">
                 <CustomTextField
-                  label="Data de Expedição"
+                  label="Nascimento"
                   variant="outlined"
+                  value={stateNewDtNasc}
                   onChange={(e) => {
-                    setStateNewDtExpedicao(e.target.value);
-                    console.log(e.target.value);
+                    setStateNewDtNasc(e.target.value);
                   }}
                   type="text"
+                  sx={{ width: "50%" }}
                 />
-
                 <CustomTextField
-                  label="Orgão Expeditor"
+                  label="Genero"
                   variant="outlined"
                   select
-                  sx={{ width: 200 }}
+                  value={stateNewGenero}
                   onChange={(e) => {
-                    setStateOrgaoExpedidor(e.target.value);
-                    console.log(e.target.value);
+                    setStateNewGenero(e.target.value);
                   }}
-                  type="text"
+                  sx={{ width: "50%" }}
                 >
-                  {orgaoExpedidor.map((option) => (
+                  {generoArray.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
                   ))}
                 </CustomTextField>
-              </div>
-              <div className="cadastro-documentos-input-right">
-                <CustomButton
+                <CustomTextField
+                  label="Telefone"
                   variant="outlined"
-                  endIcon={<SaveOutlinedIcon />}
-                  onClick={handleInsertNewEmployee}
-                >
-                  Gravar
-                </CustomButton>
+                  value={stateNewTelefone}
+                  onChange={(e) => {
+                    setStateNewTelefone(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
               </div>
             </div>
-          </AccordionDetails>
-        </Accordion>
-      </form>
+          </CustomAccordionDetails>
+        </CustomAccordion>
+
+        <CustomAccordion expanded={statePanel2IsOpen} onChange={handleChange2()}>
+          <CustomAccordionSummary
+            expandIcon={statePanel2IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography>{"Dados Profissionais"}</Typography>
+          </CustomAccordionSummary>
+          <CustomAccordionDetails>
+            <div className="cadastro-dados-profissionais-content">
+              <CustomTextField
+                label="Cargo"
+                variant="outlined"
+                value={stateNewCargo}
+                onChange={(e) => {
+                  setStateNewCargo(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+                sx={{ width: "50%" }}
+              />
+              <CustomTextField
+                label="Departamento"
+                variant="outlined"
+                value={stateNewDepartamento}
+                onChange={(e) => {
+                  setStateNewDepartamento(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+                sx={{ width: "25%" }}
+              />
+              <CustomTextField
+                label="Data de Admissão"
+                variant="outlined"
+                value={stateNewDtAdmissao}
+                onChange={(e) => {
+                  setStateNewDtAdmissao(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+                sx={{ width: "25%" }}
+              />
+            </div>
+          </CustomAccordionDetails>
+        </CustomAccordion>
+
+        <CustomAccordion expanded={statePanel3IsOpen} onChange={handleChange3()}>
+          <CustomAccordionSummary
+            expandIcon={statePanel3IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            aria-controls="panel3a-content"
+            id="panel3a-header"
+          >
+            <Typography>{"Endereço Residencial"}</Typography>
+          </CustomAccordionSummary>
+          <CustomAccordionDetails>
+            <div className="cadastro-endereco-residencial-content">
+              <div className="cadastro-endereco-residencial-content-top">
+                <CustomTextField
+                  label="CEP"
+                  variant="outlined"
+                  value={stateNewCEP}
+                  onChange={(e) => {
+                    setStateNewCEP(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "20%" }}
+                />
+                <CustomTextField
+                  label="Endereço"
+                  variant="outlined"
+                  value={stateNewEndereco}
+                  onChange={(e) => {
+                    setStateNewEndereco(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "70%" }}
+                />
+                <CustomTextField
+                  label="Nº"
+                  variant="outlined"
+                  value={stateNewNumero}
+                  onChange={(e) => {
+                    setStateNewstateNewNumero(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="number"
+                  sx={{ width: "10%" }}
+                />
+              </div>
+              <div className="cadastro-endereco-residencial-content-bottom">
+                <CustomTextField
+                  label="Complemento"
+                  variant="outlined"
+                  value={stateNewComplemento}
+                  onChange={(e) => {
+                    setStateNewComplemento(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "40%" }}
+                />
+                <CustomTextField
+                  label="Bairro"
+                  variant="outlined"
+                  value={stateNewBairro}
+                  onChange={(e) => {
+                    setStateNewBairro(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "30%" }}
+                />
+                <CustomTextField
+                  label="Município"
+                  variant="outlined"
+                  value={stateNewMunicipio}
+                  onChange={(e) => {
+                    setStateNewMunicipio(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "22%" }}
+                />
+                <CustomTextField
+                  label="UF"
+                  variant="outlined"
+                  value={stateNewUF}
+                  select
+                  onChange={(e) => {
+                    setStateNewUF(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "8%" }}
+                />
+              </div>
+            </div>
+          </CustomAccordionDetails>
+        </CustomAccordion>
+
+        <CustomAccordion expanded={statePanel4IsOpen} onChange={handleChange4()}>
+          <CustomAccordionSummary
+            expandIcon={statePanel4IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            aria-controls="panel4a-content"
+            id="panel4a-header"
+          >
+            <Typography>{"Documentos"}</Typography>
+          </CustomAccordionSummary>
+          <CustomAccordionDetails>
+            <div className="cadastro-documentos-input">
+              <CustomTextField
+                label="RG"
+                variant="outlined"
+                value={stateNewRG}
+                onChange={(e) => {
+                  setStateNewRG(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+                sx={{ width: "40%" }}
+              />
+              <CustomTextField
+                label="CPF"
+                variant="outlined"
+                value={stateNewCPF}
+                onChange={(e) => {
+                  setStateNewCPF(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+                sx={{ width: "40%" }}
+              />
+              <CustomTextField
+                label="Data de Expedição"
+                variant="outlined"
+                value={stateNewDtExpedicao}
+                onChange={(e) => {
+                  setStateNewDtExpedicao(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+              />
+
+              <CustomTextField
+                label="Org. Exped."
+                variant="outlined"
+                value={stateNewOrgaoExpedidor}
+                select
+                sx={{ width: 200 }}
+                onChange={(e) => {
+                  setStateOrgaoExpedidor(e.target.value);
+                  console.log(e.target.value);
+                }}
+                type="text"
+              >
+                {orgaoExpedidor.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </CustomTextField>
+            </div>
+          </CustomAccordionDetails>
+        </CustomAccordion>
+        <div className="cadastro-button-documentos">
+          <CustomButton
+            variant="outlined"
+            endIcon={<SaveOutlinedIcon />}
+            onClick={handleInsertNewEmployee}
+          >
+            Gravar
+          </CustomButton>
+          <BackButton
+            variant="outlined"
+            endIcon={<CleaningServicesIcon />}
+            onClick={handleClear}
+          >
+            Limpar
+          </BackButton>
+        </div>
+      </Box>
     </div>
   );
 }
