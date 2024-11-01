@@ -3,6 +3,7 @@ import Logo from "../../assets/logged-icon.png";
 import Chevron from "../../assets/chevron-right.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ProfilePictureUploader from "../profile-image";
 
 export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="logged-user">
-        <img className="user-logo-icon" src={Logo} alt="" />
+        <ProfilePictureUploader />
         <p>Diretora Xaxa</p>
       </div>
       <div className="sidebar-navigation">
