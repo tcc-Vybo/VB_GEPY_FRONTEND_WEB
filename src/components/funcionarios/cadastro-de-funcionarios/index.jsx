@@ -84,9 +84,7 @@ export default function CadastroFuncionarios() {
   //Accordion
   const [expanded, setExpanded] = useState(false);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);  // Se expandir, marca o painel. Se fechar, define como false
-  };
+  
 
   const objectEmployeeData = {
     nomeCompleto: stateNewNome,
@@ -148,10 +146,32 @@ export default function CadastroFuncionarios() {
       });
   };
 
+  const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true)
+  const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true)
+  const [statePanel3IsOpen, setStatePanel3IsOpen] = useState(true)
+  const [statePanel4IsOpen, setStatePanel4IsOpen] = useState(true)
+
+  const handleChange1 = () => (event, isExpanded) => {
+    setStatePanel1IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+  };
+
+  const handleChange2 = () => (event, isExpanded) => {
+    setStatePanel2IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+  };
+  const handleChange3 = () => (event, isExpanded) => {
+    setStatePanel3IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+  };
+  const handleChange4 = () => (event, isExpanded) => {
+    setStatePanel4IsOpen(isExpanded);  // Se expandir, marca o painel. Se fechar, define como false
+  };
+
   return (
     <div className="cadastro-container">
       <form method="POST">
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <Accordion
+          expanded={statePanel1IsOpen}
+          onChange={handleChange1()}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -212,7 +232,10 @@ export default function CadastroFuncionarios() {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <Accordion
+          expanded={statePanel2IsOpen}
+          onChange={handleChange2()}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -253,7 +276,10 @@ export default function CadastroFuncionarios() {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <Accordion
+          expanded={statePanel3IsOpen}
+          onChange={handleChange3()}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
@@ -330,7 +356,10 @@ export default function CadastroFuncionarios() {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+        <Accordion
+          expanded={statePanel4IsOpen}
+          onChange={handleChange4()}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel4a-content"
