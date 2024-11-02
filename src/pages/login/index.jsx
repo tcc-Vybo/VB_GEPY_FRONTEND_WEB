@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./style.css";
+import LogoGepy from "../../assets/Logo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -59,37 +60,45 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <form action="" className="login-form">
-        <h1>Acesso</h1>
-        <label>Usuário</label>
-        <input
-          type="text"
-          name="usuario"
-          onChange={(text) => {
-            console.log(text.target.value);
-            setStateValidationEmail(text.target.value);
-          }}
-        />
-        <label>Senha</label>
-        <input
-          type="password"
-          name="senha"
-          onChange={(text) => {
-            console.log(text.target.value);
-            setStateValidationCPF(text.target.value);
-          }}
-        />
-        <span>Esqueceu sua senha?</span>
-        <button
-          type="button"
-          onClick={() => {
-            handleLogin();
-          }}
-        >
-          Entrar
-        </button>
-      </form>
+    <div className="login-container-main">
+      <div className="login-container-left">
+        <img className="logo-gepy-login" src={LogoGepy} />
+      </div>
+      <div className="login-container-right">
+        <form action="" className="login-form">
+          <h1 className="principal-title-login">Acesso</h1>
+          <label className="title-form-login">Usuário</label>
+          <input
+            type="text"
+            name="usuario"
+            className="input-form-login"
+            onChange={(text) => {
+              console.log(text.target.value);
+              setStateValidationEmail(text.target.value);
+            }}
+          />
+          <label className="title-form-login">Senha</label>
+          <input
+            type="password"
+            name="senha"
+            className="input-form-login"
+            onChange={(text) => {
+              console.log(text.target.value);
+              setStateValidationCPF(text.target.value);
+            }}
+          />
+          <span className="span-form-login">Esqueceu sua senha?</span>
+          <button
+            type="button"
+            className="button-form-login"
+            onClick={() => {
+              handleLogin();
+            }}
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
