@@ -7,7 +7,7 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
   borderRadius: '4px',            // Bordas arredondadas
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: 'rgba(0, 0, 314, 0.7)',  // Remove a borda visível inicialmente
+      borderColor: 'transparent',  // Remove a borda visível inicialmente
     },
     '&.Mui-focused fieldset': {
       borderColor: 'rgba(0, 0, 314, 0.7)',  // Animação da borda com sombra preta ao focar

@@ -1,7 +1,5 @@
 // CustomAccordion.js
-import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { styled } from '@mui/system';
 
 // Estilizando o Accordion com o styled do Material-UI

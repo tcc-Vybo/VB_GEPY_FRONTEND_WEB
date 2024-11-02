@@ -45,15 +45,6 @@ export default function Login() {
 
         return response.json();
       });
-      // .then((data) => {
-      //   data.map((item, index) => {
-      //     tempArray.push({
-      //       email: data[index].email,
-      //       cpf: data[index].cpf,
-      //     });
-      //   });
-      //   console.log(data);
-      // });
     } catch (err) {
       console.log("ERRO: ", err);
     }
