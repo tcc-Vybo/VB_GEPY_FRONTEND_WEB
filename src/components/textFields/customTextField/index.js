@@ -5,6 +5,7 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
   backgroundColor: '#fff',        // Fundo branco
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',  // Sombra preta
   borderRadius: '4px',            // Bordas arredondadas
+  borderColor: 'rgba(0, 0, 314, 0.7)',
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
       borderColor: 'transparent',  // Remove a borda visível inicialmente
@@ -16,5 +17,5 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
   },
   '& .MuiInputLabel-outlined.Mui-focused': {
     color: 'rgba(0, 0, 314, 0.7)',  // Cor do rótulo ao focar
-  },
+  }
 }));

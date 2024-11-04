@@ -4,40 +4,65 @@
   border-radius: 10px;
 }
 
-.cadastro-title {
-  cursor: pointer;
-}
-
-.cadastro-title h1 {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 5px 20px;
-}
-
-.cadastro-inputs {
+.cadastro-container{
   display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.cadastro-dados-pessoais-content{
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.inputs-area {
-  display: none;
+.cadastro-dados-pessoais-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
-.inputs-area.expanded {
+.cadastro-dados-pessoais-content-bottom{
   display: flex;
-  margin-left: 2%;
-  padding: 20px 0px;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-profissionais-content{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content{
+  display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
-.input-line {
+.cadastro-endereco-residencial-content-top{
   display: flex;
-  gap: 30px;
+  flex-direction: row;
+  gap: 10px;
 }
 
-.doc {
+.cadastro-endereco-residencial-content-bottom{
   display: flex;
-  flex-direction: column;
-  width: 250px;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-documentos-input{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.cadastro-button-documentos{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

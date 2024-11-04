@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-import { CustomButton } from "../../submitButton/index";
-import { BackButton } from "../../backButton/index";
-import { CustomTextField } from "../../customTextField/index";
+import { SubmitButton } from "../../buttons/submitButton";
+import { BackButton } from "../../buttons/backButton/index";
+import { CustomTextField } from "../../textFields/customTextField/index";
 import { CustomAccordion } from "../../customAccordion/index"
 import { CustomAccordionSummary } from "../../customAccordion/index"
 import { CustomAccordionDetails } from "../../customAccordion/index"
@@ -12,7 +12,6 @@ import { CustomAccordionDetails } from "../../customAccordion/index"
 import MenuItem from "@mui/material/MenuItem";
 import {
   Typography,
-  Box
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -77,7 +76,7 @@ export default function CadastroFuncionarios() {
   //Dados Endereço
   const [stateNewCEP, setStateNewCEP] = useState();
   const [stateNewEndereco, setStateNewEndereco] = useState();
-  const [stateNewNumero, setStateNewstateNewNumero] = useState();
+  const [stateNewNumero, setStateNewNumero] = useState();
   const [stateNewComplemento, setStateNewComplemento] = useState();
   const [stateNewBairro, setStateNewBairro] = useState();
   const [stateNewMunicipio, setStateNewMunicipio] = useState();
@@ -170,37 +169,37 @@ export default function CadastroFuncionarios() {
   };
 
   const handleClear = () => {
-     // Dados Pessoais
-     setStateNewNome(null);
-     setStateNewDtNasc(null);
-     setStateNewGenero(null);
-     setStateNewTelefone(null);
-     setStateNewEmail(null);
+    // Dados Pessoais
+    setStateNewNome('');
+    setStateNewDtNasc('');
+    setStateNewGenero('');
+    setStateNewTelefone('');
+    setStateNewEmail('');
 
-     // Dados Profissionais
-     setStateNewCargo(null);
-     setStateNewDepartamento(null);
-     setStateNewDtAdmissao(null);
+    // Dados Profissionais
+    setStateNewCargo('');
+    setStateNewDepartamento('');
+    setStateNewDtAdmissao('');
 
-     // Dados Endereço
-     setStateNewCEP(null);
-     setStateNewEndereco(null);
-     setStateNewstateNewNumero(null);
-     setStateNewComplemento(null);
-     setStateNewBairro(null);
-     setStateNewMunicipio(null);
-     setStateNewUF(null);
+    // Dados Endereço
+    setStateNewCEP('');
+    setStateNewEndereco('');
+    setStateNewNumero(0);
+    setStateNewComplemento('');
+    setStateNewBairro('');
+    setStateNewMunicipio('');
+    setStateNewUF('');
 
-     // Dados Registro
-     setStateNewRG(null);
-     setStateNewCPF(null);
-     setStateNewDtExpedicao(null);
-     setStateOrgaoExpedidor(null);
-  }
+    // Dados Registro
+    setStateNewRG('');
+    setStateNewCPF('');
+    setStateNewDtExpedicao('');
+    setStateOrgaoExpedidor('');
+ }
 
   return (
     <div className="cadastro-container">
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <form method="POST">
         <CustomAccordion expanded={statePanel1IsOpen} onChange={handleChange1()}>
           <CustomAccordionSummary
             expandIcon={statePanel1IsOpen === true ? <RemoveIcon /> : <AddIcon />}
@@ -359,7 +358,7 @@ export default function CadastroFuncionarios() {
                   variant="outlined"
                   value={stateNewNumero}
                   onChange={(e) => {
-                    setStateNewstateNewNumero(e.target.value);
+                    setStateNewNumero(e.target.value);
                     console.log(e.target.value);
                   }}
                   type="number"
@@ -482,13 +481,13 @@ export default function CadastroFuncionarios() {
           </CustomAccordionDetails>
         </CustomAccordion>
         <div className="cadastro-button-documentos">
-          <CustomButton
+          <SubmitButton
             variant="outlined"
             endIcon={<SaveOutlinedIcon />}
             onClick={handleInsertNewEmployee}
           >
             Gravar
-          </CustomButton>
+          </SubmitButton>
           <BackButton
             variant="outlined"
             endIcon={<CleaningServicesIcon />}
@@ -497,7 +496,7 @@ export default function CadastroFuncionarios() {
             Limpar
           </BackButton>
         </div>
-      </Box>
+        </form>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import "./style.css";
+import "./loginStyle.css";
 import LogoGepy from "../../assets/Logo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { LoginButton } from "../../components/buttons/loginButton/index";
+import { LoginTextField } from "../../components/textFields/loginTextField/index";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,7 +32,6 @@ export default function Login() {
             showConfirmButton: false,
             timer: 1800,
           });
-
           navigate("/");
         } else {
           Swal.fire({
@@ -51,44 +52,47 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container-main">
-      <div className="login-container-left">
-        <img className="logo-gepy-login" src={LogoGepy} />
-      </div>
-      <div className="login-container-right">
-        <form action="" className="login-form">
-          <h1 className="principal-title-login">Acesso</h1>
-          <label className="title-form-login">Usuário</label>
-          <input
-            type="text"
-            name="usuario"
-            className="input-form-login"
-            onChange={(text) => {
-              console.log(text.target.value);
-              setStateValidationEmail(text.target.value);
-            }}
-          />
-          <label className="title-form-login">Senha</label>
-          <input
-            type="password"
-            name="senha"
-            className="input-form-login"
-            onChange={(text) => {
-              console.log(text.target.value);
-              setStateValidationCPF(text.target.value);
-            }}
-          />
-          <span className="span-form-login">Esqueceu sua senha?</span>
-          <button
-            type="button"
-            className="button-form-login"
-            onClick={() => {
-              handleLogin();
-            }}
-          >
-            Entrar
-          </button>
-        </form>
+    <div className="parent-container">
+      {/* AQUI */}
+      <div className="login-container-main">
+        <div className="login-container-left">
+          <img className="logo-size" src={LogoGepy} />
+        </div>
+        <div className="login-container-right">
+          <div className="form-container">
+            <h1 className="principal-title-login">Acesso</h1>
+            <LoginTextField
+              type="text"
+              label="Usuário"
+              variant="outlined"
+              sx={{width: '50%', borderRadius: '20px'}}
+              onChange={(text) => {
+                console.log(text.target.value);
+                setStateValidationEmail(text.target.value);
+              }}
+            />
+            <LoginTextField
+              type="password"
+              label="Senha"
+              variant="outlined"
+              sx={{width: '50%'}}
+              onChange={(text) => {
+                console.log(text.target.value);
+                setStateValidationCPF(text.target.value);
+              }}
+            />
+            <span className="span-form-login">Esqueceu sua senha?</span>
+            <LoginButton
+              variant="outlined"
+              sx={{ width: "35%" }}
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Entrar
+            </LoginButton>
+          </div>
+        </div>
       </div>
     </div>
   );
