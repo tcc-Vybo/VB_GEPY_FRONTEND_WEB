@@ -235,6 +235,7 @@ export default function CadastroAlunos() {
   };
 
   const handleInsertNewStudent = () => {
+    console.log("CHAMANDO")
     const urlInsertNewStudent = `https://vb-gepy-backend-web.onrender.com/aluno`;
 
     fetch(urlInsertNewStudent, {
@@ -249,7 +250,7 @@ export default function CadastroAlunos() {
         return response.json();
       })
       .then((data) => {
-        if (data.message === "Aluno cadastado com sucesso!!") {
+        if (data.message === "Aluno cadastrado com sucesso!!") {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -311,8 +312,46 @@ export default function CadastroAlunos() {
                   sx={{ width: "50%" }}
                 />
               </div>
-              <div className="cadastro-dados-pessoais-content-bottom">
+              <div className="cadastro-dados-pessoais-content-middle">
                 <CustomTextField
+                  label="Genero"
+                  variant="outlined"
+                  select
+                  value={stateNewGenero}
+                  onChange={(e) => {
+                    setStateNewGenero(e.target.value);
+                  }}
+                  sx={{ width: "50%" }}
+                >
+                  {generoArray.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomTextField>
+                <CustomTextField
+                  label="Data de Nasc."
+                  variant="outlined"
+                  value={stateNewDataNascimento}
+                  onChange={(e) => {
+                    setStateNewDataNascimento(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "40%" }}
+                />
+                <CustomTextField
+                  label="Tel. Aluno"
+                  variant="outlined"
+                  value={stateNewTelefoneAluno}
+                  onChange={(e) => {
+                    setStateNewTelefoneAluno(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
+              </div>
+              <div className="cadastro-dados-pessoais-content-bottom">
+              <CustomTextField
                   label="Cidade de Nasc."
                   variant="outlined"
                   value={stateNewCidadeNascimento}
@@ -343,22 +382,6 @@ export default function CadastroAlunos() {
                   sx={{ width: "50%" }}
                 />
                 <CustomTextField
-                  label="Genero"
-                  variant="outlined"
-                  select
-                  value={stateNewGenero}
-                  onChange={(e) => {
-                    setStateNewGenero(e.target.value);
-                  }}
-                  sx={{ width: "50%" }}
-                >
-                  {generoArray.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </CustomTextField>
-                <CustomTextField
                   label="Cor / Raça"
                   variant="outlined"
                   select
@@ -374,26 +397,6 @@ export default function CadastroAlunos() {
                     </MenuItem>
                   ))}
                 </CustomTextField>
-                <CustomTextField
-                  label="Data de Nasc."
-                  variant="outlined"
-                  value={stateNewDataNascimento}
-                  onChange={(e) => {
-                    setStateNewDataNascimento(e.target.value);
-                  }}
-                  type="text"
-                  sx={{ width: "40%" }}
-                />
-                <CustomTextField
-                  label="Tel. Aluno"
-                  variant="outlined"
-                  value={stateNewTelefoneAluno}
-                  onChange={(e) => {
-                    setStateNewTelefoneAluno(e.target.value);
-                  }}
-                  type="text"
-                  sx={{ width: "50%" }}
-                />
               </div>
             </div>
           </CustomAccordionDetails>

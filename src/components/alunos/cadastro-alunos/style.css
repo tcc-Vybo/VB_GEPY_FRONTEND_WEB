@@ -22,13 +22,13 @@
   gap: 10px;
 }
 
-.cadastro-dados-pessoais-content-bottom{
+.cadastro-dados-pessoais-content-middle{
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.cadastro-dados-profissionais-content{
+.cadastro-dados-pessoais-content-bottom{
   display: flex;
   flex-direction: row;
   gap: 10px;

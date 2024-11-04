@@ -10,14 +10,14 @@
 }
 
 .logo-size{
-  height: 80%;
+  height: 65%;
   width: 60%;
 }
 
 .login-container-main {
   display: flex;
   width: 80%;  /* Ajuste conforme necessário */
-  height: 55vh; /* Ocupa 80% da altura da tela */
+  height: 70vh; /* Ocupa 80% da altura da tela */
   box-sizing: border-box;
 }
 

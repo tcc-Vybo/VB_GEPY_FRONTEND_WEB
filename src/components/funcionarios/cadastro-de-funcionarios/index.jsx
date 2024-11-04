@@ -20,7 +20,7 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 import Swal from "sweetalert2";
 
-const generoUf = [
+const ufArray = [
   {
     value: "Masculino",
     label: "Masculino",
@@ -66,6 +66,25 @@ const orgaoExpedidor = [
   },
 ];
 
+const corRacaArray = [
+  {
+    value: "Preto",
+    label: "Preto",
+  },
+  {
+    value: "Branco",
+    label: "Branco",
+  },
+  {
+    value: "Pardo",
+    label: "Pardo",
+  },
+  {
+    value: "Amarelo",
+    label: "Amarelo",
+  },
+];
+
 export default function CadastroFuncionarios() {
   const navigate = useNavigate();
   //Dados Pessoais
@@ -74,6 +93,10 @@ export default function CadastroFuncionarios() {
   const [stateNewGenero, setStateNewGenero] = useState();
   const [stateNewTelefone, setStateNewTelefone] = useState();
   const [stateNewEmail, setStateNewEmail] = useState();
+  const [stateNewCidadeNasc, setStateNewCidadeNasc] = useState()
+  const [stateNewUfNasc, setStateNewUfNasc] = useState()
+  const [stateNewNacionalidade, setStateNewNacionalidade] = useState()
+  const [stateNewCorRaca, setStateNewCorRaca] = useState()
 
   //Dados Profissionais
   const [stateNewCargo, setStateNewCargo] = useState();
@@ -110,6 +133,10 @@ export default function CadastroFuncionarios() {
     complemento: stateNewComplemento,
     bairro: stateNewBairro,
     cidade: stateNewMunicipio,
+    cidadeNascimento: stateNewCidadeNasc,
+    ufNascimento: stateNewUfNasc,
+    nacionalidade: stateNewNacionalidade,
+    corRaca: stateNewCorRaca,
     uf: stateNewUF,
     numeroRegistro: stateNewRG,
     cpf: stateNewCPF,
@@ -150,7 +177,6 @@ export default function CadastroFuncionarios() {
             showConfirmButton: false,
             timer: 1800,
           });
-          navigate("/");
         }
         console.log("Success:", data);
       });
@@ -238,7 +264,7 @@ export default function CadastroFuncionarios() {
                   sx={{ width: "40%" }}
                 />
               </div>
-              <div className="cadastro-dados-pessoais-content-bottom">
+              <div className="cadastro-dados-pessoais-content-middle">
                 <CustomTextField
                   label="Nascimento"
                   variant="outlined"
@@ -275,6 +301,54 @@ export default function CadastroFuncionarios() {
                   type="text"
                   sx={{ width: "50%" }}
                 />
+              </div>
+              <div className="cadastro-dados-pessoais-content-bottom">
+                <CustomTextField
+                  label="Cidade Nascimento"
+                  variant="outlined"
+                  value={stateNewCidadeNasc}
+                  onChange={(e) => {
+                    setStateNewCidadeNasc(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
+                <CustomTextField
+                  label="UF Nascimento"
+                  variant="outlined"
+                  value={stateNewUfNasc}
+                  onChange={(e) => {
+                    setStateNewUfNasc(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
+                <CustomTextField
+                  label="Nacionalidade"
+                  variant="outlined"
+                  value={stateNewNacionalidade}
+                  onChange={(e) => {
+                    setStateNewNacionalidade(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
+                <CustomTextField
+                  label="Cor / Raça"
+                  variant="outlined"
+                  select
+                  value={stateNewCorRaca}
+                  onChange={(e) => {
+                    setStateNewCorRaca(e.target.value);
+                  }}
+                  sx={{ width: "50%" }}
+                >
+                  {corRacaArray.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomTextField>
               </div>
             </div>
           </CustomAccordionDetails>
@@ -411,7 +485,6 @@ export default function CadastroFuncionarios() {
                   variant="outlined"
                   value={stateNewUF}
                   select
-                  generoUf
                   onChange={(e) => {
                     setStateNewUF(e.target.value);
                     console.log(e.target.value);
@@ -419,7 +492,7 @@ export default function CadastroFuncionarios() {
                   type="text"
                   sx={{ width: "8%" }}
                   >
-                  {generoUf.map((option) => (
+                  {ufArray.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
