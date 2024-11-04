@@ -20,6 +20,13 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 import Swal from "sweetalert2";
 
+const generoUf = [
+  {
+    value: "Masculino",
+    label: "Masculino",
+  },
+
+]
 
 const generoArray = [
   {
@@ -85,7 +92,7 @@ export default function CadastroFuncionarios() {
   //Dados Registro
   const [stateNewRG, setStateNewRG] = useState();
   const [stateNewCPF, setStateNewCPF] = useState();
-  const [stateNewDtExpedicao, setStateNewDtExpedicao] = useState();
+  const [stateNewDtEmissao, setStateNewDtEmissao] = useState();
   const [stateNewOrgaoExpedidor, setStateOrgaoExpedidor] = useState();
 
   const objectEmployeeData = {
@@ -106,7 +113,7 @@ export default function CadastroFuncionarios() {
     uf: stateNewUF,
     numeroRegistro: stateNewRG,
     cpf: stateNewCPF,
-    dataEmissao: stateNewDtExpedicao,
+    dataEmissao: stateNewDtEmissao,
     orgaoExpedidor: stateNewOrgaoExpedidor,
   };
 
@@ -193,7 +200,7 @@ export default function CadastroFuncionarios() {
     // Dados Registro
     setStateNewRG('');
     setStateNewCPF('');
-    setStateNewDtExpedicao('');
+    setStateNewDtEmissao('');
     setStateOrgaoExpedidor('');
  }
 
@@ -404,13 +411,20 @@ export default function CadastroFuncionarios() {
                   variant="outlined"
                   value={stateNewUF}
                   select
+                  generoUf
                   onChange={(e) => {
                     setStateNewUF(e.target.value);
                     console.log(e.target.value);
                   }}
                   type="text"
                   sx={{ width: "8%" }}
-                />
+                  >
+                  {generoUf.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomTextField>
               </div>
             </div>
           </CustomAccordionDetails>
@@ -451,9 +465,9 @@ export default function CadastroFuncionarios() {
               <CustomTextField
                 label="Data de Expedição"
                 variant="outlined"
-                value={stateNewDtExpedicao}
+                value={stateNewDtEmissao}
                 onChange={(e) => {
-                  setStateNewDtExpedicao(e.target.value);
+                  setStateNewDtEmissao(e.target.value);
                   console.log(e.target.value);
                 }}
                 type="text"

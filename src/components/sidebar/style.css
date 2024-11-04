@@ -1,9 +1,11 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
   overflow: auto;
+  scrollbar-width: none;
+  background-color: white;
 }
 
 .logged-user {
@@ -11,16 +13,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 10%;
 }
 
 .user-logo-icon {
   width: 55px;
   height: 55px;
-}
-
-.sidebar-navigation {
-  border-bottom: 1px solid black;
 }
 
 .sidebar-buttons {
@@ -31,19 +29,12 @@
   align-items: center;
 }
 
-.sidebar-item {
-  transition: background-color 0.3s;
-}
-
 .sidebar-title {
   width: 100%;
   border-top: 1px solid black;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   padding: 25px 0px 25px 30px;
-  text-align: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .sub-area {

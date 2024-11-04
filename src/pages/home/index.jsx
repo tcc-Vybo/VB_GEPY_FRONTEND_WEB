@@ -12,12 +12,14 @@ import "./style.css";
 export default function Home() {
   return (
     <div className="main-page">
-      <div className="sidebar-container">
-        <Sidebar />
-      </div>
-      <div className="main-content">
-        <div className="content-container">
-          <Outlet />
+      <div className="children-div">
+        <div className="sidebar-container">
+          <Sidebar />
+        </div>
+        <div className="main-content">
+          <div className="content-container">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
