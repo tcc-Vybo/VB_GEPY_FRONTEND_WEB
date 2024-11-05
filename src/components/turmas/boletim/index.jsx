@@ -167,9 +167,14 @@ export default function Boletim() {
             <p>Situacao</p>
           </div>
         </div>
-        {/* {alunoTeste.map(aluno)=>{
-        BoletimLinha
-       }} */}
+        {alunoTeste.map(() => {
+          return (
+            <BoletimLinha
+              disciplina={alunoTeste.disciplina}
+              notaBimUm={alunoTeste.notaPrimeiroBim}
+            />
+          );
+        })}
       </div>
     </div>
   );
