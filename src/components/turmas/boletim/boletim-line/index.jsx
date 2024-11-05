@@ -1,4 +1,15 @@
-export default function BoletimLinha({ disciplina, situacao }) {
+export default function BoletimLinha({
+  disciplina,
+  notaBimUm,
+  faltasBimUm,
+  notaBimDois,
+  faltasBimDois,
+  notaBimTres,
+  faltasBimTres,
+  notaBimQuatro,
+  faltasBimQuatro,
+  situacao,
+}) {
   return (
     <div className='boletim-linha'>
       <div className='disciplina'>
@@ -6,34 +17,34 @@ export default function BoletimLinha({ disciplina, situacao }) {
       </div>
       <div className='notas-e-faltas'>
         <div className='nota'>
-          <span>10</span>
+          <span>{notaBimUm}</span>
         </div>
         <div className='falta'>
-          <span>2</span>
+          <span>{faltasBimUm}</span>
         </div>
       </div>
       <div className='notas-e-faltas'>
         <div className='nota'>
-          <span></span>
+          <span>{notaBimDois}</span>
         </div>
         <div className='falta'>
-          <span></span>
+          <span>{faltasBimDois}</span>
         </div>
       </div>
       <div className='notas-e-faltas'>
         <div className='nota'>
-          <span></span>
+          <span>{notaBimTres}</span>
         </div>
         <div className='falta'>
-          <span></span>
+          <span>{faltasBimTres}</span>
         </div>
       </div>
       <div className='notas-e-faltas'>
         <div className='nota'>
-          <span></span>
+          <span>{notaBimQuatro}</span>
         </div>
         <div className='falta'>
-          <span></span>
+          <span>{faltasBimQuatro}</span>
         </div>
       </div>
       <div className='situacao'>
