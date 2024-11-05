@@ -4,96 +4,38 @@ import './style.css';
 export default function Boletim() {
   const alunoTeste = [
     {
-      id: 1,
-      aluno: {
-        id: 1,
-        nomeCompleto: 'TESTE ALUNO',
-        dataNascimento: '24/02/2012',
-        cidadeNascimento: 'SÃO PAULO',
-        ufNascimento: 'SP',
-        nacionalidade: 'BRASILEIRO',
-        genero: 'Masculino',
-        corRaca: 'Preto',
-        necessidades: 'TESTE NECESSIDADE',
-        cep: '09384783',
-        endereco: 'RUA',
-        numeroEndereco: 100,
-        complemento: 'COMPLEMENTO',
-        bairro: 'BAIRRO',
-        municipio: 'SÃO PAULO',
-        uf: 'Pai',
-        numeroRegistro: '637289880',
-        cpf: '12345678910',
-        dataEmissao: '24/02/2012',
-        orgaoExpedidor: 'SSP',
-        emailAluno: null,
-        telefoneAluno: '11987654321',
-        nomeResponsavel: 'TESTE RESPONSÁVEL',
-        cpfResponsavel: '12345678900',
-        relacao: 'Pai',
-        telefoneResponsavel: '11984739299',
-        emailResponsavel: 'TESTE.RESPONSÁVEL@TESTE.COM',
-      },
       disciplina: {
         id: 1,
         nome: 'PORTUGUES',
         descricao: 'aaaaaaaa',
+        notas: {
+          notaPrimeiroBim: 10,
+          faltaPrimeiroBim: 5,
+          notaSegundoBim: 10,
+          faltaSegundoBim: 5,
+          notaTerceiroBim: 10,
+          faltaTerceiroBim: 5,
+          notaQuartoBim: 10,
+          faltaQuartoBim: 5,
+          situacao: 'aprovado',
+        },
       },
-      notaPrimeiroBim: 10,
-      faltaPrimeiroBim: 5,
-      notaSegundoBim: 10,
-      faltaSegundoBim: 5,
-      notaTerceiroBim: 10,
-      faltaTerceiroBim: 5,
-      notaQuartoBim: 10,
-      faltaQuartoBim: 5,
-      situacao: 'aprovado',
-    },
-    {
-      id: 2,
-      aluno: {
+      disciplina: {
         id: 2,
-        nomeCompleto: 'TESTE ALUNO 2',
-        dataNascimento: '24/02/2012',
-        cidadeNascimento: 'SÃO PAULO',
-        ufNascimento: 'SP',
-        nacionalidade: 'BRASILEIRO',
-        genero: 'Masculino',
-        corRaca: 'Preto',
-        necessidades: 'TESTE NECESSIDADE',
-        cep: '09384783',
-        endereco: 'RUA',
-        numeroEndereco: 100,
-        complemento: 'COMPLEMENTO',
-        bairro: 'BAIRRO',
-        municipio: 'SÃO PAULO',
-        uf: 'Pai',
-        numeroRegistro: '637289880',
-        cpf: '12345678910',
-        dataEmissao: '24/02/2012',
-        orgaoExpedidor: 'SSP',
-        emailAluno: null,
-        telefoneAluno: '11987654321',
-        nomeResponsavel: 'TESTE RESPONSÁVEL',
-        cpfResponsavel: '12345678900',
-        relacao: 'Pai',
-        telefoneResponsavel: '11984739299',
-        emailResponsavel: 'TESTE.RESPONSÁVEL@TESTE.COM',
-      },
-      disciplina: {
-        id: 1,
-        nome: 'PORTUGUES',
+        nome: 'MATEMATICA',
         descricao: 'aaaaaaaa',
+        notas: {
+          notaPrimeiroBim: 7,
+          faltaPrimeiroBim: 5,
+          notaSegundoBim: 2,
+          faltaSegundoBim: 5,
+          notaTerceiroBim: 9,
+          faltaTerceiroBim: 5,
+          notaQuartoBim: 9,
+          faltaQuartoBim: 5,
+          situacao: 'aprovado',
+        },
       },
-      notaPrimeiroBim: 10,
-      faltaPrimeiroBim: 5,
-      notaSegundoBim: 10,
-      faltaSegundoBim: 5,
-      notaTerceiroBim: 10,
-      faltaTerceiroBim: 5,
-      notaQuartoBim: 10,
-      faltaQuartoBim: 5,
-      situacao: 'aprovado',
     },
   ];
 
@@ -167,11 +109,19 @@ export default function Boletim() {
             <p>Situacao</p>
           </div>
         </div>
-        {alunoTeste.map(() => {
+        {alunoTeste.map((aluno) => {
           return (
             <BoletimLinha
-              disciplina={alunoTeste.disciplina}
-              notaBimUm={alunoTeste.notaPrimeiroBim}
+              disciplina={aluno.disciplina.nome}
+              notaBimUm={aluno.disciplina.notas.notaPrimeiroBim}
+              faltasBimUm={aluno.disciplina.notas.faltaPrimeiroBim}
+              notaBimDois={aluno.disciplina.notas.notaPrimeiroBim}
+              faltasBimDois={aluno.disciplina.notas.faltaSegundoBim}
+              notaBimTres={aluno.disciplina.notas.notaTerceiroBim}
+              faltasBimTres={aluno.disciplina.notas.faltaTerceiroBim}
+              notaBimQuatro={aluno.disciplina.notas.notaQuartoBim}
+              faltasBimQuatro={aluno.disciplina.notas.faltaQuartoBim}
+              situacao={aluno.disciplina.notas.situacao}
             />
           );
         })}
