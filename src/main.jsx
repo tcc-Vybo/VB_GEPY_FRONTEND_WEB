@@ -11,9 +11,8 @@ import BuscaFuncionarios from "./components/funcionarios/busca-funcionarios/inde
 import CadastroFuncionarios from "./components/funcionarios/cadastro-de-funcionarios/index.jsx";
 import CadastroTurmas from "./components/turmas/cadastro-turmas/index.jsx";
 import BuscaTurmas from "./components/turmas/busca-turma/index.jsx";
-import Recados from "./components/turmas/recados/index.jsx";
 import Boletim from "./components/turmas/boletim/index.jsx";
-import Agenda from "./components/agenda/index.jsx";
+import Recados from "./components/recados/index.jsx";
 import Newsletter from "./components/newsletter/index.jsx";
 
 const router = createBrowserRouter([
@@ -50,17 +49,14 @@ const router = createBrowserRouter([
         path: "/busca-turmas",
         element: <BuscaTurmas />,
       },
-      {
-        path: "/recados",
-        element: <Recados />,
-      },
+      
       {
         path: "/boletim",
         element: <Boletim />,
       },
       {
-        path: "/agenda",
-        element: <Agenda />,
+        path: "/recados",
+        element: <Recados />,
       },
       {
         path: "/newsletter",

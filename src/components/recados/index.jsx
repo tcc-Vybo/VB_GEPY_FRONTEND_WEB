@@ -1,9 +1,9 @@
 import "./style.css";
 
-export default function Agenda() {
+export default function Recados() {
   return (
     <div>
-      <h1>Agenda</h1>
+      <h1>Recados</h1>
     </div>
   );
 }

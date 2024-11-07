@@ -52,7 +52,7 @@ export default function Login() {
   };
 
   return (
-    <div className="parent-container">
+    <div className="login-parent-container">
       {/* AQUI */}
       <div className="login-container-main">
         <div className="login-container-left">

@@ -1,4 +1,4 @@
-.parent-container {
+.login-parent-container {
   background-image: url("../../assets/background.png");
   background-size: cover;
   min-height: 100vh; /* Alterar de min-height para height */

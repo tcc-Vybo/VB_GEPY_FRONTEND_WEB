@@ -51,15 +51,15 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar-parent">
       <div className="logged-user">
         <ProfilePictureUploader />
         <p>Diretora Xaxa</p>
       </div>
-      <div className="sidebar-navigation">
-        <div className="sidebar-item">
+    <div className="sidebar-expand">
+       <div className="sidebar-item">
           <Link to="/" className="sidebar-title">
-            <House size={24} color="#6700B3" strokeWidth={2} />
+            <House size={20} color="#6700B3" strokeWidth={2} />
             <p>Início</p>
           </Link>
         </div>
@@ -68,7 +68,7 @@ export default function Sidebar() {
             className={alunosOpen ? "sidebar-title opened" : "sidebar-title"}
             onClick={handleAlunosClick}
           >
-            <User size={24} color="#6700B3" strokeWidth={2} />
+            <User size={20} color="#6700B3" strokeWidth={2} />
             <p>Alunos</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -90,7 +90,7 @@ export default function Sidebar() {
             }
             onClick={handleFuncionariosClick}
           >
-            <BriefcaseBusiness size={24} color="#6700B3" strokeWidth={2} />
+            <BriefcaseBusiness size={20} color="#6700B3" strokeWidth={2} />
             <p>Funcionários</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -110,7 +110,7 @@ export default function Sidebar() {
             className={turmasOpen ? "sidebar-title opened" : "sidebar-title"}
             onClick={handleTurmasClick}
           >
-            <Users size={24} color="#6700B3" strokeWidth={2} />
+            <Users size={20} color="#6700B3" strokeWidth={2} />
             <p>Turmas</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -122,9 +122,7 @@ export default function Sidebar() {
               <Link to="/busca-turmas" className="sidebar-item-sub">
                 <p>Busca</p>
               </Link>
-              <Link to="/recados" className="sidebar-item-sub">
-                <p>Recados</p>
-              </Link>
+              
               <Link to="/boletim" className="sidebar-item-sub">
                 <p>Boletim</p>
               </Link>
@@ -133,29 +131,34 @@ export default function Sidebar() {
         </div>
         <div className="sidebar-item">
           <Link to="/agenda" className="sidebar-title">
-            <NotebookTabs size={24} color="#6700B3" strokeWidth={2} />
-            <p>Agenda</p>
+            <NotebookTabs size={20} color="#6700B3" strokeWidth={2} />
+            <p>Recados</p>
           </Link>
         </div>
         <div className="sidebar-item">
           <Link to="/newsletter" className="sidebar-title">
-            <Newspaper size={24} color="#6700B3" strokeWidth={2} />
+            <Newspaper size={20} color="#6700B3" strokeWidth={2} />
             <p>Newsletter</p>
           </Link>
         </div>
       </div>
-      <div className="sidebar-buttons">
-        <Link to="/login">
+      
+    
+    <div className="sidebar-buttons">
+        <Link to="/login" className="link-login">
+        <LogOut size={20} color="#6700B3" strokeWidth={2} />
           <button className="button-logout-sidebar">
-            <LogOut size={24} color="#6700B3" strokeWidth={2} />
+            
             Sair
           </button>
         </Link>
-
+        <Link to="/" className="link-login">
+        <LockKeyhole size={20} color="#6700B3" strokeWidth={2} />
         <button className="button-changepassword-sidebar">
-          <LockKeyhole size={24} color="#6700B3" strokeWidth={2} />
+          
           Mudar senha
         </button>
+        </Link>
       </div>
     </div>
   );

@@ -21,8 +21,8 @@ const ProfilePictureUploader = () => {
           src={image}
           alt="Profile"
           style={{
-            width: "100px",
-            height: "100px",
+            width: "70px",
+            height: "70px",
             borderRadius: "50%",
           }}
         />
@@ -30,8 +30,8 @@ const ProfilePictureUploader = () => {
         <label htmlFor="upload-button" style={{ cursor: "pointer" }}>
           <div
             style={{
-              width: "100px",
-              height: "100px",
+              width: "70px",
+              height: "70px",
               borderRadius: "50%",
               backgroundColor: "#ccc",
               display: "flex",
