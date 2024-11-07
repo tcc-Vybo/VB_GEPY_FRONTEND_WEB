@@ -1,4 +1,4 @@
-.sidebar-parent{
+.sidebar-parent {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -48,9 +48,8 @@
 }
 
 .sidebar-title:hover,
-.active {
+.sidebar-title.active {
   background-color: #efefef;
-  
 }
 
 .sidebar-title,
@@ -61,7 +60,6 @@
 
 .sidebar-title.opened .toggle-btn {
   transform: rotate(90deg);
-  
 }
 
 .sidebar-item-sub {
@@ -70,7 +68,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 15px 0px 15px 20%;
-  color:#6700b3;
+  color: #6700b3;
   font-size: 0.8rem;
 }
 
@@ -85,9 +83,8 @@
   justify-content: space-evenly;
   flex-direction: row;
   margin-top: 5%;
-  margin-bottom: 10%;  
+  margin-bottom: 10%;
 }
-
 
 .button-logout-sidebar {
   border: none;
@@ -109,10 +106,9 @@
   font-size: 0.8rem;
   padding-left: 5px;
   cursor: pointer;
-  
 }
 
-.link-login{
+.link-login {
   display: flex;
   flex-direction: row;
 }

@@ -1,24 +1,24 @@
-import "./style.css";
-import Logo from "../../assets/logged-icon.png";
-import Chevron from "../../assets/chevron-right.svg";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import ProfilePictureUploader from "../profile-image";
 import {
+  BriefcaseBusiness,
   House,
+  LockKeyhole,
+  LogOut,
+  Newspaper,
+  NotebookTabs,
   User,
   Users,
-  BriefcaseBusiness,
-  NotebookTabs,
-  Newspaper,
-  LogOut,
-  LockKeyhole,
-} from "lucide-react";
+} from 'lucide-react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Chevron from '../../assets/chevron-right.svg';
+import ProfilePictureUploader from '../profile-image';
+import './style.css';
 
 export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
   const [funcionariosOpen, setFuncionariosOpen] = useState(false);
   const [turmasOpen, setTurmasOpen] = useState(false);
+  //criar 3 estates para decidir se é active
 
   const handleAlunosClick = () => {
     if (turmasOpen) {
@@ -50,115 +50,198 @@ export default function Sidebar() {
     setTurmasOpen(!turmasOpen);
   };
 
+  const closeAll = () => {
+    setAlunosOpen(false);
+    setFuncionariosOpen(false);
+    setTurmasOpen(false);
+  };
+
   return (
     <div className="sidebar-parent">
       <div className="logged-user">
         <ProfilePictureUploader />
         <p>Diretora Xaxa</p>
       </div>
-    <div className="sidebar-expand">
-       <div className="sidebar-item">
-          <Link to="/" className="sidebar-title">
-            <House size={20} color="#6700B3" strokeWidth={2} />
+      <div className="sidebar-expand">
+        <div className="sidebar-item">
+          <NavLink
+            to="/"
+            className="sidebar-title"
+          >
+            <House
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Início</p>
-          </Link>
+          </NavLink>
         </div>
         <div className="sidebar-item">
           <div
-            className={alunosOpen ? "sidebar-title opened" : "sidebar-title"}
+            className={
+              alunosOpen ? 'sidebar-title opened active' : 'sidebar-title'
+            }
             onClick={handleAlunosClick}
           >
-            <User size={20} color="#6700B3" strokeWidth={2} />
+            <User
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Alunos</p>
-            <img className="toggle-btn" src={Chevron} alt="" />
+            <img
+              className="toggle-btn"
+              src={Chevron}
+              alt=""
+            />
           </div>
-          <div className={alunosOpen ? "sub-area opened" : "sub-area"}>
+          <div className={alunosOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
-              <Link to="/cadastro-alunos" className="sidebar-item-sub">
+              <NavLink
+                to="/cadastro-alunos"
+                className="sidebar-item-sub"
+              >
                 <p>Cadastro</p>
-              </Link>
-              <Link to="/busca-alunos" className="sidebar-item-sub">
+              </NavLink>
+              <NavLink
+                to="/busca-alunos"
+                className="sidebar-item-sub"
+              >
                 <p>Busca</p>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
         <div className="sidebar-item">
           <div
             className={
-              funcionariosOpen ? "sidebar-title opened" : "sidebar-title"
+              funcionariosOpen ? 'sidebar-title opened active' : 'sidebar-title'
             }
             onClick={handleFuncionariosClick}
           >
-            <BriefcaseBusiness size={20} color="#6700B3" strokeWidth={2} />
+            <BriefcaseBusiness
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Funcionários</p>
-            <img className="toggle-btn" src={Chevron} alt="" />
+            <img
+              className="toggle-btn"
+              src={Chevron}
+              alt=""
+            />
           </div>
-          <div className={funcionariosOpen ? "sub-area opened" : "sub-area"}>
+          <div className={funcionariosOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
-              <Link to="/cadastro-funcionarios" className="sidebar-item-sub">
+              <NavLink
+                to="/cadastro-funcionarios"
+                className="sidebar-item-sub"
+              >
                 <p>Cadastro</p>
-              </Link>
-              <Link to="/busca-funcionarios" className="sidebar-item-sub">
+              </NavLink>
+              <NavLink
+                to="/busca-funcionarios"
+                className="sidebar-item-sub"
+              >
                 <p>Busca</p>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
         <div className="sidebar-item">
           <div
-            className={turmasOpen ? "sidebar-title opened" : "sidebar-title"}
+            className={
+              turmasOpen ? 'sidebar-title opened active' : 'sidebar-title'
+            }
             onClick={handleTurmasClick}
           >
-            <Users size={20} color="#6700B3" strokeWidth={2} />
+            <Users
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Turmas</p>
-            <img className="toggle-btn" src={Chevron} alt="" />
+            <img
+              className="toggle-btn"
+              src={Chevron}
+              alt=""
+            />
           </div>
-          <div className={turmasOpen ? "sub-area opened" : "sub-area"}>
+          <div className={turmasOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
-              <Link to="/cadastro-turmas" className="sidebar-item-sub">
+              <NavLink
+                to="/cadastro-turmas"
+                className="sidebar-item-sub"
+              >
                 <p>Cadastro</p>
-              </Link>
-              <Link to="/busca-turmas" className="sidebar-item-sub">
+              </NavLink>
+              <NavLink
+                to="/busca-turmas"
+                className="sidebar-item-sub"
+              >
                 <p>Busca</p>
-              </Link>
-              
-              <Link to="/boletim" className="sidebar-item-sub">
+              </NavLink>
+              <NavLink
+                to="/boletim"
+                className="sidebar-item-sub"
+              >
                 <p>Boletim</p>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
         <div className="sidebar-item">
-          <Link to="/agenda" className="sidebar-title">
-            <NotebookTabs size={20} color="#6700B3" strokeWidth={2} />
+          <NavLink
+            to="/recados"
+            className="sidebar-title"
+            onClick={closeAll}
+          >
+            <NotebookTabs
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Recados</p>
-          </Link>
+          </NavLink>
         </div>
         <div className="sidebar-item">
-          <Link to="/newsletter" className="sidebar-title">
-            <Newspaper size={20} color="#6700B3" strokeWidth={2} />
+          <NavLink
+            to="/newsletter"
+            className="sidebar-title"
+            onClick={closeAll}
+          >
+            <Newspaper
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
             <p>Newsletter</p>
-          </Link>
+          </NavLink>
         </div>
       </div>
-      
-    
-    <div className="sidebar-buttons">
-        <Link to="/login" className="link-login">
-        <LogOut size={20} color="#6700B3" strokeWidth={2} />
-          <button className="button-logout-sidebar">
-            
-            Sair
-          </button>
-        </Link>
-        <Link to="/" className="link-login">
-        <LockKeyhole size={20} color="#6700B3" strokeWidth={2} />
-        <button className="button-changepassword-sidebar">
-          
-          Mudar senha
-        </button>
-        </Link>
+      <div className="sidebar-buttons">
+        <NavLink
+          to="/login"
+          className="link-login"
+        >
+          <LogOut
+            size={20}
+            color="#6700B3"
+            strokeWidth={2}
+          />
+          <button className="button-logout-sidebar">Sair</button>
+        </NavLink>
+        <NavLink
+          to="/"
+          className="link-login"
+        >
+          <LockKeyhole
+            size={20}
+            color="#6700B3"
+            strokeWidth={2}
+          />
+          <button className="button-changepassword-sidebar">Mudar senha</button>
+        </NavLink>
       </div>
     </div>
   );
