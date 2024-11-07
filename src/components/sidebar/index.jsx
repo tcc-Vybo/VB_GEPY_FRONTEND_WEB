@@ -4,6 +4,16 @@ import Chevron from "../../assets/chevron-right.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ProfilePictureUploader from "../profile-image";
+import {
+  House,
+  User,
+  Users,
+  BriefcaseBusiness,
+  NotebookTabs,
+  Newspaper,
+  LogOut,
+  LockKeyhole,
+} from "lucide-react";
 
 export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
@@ -49,7 +59,7 @@ export default function Sidebar() {
       <div className="sidebar-navigation">
         <div className="sidebar-item">
           <Link to="/" className="sidebar-title">
-            <img src="" alt="" />
+            <House size={24} color="#6700B3" strokeWidth={2} />
             <p>Início</p>
           </Link>
         </div>
@@ -58,7 +68,7 @@ export default function Sidebar() {
             className={alunosOpen ? "sidebar-title opened" : "sidebar-title"}
             onClick={handleAlunosClick}
           >
-            <img src="" alt="" />
+            <User size={24} color="#6700B3" strokeWidth={2} />
             <p>Alunos</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -80,7 +90,7 @@ export default function Sidebar() {
             }
             onClick={handleFuncionariosClick}
           >
-            <img src="" alt="" />
+            <BriefcaseBusiness size={24} color="#6700B3" strokeWidth={2} />
             <p>Funcionários</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -100,7 +110,7 @@ export default function Sidebar() {
             className={turmasOpen ? "sidebar-title opened" : "sidebar-title"}
             onClick={handleTurmasClick}
           >
-            <img src="" alt="" />
+            <Users size={24} color="#6700B3" strokeWidth={2} />
             <p>Turmas</p>
             <img className="toggle-btn" src={Chevron} alt="" />
           </div>
@@ -123,22 +133,29 @@ export default function Sidebar() {
         </div>
         <div className="sidebar-item">
           <Link to="/agenda" className="sidebar-title">
-            <img src="" alt="" />
+            <NotebookTabs size={24} color="#6700B3" strokeWidth={2} />
             <p>Agenda</p>
           </Link>
         </div>
         <div className="sidebar-item">
           <Link to="/newsletter" className="sidebar-title">
-            <img src="" alt="" />
+            <Newspaper size={24} color="#6700B3" strokeWidth={2} />
             <p>Newsletter</p>
           </Link>
         </div>
       </div>
       <div className="sidebar-buttons">
         <Link to="/login">
-          <button>Sair</button>
+          <button className="button-logout-sidebar">
+            <LogOut size={24} color="#6700B3" strokeWidth={2} />
+            Sair
+          </button>
         </Link>
-        <button>Mudar senha</button>
+
+        <button className="button-changepassword-sidebar">
+          <LockKeyhole size={24} color="#6700B3" strokeWidth={2} />
+          Mudar senha
+        </button>
       </div>
     </div>
   );
