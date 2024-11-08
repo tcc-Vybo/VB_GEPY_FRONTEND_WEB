@@ -18,7 +18,42 @@ export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
   const [funcionariosOpen, setFuncionariosOpen] = useState(false);
   const [turmasOpen, setTurmasOpen] = useState(false);
-  //criar 3 estates para decidir se é active
+  const [inicioActive, setInicioActive] = useState(false);
+  const [recadosActive, setRecadosActive] = useState(false);
+  const [newsletterActive, setNewsletterActive] = useState(false);
+
+  const handleOpen = () => {
+    setRecadosActive(false);
+    setNewsletterActive(false);
+    setInicioActive(false);
+  };
+
+  const handleClose = () => {
+    setAlunosOpen(false);
+    setFuncionariosOpen(false);
+    setTurmasOpen(false);
+  };
+
+  const handleInicioClick = () => {
+    handleClose();
+    setRecadosActive(false);
+    setNewsletterActive(false);
+    setInicioActive(true);
+  };
+
+  const handleRecadosClick = () => {
+    handleClose();
+    setInicioActive(false);
+    setNewsletterActive(false);
+    setRecadosActive(true);
+  };
+
+  const handleNewsletterClick = () => {
+    handleClose();
+    setInicioActive(false);
+    setRecadosActive(false);
+    setNewsletterActive(true);
+  };
 
   const handleAlunosClick = () => {
     if (turmasOpen) {
@@ -27,6 +62,7 @@ export default function Sidebar() {
     if (funcionariosOpen) {
       setFuncionariosOpen(alunosOpen);
     }
+
     setAlunosOpen(!alunosOpen);
   };
 
@@ -50,12 +86,6 @@ export default function Sidebar() {
     setTurmasOpen(!turmasOpen);
   };
 
-  const closeAll = () => {
-    setAlunosOpen(false);
-    setFuncionariosOpen(false);
-    setTurmasOpen(false);
-  };
-
   return (
     <div className="sidebar-parent">
       <div className="logged-user">
@@ -66,7 +96,8 @@ export default function Sidebar() {
         <div className="sidebar-item">
           <NavLink
             to="/"
-            className="sidebar-title"
+            className={inicioActive ? 'sidebar-title active' : 'sidebar-title'}
+            onClick={handleInicioClick}
           >
             <House
               size={20}
@@ -76,7 +107,10 @@ export default function Sidebar() {
             <p>Início</p>
           </NavLink>
         </div>
-        <div className="sidebar-item">
+        <div
+          className="sidebar-item"
+          onClick={handleOpen}
+        >
           <div
             className={
               alunosOpen ? 'sidebar-title opened active' : 'sidebar-title'
@@ -112,7 +146,10 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-        <div className="sidebar-item">
+        <div
+          className="sidebar-item"
+          onClick={handleOpen}
+        >
           <div
             className={
               funcionariosOpen ? 'sidebar-title opened active' : 'sidebar-title'
@@ -148,7 +185,10 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-        <div className="sidebar-item">
+        <div
+          className="sidebar-item"
+          onClick={handleOpen}
+        >
           <div
             className={
               turmasOpen ? 'sidebar-title opened active' : 'sidebar-title'
@@ -193,8 +233,8 @@ export default function Sidebar() {
         <div className="sidebar-item">
           <NavLink
             to="/recados"
-            className="sidebar-title"
-            onClick={closeAll}
+            className={recadosActive ? 'sidebar-title active' : 'sidebar-title'}
+            onClick={handleRecadosClick}
           >
             <NotebookTabs
               size={20}
@@ -207,8 +247,10 @@ export default function Sidebar() {
         <div className="sidebar-item">
           <NavLink
             to="/newsletter"
-            className="sidebar-title"
-            onClick={closeAll}
+            className={
+              newsletterActive ? 'sidebar-title active' : 'sidebar-title'
+            }
+            onClick={handleNewsletterClick}
           >
             <Newspaper
               size={20}
