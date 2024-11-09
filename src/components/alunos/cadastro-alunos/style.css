@@ -2,12 +2,9 @@
   background-color: #dedede;
   padding: 2%;
   border-radius: 10px;
-}
-
-.cadastro-container{
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  gap: 16px;
 }
 
 .cadastro-dados-pessoais-content{
