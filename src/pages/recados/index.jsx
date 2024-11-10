@@ -24,13 +24,15 @@ import Swal from "sweetalert2";
 
 const currentDate = new Date();
 const formatedDate = currentDate.toLocaleDateString();
+const fomtatedHour = currentDate.toLocaleTimeString()
+
 
 export default function Recados() {
   const [stateNewTitulo, setStateNewTitulo] = useState(""); // Para String titulo
   const [stateNewDescricao, setStateNewDescricao] = useState(""); // Para String descricao
-  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(""); // Para String data
+  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(formatedDate); // Para String data
   const [stateNewDataMarcada, setStateNewDataMarcada] = useState("");
-  const [stateNewHora, setStateNewHora] = useState(""); // Para String hora
+  const [stateNewHora, setStateNewHora] = useState(fomtatedHour); // Para String hora
   const [stateNewRemetente, setStateNewRemetente] = useState(0); // Para FuncionarioEntity remetente
   const [stateNewDestinatario, setStateNewDestinatario] = useState(0); // Para TurmaEntity destinatario
   const [stateNewStatus, setStateNewStatus] = useState("ENVIADO"); // Para String status
@@ -268,6 +270,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewRemetente(e.target.value);
+                    console.log(e.target.value)
                   }}
                   type="text"
                   sx={{ width: "50%" }}
@@ -300,6 +303,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewDestinatario(e.target.value);
+                    console.log(e.target.value)
                   }}
                   type="text"
                   sx={{ width: "20%" }}
@@ -320,6 +324,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewTipoRecado(e.target.value);
+                    console.log(e.target.value)
                   }}
                   type="text"
                   sx={{ width: "20%" }}
