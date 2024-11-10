@@ -9,16 +9,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 
-import { BackButton } from "../buttons/backButton";
-import { SearchButton } from "../buttons/searchButton";
-import { SubmitButton } from "../buttons/submitButton/index";
+import { BackButton } from "../../components/buttons/backButton";
+import { SearchButton } from "../../components/buttons/searchButton";
+import { SubmitButton } from "../../components/buttons/submitButton/index";
 import {
   CustomAccordion,
   CustomAccordionSummary,
   CustomAccordionDetails,
-} from "../customAccordion/index";
+} from "../../components/customAccordion/index";
 
-import { CustomTextField } from "../textFields/customTextField";
+import { CustomTextField } from "../../components/textFields/customTextField";
 
 import Swal from "sweetalert2";
 
@@ -193,8 +193,8 @@ export default function Recados() {
   };
 
   const handleSearchRecado = () => {
-    console.log("OPA")
-  }
+    console.log("OPA");
+  };
 
   const handleClear = () => {
     setStateNewTitulo("");

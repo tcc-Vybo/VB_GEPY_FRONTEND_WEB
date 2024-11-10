@@ -2,19 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-import { SubmitButton } from "../../buttons/submitButton";
-import { BackButton } from "../../buttons/backButton/index";
-import { CustomTextField } from "../../textFields/customTextField/index";
-import { CustomAccordion } from "../../customAccordion/index"
-import { CustomAccordionSummary } from "../../customAccordion/index"
-import { CustomAccordionDetails } from "../../customAccordion/index"
+import { SubmitButton } from "../../../components/buttons/submitButton";
+import { BackButton } from "../../../components/buttons/backButton/index";
+import { CustomTextField } from "../../../components/textFields/customTextField/index";
+import { CustomAccordion } from "../../../components/customAccordion/index";
+import { CustomAccordionSummary } from "../../../components/customAccordion/index";
+import { CustomAccordionDetails } from "../../../components/customAccordion/index";
 
 import MenuItem from "@mui/material/MenuItem";
-import {
-  Typography,
-} from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
@@ -25,8 +23,7 @@ const ufArray = [
     value: "Masculino",
     label: "Masculino",
   },
-
-]
+];
 
 const generoArray = [
   {
@@ -93,10 +90,10 @@ export default function CadastroFuncionarios() {
   const [stateNewGenero, setStateNewGenero] = useState();
   const [stateNewTelefone, setStateNewTelefone] = useState();
   const [stateNewEmail, setStateNewEmail] = useState();
-  const [stateNewCidadeNasc, setStateNewCidadeNasc] = useState()
-  const [stateNewUfNasc, setStateNewUfNasc] = useState()
-  const [stateNewNacionalidade, setStateNewNacionalidade] = useState()
-  const [stateNewCorRaca, setStateNewCorRaca] = useState()
+  const [stateNewCidadeNasc, setStateNewCidadeNasc] = useState();
+  const [stateNewUfNasc, setStateNewUfNasc] = useState();
+  const [stateNewNacionalidade, setStateNewNacionalidade] = useState();
+  const [stateNewCorRaca, setStateNewCorRaca] = useState();
 
   //Dados Profissionais
   const [stateNewCargo, setStateNewCargo] = useState();
@@ -203,39 +200,44 @@ export default function CadastroFuncionarios() {
 
   const handleClear = () => {
     // Dados Pessoais
-    setStateNewNome('');
-    setStateNewDtNasc('');
-    setStateNewGenero('');
-    setStateNewTelefone('');
-    setStateNewEmail('');
+    setStateNewNome("");
+    setStateNewDtNasc("");
+    setStateNewGenero("");
+    setStateNewTelefone("");
+    setStateNewEmail("");
 
     // Dados Profissionais
-    setStateNewCargo('');
-    setStateNewDepartamento('');
-    setStateNewDtAdmissao('');
+    setStateNewCargo("");
+    setStateNewDepartamento("");
+    setStateNewDtAdmissao("");
 
     // Dados Endereço
-    setStateNewCEP('');
-    setStateNewEndereco('');
+    setStateNewCEP("");
+    setStateNewEndereco("");
     setStateNewNumero(0);
-    setStateNewComplemento('');
-    setStateNewBairro('');
-    setStateNewMunicipio('');
-    setStateNewUF('');
+    setStateNewComplemento("");
+    setStateNewBairro("");
+    setStateNewMunicipio("");
+    setStateNewUF("");
 
     // Dados Registro
-    setStateNewRG('');
-    setStateNewCPF('');
-    setStateNewDtEmissao('');
-    setStateOrgaoExpedidor('');
- }
+    setStateNewRG("");
+    setStateNewCPF("");
+    setStateNewDtEmissao("");
+    setStateOrgaoExpedidor("");
+  };
 
   return (
     <div className="cadastro-container">
-        <form method="POST">
-        <CustomAccordion expanded={statePanel1IsOpen} onChange={handleChange1()}>
+      <form method="POST">
+        <CustomAccordion
+          expanded={statePanel1IsOpen}
+          onChange={handleChange1()}
+        >
           <CustomAccordionSummary
-            expandIcon={statePanel1IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            expandIcon={
+              statePanel1IsOpen === true ? <RemoveIcon /> : <AddIcon />
+            }
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -354,9 +356,14 @@ export default function CadastroFuncionarios() {
           </CustomAccordionDetails>
         </CustomAccordion>
 
-        <CustomAccordion expanded={statePanel2IsOpen} onChange={handleChange2()}>
+        <CustomAccordion
+          expanded={statePanel2IsOpen}
+          onChange={handleChange2()}
+        >
           <CustomAccordionSummary
-            expandIcon={statePanel2IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            expandIcon={
+              statePanel2IsOpen === true ? <RemoveIcon /> : <AddIcon />
+            }
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
@@ -401,9 +408,14 @@ export default function CadastroFuncionarios() {
           </CustomAccordionDetails>
         </CustomAccordion>
 
-        <CustomAccordion expanded={statePanel3IsOpen} onChange={handleChange3()}>
+        <CustomAccordion
+          expanded={statePanel3IsOpen}
+          onChange={handleChange3()}
+        >
           <CustomAccordionSummary
-            expandIcon={statePanel3IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            expandIcon={
+              statePanel3IsOpen === true ? <RemoveIcon /> : <AddIcon />
+            }
             aria-controls="panel3a-content"
             id="panel3a-header"
           >
@@ -491,7 +503,7 @@ export default function CadastroFuncionarios() {
                   }}
                   type="text"
                   sx={{ width: "8%" }}
-                  >
+                >
                   {ufArray.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -503,9 +515,14 @@ export default function CadastroFuncionarios() {
           </CustomAccordionDetails>
         </CustomAccordion>
 
-        <CustomAccordion expanded={statePanel4IsOpen} onChange={handleChange4()}>
+        <CustomAccordion
+          expanded={statePanel4IsOpen}
+          onChange={handleChange4()}
+        >
           <CustomAccordionSummary
-            expandIcon={statePanel4IsOpen === true ? <RemoveIcon /> : <AddIcon />}
+            expandIcon={
+              statePanel4IsOpen === true ? <RemoveIcon /> : <AddIcon />
+            }
             aria-controls="panel4a-content"
             id="panel4a-header"
           >
@@ -583,7 +600,7 @@ export default function CadastroFuncionarios() {
             Limpar
           </BackButton>
         </div>
-        </form>
+      </form>
     </div>
   );
 }

@@ -5,15 +5,15 @@ import { createRoot } from "react-dom/client";
 import Home from "./pages/home/index.jsx";
 import Login from "./pages/login/index.jsx";
 import ErrorPage from "./pages/error/index.jsx";
-import BuscaAlunos from "./components/alunos/busca-alunos/index.jsx";
-import CadastroAlunos from "./components/alunos/cadastro-alunos/index.jsx";
-import BuscaFuncionarios from "./components/funcionarios/busca-funcionarios/index.jsx";
-import CadastroFuncionarios from "./components/funcionarios/cadastro-de-funcionarios/index.jsx";
-import CadastroTurmas from "./components/turmas/cadastro-turmas/index.jsx";
-import BuscaTurmas from "./components/turmas/busca-turma/index.jsx";
-import Boletim from "./components/turmas/boletim/index.jsx";
-import Recados from "./components/recados/index.jsx";
-import Newsletter from "./components/newsletter/index.jsx";
+import BuscaAlunos from "./pages/alunos/busca-alunos/index.jsx";
+import CadastroAlunos from "./pages/alunos/cadastro-alunos/index.jsx";
+import BuscaFuncionarios from "./pages/funcionarios/busca-funcionarios/index.jsx";
+import CadastroFuncionarios from "./pages/funcionarios/cadastro-de-funcionarios/index.jsx";
+import CadastroTurmas from "./pages/turmas/cadastro-turmas/index.jsx";
+import BuscaTurmas from "./pages/turmas/busca-turma/index.jsx";
+import Boletim from "./pages/turmas/boletim/index.jsx";
+import Recados from "./pages/recados/index.jsx";
+import Newsletter from "./pages/newsletter/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path: "/busca-turmas",
         element: <BuscaTurmas />,
       },
-      
+
       {
         path: "/boletim",
         element: <Boletim />,

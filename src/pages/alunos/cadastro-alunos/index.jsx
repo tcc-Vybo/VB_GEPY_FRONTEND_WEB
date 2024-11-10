@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-import { SubmitButton } from "../../buttons/submitButton/index";
-import { BackButton } from "../../buttons/backButton/index";
-import { CustomTextField } from "../../textFields/customTextField/index";
-import { CustomAccordion } from "../../customAccordion/index";
-import { CustomAccordionSummary } from "../../customAccordion/index";
-import { CustomAccordionDetails } from "../../customAccordion/index";
+import { SubmitButton } from "../../../components/buttons/submitButton/index";
+import { BackButton } from "../../../components/buttons/backButton/index";
+import { CustomTextField } from "../../../components/textFields/customTextField/index";
+import { CustomAccordion } from "../../../components/customAccordion/index";
+import { CustomAccordionSummary } from "../../../components/customAccordion/index";
+import { CustomAccordionDetails } from "../../../components/customAccordion/index";
 
 import MenuItem from "@mui/material/MenuItem";
 import { Typography, Box } from "@mui/material";
@@ -235,7 +235,7 @@ export default function CadastroAlunos() {
   };
 
   const handleInsertNewStudent = () => {
-    console.log("CHAMANDO")
+    console.log("CHAMANDO");
     const urlInsertNewStudent = `https://vb-gepy-backend-web.onrender.com/aluno`;
 
     fetch(urlInsertNewStudent, {
@@ -351,7 +351,7 @@ export default function CadastroAlunos() {
                 />
               </div>
               <div className="cadastro-dados-pessoais-content-bottom">
-              <CustomTextField
+                <CustomTextField
                   label="Cidade de Nasc."
                   variant="outlined"
                   value={stateNewCidadeNascimento}
