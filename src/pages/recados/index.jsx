@@ -22,26 +22,31 @@ import { CustomTextField } from "../../components/textFields/customTextField";
 
 import Swal from "sweetalert2";
 
+import { format, parse } from 'date-fns';
+
 const currentDate = new Date();
-const formatedDate = currentDate.toLocaleDateString();
+const formatedDate = format(currentDate, 'dd/MM/yyyy');
+const formatedDateForInput = format(currentDate, 'yyyy-MM-dd');
+const formatedHour = currentDate.toLocaleTimeString();
 const fomtatedHour = currentDate.toLocaleTimeString()
 
 
 export default function Recados() {
   const [stateNewTitulo, setStateNewTitulo] = useState(""); // Para String titulo
   const [stateNewDescricao, setStateNewDescricao] = useState(""); // Para String descricao
-  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(formatedDate); // Para String data
-  const [stateNewDataMarcada, setStateNewDataMarcada] = useState("");
+  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(formatedDate); // Data para envio
+  const [stateNewDataDeEnvioFormatted, setStateNewDataDeEnvioFormatted] = useState(formatedDate); // Data para exibição
+  const [stateNewDataMarcada, setStateNewDataMarcada] = useState(formatedDateForInput); // Data para envio
+  const [stateNewDataMarcadaFormatted, setStateNewDataMarcadaFormatted] = useState(formatedDate); // Data para exibição
   const [stateNewHora, setStateNewHora] = useState(fomtatedHour); // Para String hora
   const [stateNewRemetente, setStateNewRemetente] = useState(0); // Para FuncionarioEntity remetente
   const [stateNewDestinatario, setStateNewDestinatario] = useState(0); // Para TurmaEntity destinatario
   const [stateNewStatus, setStateNewStatus] = useState("ENVIADO"); // Para String status
   const [stateNewTipoRecado, setStateNewTipoRecado] = useState(0); // Para TipoRecadoEntity tipoRecado
 
-  const [stateSearchTitulo, setStateSearchTitulo] = useState("");
+  const [stateSearchDataMarcada, setStateSearchDataMarcada] = useState("")
   const [stateSearchDataDeEnvio, setStateSearchDataDeEnvio] = useState("");
   const [stateSearchRemetente, setStateSearchRemetente] = useState("");
-  const [stateSearchDescricao, setStateSearchDescricao] = useState("");
   const [stateSearchDestinatario, setStateSearchDestinatario] = useState("");
   const [stateSearchTipoRecado, setStateSearchTipoRecado] = useState("");
 
@@ -65,6 +70,20 @@ export default function Recados() {
       id: stateNewTipoRecado,
     },
   };
+
+    // Manipulador para Data Marcada
+    const handleDataMarcadaChange = (e) => {
+      const selectedDate = parse(e.target.value, 'yyyy-MM-dd', new Date());
+      setStateNewDataMarcada(e.target.value); // Formato para envio yyyy-MM-dd
+      setStateNewDataMarcadaFormatted(format(selectedDate, 'dd/MM/yyyy')); // Formato para exibição dd/MM/yyyy
+    };
+  
+    // Manipulador para Data de Envio
+    const handleDataDeEnvioChange = (e) => {
+      const selectedDate = parse(e.target.value, 'yyyy-MM-dd', new Date());
+      setStateNewDataDeEnvio(e.target.value); // Formato para envio yyyy-MM-dd
+      setStateNewDataDeEnvioFormatted(format(selectedDate, 'dd/MM/yyyy')); // Formato para exibição dd/MM/yyyy
+    };
 
   const handleChange1 = () => (event, isExpanded) =>
     setStatePanel1IsOpen(isExpanded);
@@ -194,14 +213,14 @@ export default function Recados() {
       });
   };
 
-  const handleSearchRecado = () => {
-    console.log("OPA");
+  const handleSearchRecado = ({ }) => {
   };
 
   const handleClear = () => {
     setStateNewTitulo("");
     setStateNewTitulo("");
     setStateNewDescricao("");
+    setStateNewDataMarcada("")
     setStateNewDataDeEnvio("");
     setStateNewRemetente("");
     setStateNewDestinatario("");
@@ -237,28 +256,15 @@ export default function Recados() {
                   type="text"
                   sx={{ width: "60%" }}
                 />
+                {/* COMENTÁRIO */}
                 <CustomTextField
                   label="Data Marcada"
-                  value={stateNewDataMarcada}
-                  onChange={(e) => {
-                    setStateNewDataMarcada(e.target.value);
-                  }}
-                  type="text"
+                  value={stateNewDataMarcada} // Formato yyyy-MM-dd
+                  onChange={handleDataMarcadaChange}
+                  type="date"
                   sx={{ width: "20%" }}
-                />
-                <CustomTextField
-                  label="Data de Envio"
-                  variant="outlined"
-                  value={stateNewDataDeEnvio}
-                  onFocus={() => {
-                    if (formatedDate === currentDate.toLocaleDateString()) {
-                      setStateNewDataDeEnvio(formatedDate);
-                    } else {
-                      setStateNewDataDeEnvio("ERRO!");
-                    }
-                  }}
-                  type="text"
-                  sx={{ width: "20%" }}
+                  focused={true}
+                  format=""
                 />
                 <CustomTextField
                   label="Remetente"
@@ -374,28 +380,25 @@ export default function Recados() {
           <CustomAccordionDetails>
             <div className="recados-content">
               <div className="recados-content-top">
+                {/* COMENTÁRIO */}
                 <CustomTextField
-                  label="Título"
-                  value={stateSearchTitulo}
-                  onChange={(e) => {
-                    setStateSearchTitulo(e.target.value);
-                  }}
-                  type="text"
-                  sx={{ width: "60%" }}
-                />
-                <CustomTextField
-                  label="Data"
+                  label="Data Marcada"
                   variant="outlined"
-                  value={stateSearchDataDeEnvio}
-                  onFocus={() => {
-                    if (formatedDate === currentDate.toLocaleDateString()) {
-                      setStateSearchDataDeEnvio(formatedDate);
-                    } else {
-                      setStateSearchDataDeEnvio("ERRO!");
-                    }
-                  }}
-                  type="text"
+                  value={stateNewDataMarcada} // Formato yyyy-MM-dd
+                  onChange={handleDataMarcadaChange}
+                  type="date"
                   sx={{ width: "20%" }}
+                  focused={true}
+                />
+                {/* COMENTÁRIO */}
+                <CustomTextField
+                  label="Data de Envio"
+                  variant="outlined"
+                  value={stateNewDataDeEnvio} // Formato yyyy-MM-dd
+                  onChange={handleDataDeEnvioChange}
+                  type="date"
+                  sx={{ width: "20%" }}
+                  focused={true}
                 />
                 <CustomTextField
                   label="Remetente"
@@ -419,16 +422,6 @@ export default function Recados() {
                 </CustomTextField>
               </div>
               <div className="recados-content-middle">
-                <CustomTextField
-                  label="Descrição"
-                  variant="outlined"
-                  value={stateSearchDescricao}
-                  onChange={(e) => {
-                    setStateSearchDescricao(e.target.value);
-                  }}
-                  type="text"
-                  sx={{ width: "60%" }}
-                />
                 <CustomTextField
                   label="Destinatario"
                   variant="outlined"
