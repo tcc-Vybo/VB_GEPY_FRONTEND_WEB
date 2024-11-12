@@ -42,6 +42,7 @@ export default function Newsletter() {
           label="subtítulo"
           type="text"
           value={subtitle}
+          multiline
           onChange={(e) => setSubtitle(e.target.value)}
           slotProps={{
             htmlInput: {
@@ -59,6 +60,9 @@ export default function Newsletter() {
               maxLength: 400, // Definindo o limite de caracteres
             },
           }}
+          variant="outlined"
+          multiline //define a permissão de mais de uma linha
+          maxRows={10} //define a quantidade de linhas permitidas
         />
 
         <input
