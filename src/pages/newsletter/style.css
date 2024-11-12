@@ -19,35 +19,12 @@
   flex-direction: column;
   width: 50%;
   margin: 1%;
+  gap: 20px;
 }
 
-.newsletter-input {
-  background-color: white;
-  border: #6700b2 2px solid;
-  border-radius: 5px;
-  height: 4%;
-}
-.newsletter-input-text {
-  background-color: white;
-  border: #6700b2 2px solid;
-  border-radius: 5px;
-  height: 50%;
-}
-
-.newsletter-button-image {
-  background-color: unset;
-  width: 40%;
-  height: 10%;
-  margin: 5%;
-  align-self: center;
-  border-radius: 30px;
-  border: #6700b2 2px solid;
-  color: #6700b2;
-  font-weight: bolder;
-}
 
 .newsletter-preview-right {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   width: 50%;
@@ -58,12 +35,12 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  height: 100%;
+  height: 90%;
   background-color: #d7a1ff;
   border-radius: 8px;
-  gap: 7%;
-  border: 2px solid #6700b2;
+  gap: 10%;
   margin-top: 2%;
+  color: white;
 }
 
 .newsletter-preview-text-one {
@@ -71,22 +48,59 @@
   justify-content: flex-start;
   flex-direction: column;
   font-size: 0.8rem;
+  flex: 1;
+  padding-left: 5%;
+  color: white;
 }
+
+
+
+.newsletter-card {
+  display: flex;
+  background-color: #9948d5;
+  height: 30%;
+  overflow: visible;
+  position: relative;
+  
+}
+
+.newsletter-image {
+  width: 30%;
+  height: 140%;
+  z-index: 2;
+  bottom: 20%;
+  left: 2%;
+  position: relative;
+  border-radius: 30px;
+}
+
 
 .newsletter-preview-text-two {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   font-size: 0.8rem;
+  flex: 1;
+  padding-right: 5%;
+  color: white;
 }
 
-.newsletter-news {
-  display: flex;
-  background-color: #9948d5;
-  height: 35%;
+.newsletter-title-preview {
+  font-size: 1.5rem;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
-.newsletter-image {
-  width: 150px;
-  height: 185px;
+.newsletter-subtitle-preview{
+  font-size: 1rem;
+}
+
+.newsletter-image-two {
+  width: 30%;
+  height: 140%;
+  z-index: 2;
+  bottom: 20%;
+  right: 2%;
+  position: relative;
+  border-radius: 30px;
 }
