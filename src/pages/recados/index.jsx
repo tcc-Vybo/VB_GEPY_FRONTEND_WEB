@@ -1,7 +1,7 @@
 import "./style.css";
 
 import { MenuItem, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -9,7 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 
-import { BackButton } from "../../components/buttons/backButton";
+import { ClearButton } from "../../components/buttons/clearButton/index.js";
 import { SearchButton } from "../../components/buttons/searchButton";
 import { SubmitButton } from "../../components/buttons/submitButton/index";
 import {
@@ -22,37 +22,60 @@ import { CustomTextField } from "../../components/textFields/customTextField";
 
 import Swal from "sweetalert2";
 
-import { format, parse } from 'date-fns';
+import { format, parse } from "date-fns";
+import FloatingModal from "../../components/customModal/index.jsx";
 
 const currentDate = new Date();
-const formatedDate = format(currentDate, 'dd/MM/yyyy');
-const formatedDateForInput = format(currentDate, 'yyyy-MM-dd');
+const formatedDate = format(currentDate, "dd/MM/yyyy");
+const formatedDateForInput = format(currentDate, "yyyy-MM-dd");
 const formatedHour = currentDate.toLocaleTimeString();
-const fomtatedHour = currentDate.toLocaleTimeString()
-
+const fomtatedHour = currentDate.toLocaleTimeString();
 
 export default function Recados() {
-  const [stateNewTitulo, setStateNewTitulo] = useState(""); // Para String titulo
-  const [stateNewDescricao, setStateNewDescricao] = useState(""); // Para String descricao
-  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(formatedDate); // Data para envio
-  const [stateNewDataDeEnvioFormatted, setStateNewDataDeEnvioFormatted] = useState(formatedDate); // Data para exibição
-  const [stateNewDataMarcada, setStateNewDataMarcada] = useState(formatedDateForInput); // Data para envio
-  const [stateNewDataMarcadaFormatted, setStateNewDataMarcadaFormatted] = useState(formatedDate); // Data para exibição
-  const [stateNewHora, setStateNewHora] = useState(fomtatedHour); // Para String hora
-  const [stateNewRemetente, setStateNewRemetente] = useState(0); // Para FuncionarioEntity remetente
-  const [stateNewDestinatario, setStateNewDestinatario] = useState(0); // Para TurmaEntity destinatario
-  const [stateNewStatus, setStateNewStatus] = useState("ENVIADO"); // Para String status
-  const [stateNewTipoRecado, setStateNewTipoRecado] = useState(0); // Para TipoRecadoEntity tipoRecado
+  //STATES PARA INSERIR NOVO RECADO
+  const [stateNewTitulo, setStateNewTitulo] = useState("");
+  const [stateNewDescricao, setStateNewDescricao] = useState("");
+  const [stateNewDataDeEnvio, setStateNewDataDeEnvio] = useState(formatedDate);
+  const [stateNewDataDeEnvioFormatted, setStateNewDataDeEnvioFormatted] =
+    useState(formatedDate);
+  const [stateNewDataMarcada, setStateNewDataMarcada] =
+    useState(formatedDateForInput);
+  const [stateNewDataMarcadaFormatted, setStateNewDataMarcadaFormatted] =
+    useState(formatedDate);
+  const [stateNewHora, setStateNewHora] = useState(fomtatedHour);
+  const [stateNewRemetente, setStateNewRemetente] = useState(0);
+  const [stateNewDestinatario, setStateNewDestinatario] = useState(0);
+  const [stateNewStatus, setStateNewStatus] = useState("ENVIADO");
+  const [stateNewTipoRecado, setStateNewTipoRecado] = useState(0);
 
-  const [stateSearchDataMarcada, setStateSearchDataMarcada] = useState("")
+  //-------------------------------------------------------------------------------------
+
+  //STATES PARA BUSCA
+  const [stateSearchDataMarcada, setStateSearchDataMarcada] = useState("");
+  const [stateSearchDataMarcadaFormatted, setStateSearchDataMarcadaFormatted] =
+    useState(formatedDate);
   const [stateSearchDataDeEnvio, setStateSearchDataDeEnvio] = useState("");
+  const [stateSearchDataDeEnvioFormatted, setStateSearchDataDeEnvioFormatted] =
+    useState(formatedDate);
   const [stateSearchRemetente, setStateSearchRemetente] = useState("");
   const [stateSearchDestinatario, setStateSearchDestinatario] = useState("");
   const [stateSearchTipoRecado, setStateSearchTipoRecado] = useState("");
 
+  //-------------------------------------------------------------------------------------
+
+  //ARRAY QUE RECEBE OS RECADOS LISTADOS
+  const [stateSearchRecadosWithFilters, setStateSearchRecadosWithFilters] =
+    useState([]);
+
+  //-------------------------------------------------------------------------------------
+
+  //STATES QUE CONTROLAM A ABERTURA E O FECHAMENTO DOS ACCORDIONS
   const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
   const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true);
 
+  //-------------------------------------------------------------------------------------
+
+  //OBJETO USADO PARA INSERIR O RECADO
   const objectRecadoTurmaData = {
     titulo: stateNewTitulo,
     descricao: stateNewDescricao,
@@ -71,26 +94,41 @@ export default function Recados() {
     },
   };
 
-    // Manipulador para Data Marcada
-    const handleDataMarcadaChange = (e) => {
-      const selectedDate = parse(e.target.value, 'yyyy-MM-dd', new Date());
-      setStateNewDataMarcada(e.target.value); // Formato para envio yyyy-MM-dd
-      setStateNewDataMarcadaFormatted(format(selectedDate, 'dd/MM/yyyy')); // Formato para exibição dd/MM/yyyy
-    };
-  
-    // Manipulador para Data de Envio
-    const handleDataDeEnvioChange = (e) => {
-      const selectedDate = parse(e.target.value, 'yyyy-MM-dd', new Date());
-      setStateNewDataDeEnvio(e.target.value); // Formato para envio yyyy-MM-dd
-      setStateNewDataDeEnvioFormatted(format(selectedDate, 'dd/MM/yyyy')); // Formato para exibição dd/MM/yyyy
-    };
+  //-------------------------------------------------------------------------------------
 
+  //MANIPULADORES DE DATA SEPARANDO O QUE TEM QUE SER MOSTRADO DO QUE TEM QUE SER RECEBIDO PELO BACK
+  const handleDataMarcadaChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDataMarcada(e.target.value);
+    setStateNewDataMarcadaFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+  const handleSearchDataMarcadaChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateSearchDataMarcada(e.target.value);
+    setStateSearchDataMarcadaFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+  const handleDataDeEnvioChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDataDeEnvio(e.target.value);
+    setStateNewDataDeEnvioFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+  const handleSearchDataDeEnvioChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateSearchDataDeEnvio(e.target.value);
+    setStateSearchDataDeEnvioFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+
+  //-------------------------------------------------------------------------------------
+
+  //FUNÇÕES QUE ALTERAM O STATUS DE ABERTO E FECHADO DOS ACCORDIONS
   const handleChange1 = () => (event, isExpanded) =>
     setStatePanel1IsOpen(isExpanded);
-
   const handleChange2 = () => (event, isExpanded) =>
     setStatePanel2IsOpen(isExpanded);
 
+  //-------------------------------------------------------------------------------------
+
+  //REQUISIÇÃO PARA LISTAR OS PROFESSORES --- COMO REMETENTES
   const tempFuncionarioArray = [];
   const [stateFuncionarioArray, setStateFuncionarioArray] = useState([]);
 
@@ -119,6 +157,9 @@ export default function Recados() {
     }
   };
 
+  //-------------------------------------------------------------------------------------
+
+  //REQUISIÇÃO PARA LISTAR AS TURMAS --- COMO DESTINATÁRIOS
   const tempTurmaArray = [];
   const [stateTurmaArray, setStateTurmaArray] = useState([]);
 
@@ -147,6 +188,9 @@ export default function Recados() {
     }
   };
 
+  //-------------------------------------------------------------------------------------
+
+  //REQUISIÇÃO PARA LISTAR OS TIPOS DE RECADOS
   const tempTipoRecadoArray = [];
   const [stateTipoRecadoArray, setStateTipoRecadoArray] = useState([]);
 
@@ -175,6 +219,9 @@ export default function Recados() {
     }
   };
 
+  //-------------------------------------------------------------------------------------
+
+  //REQUISIÇÃO PARA INSERIR OS RECADOS
   const handleInsertNewRecado = () => {
     const urlInsertNewStudent = `https://vb-gepy-backend-web.onrender.com/recado-turma`;
 
@@ -213,14 +260,55 @@ export default function Recados() {
       });
   };
 
-  const handleSearchRecado = ({ }) => {
+  //-------------------------------------------------------------------------------------
+
+  //REQUISIÇÃO PARA BUSCAR OS RECADOS
+
+  const [stateCallUseEffect, setStateCallUseEffect] = useState(false);
+
+  const tempSearchRecadosWithFilters = [];
+  const handleSearchRecado = () => {
+    const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
+
+    try {
+      fetch(urlSearchRecados)
+        .then((response) => {
+          console.log("Response received:", response);
+
+          return response.json();
+        })
+        .then((data) => {
+          data.map((item, index) => {
+            tempSearchRecadosWithFilters.push({
+              id: data[index].id,
+              titulo: data[index].titulo,
+            });
+          });
+          setStateSearchRecadosWithFilters(tempSearchRecadosWithFilters);
+          console.log(stateSearchRecadosWithFilters);
+          handleClearSearchFields();
+          setStateCallUseEffect(true);
+        });
+    } catch (err) {
+      console.log("ERRO: ", err);
+    }
   };
 
+  useEffect(() => {
+    if (stateCallUseEffect && stateSearchRecadosWithFilters.length > 0) {
+      handleOpen(); // Abre o modal
+      setStateCallUseEffect(false); // Redefine o estado para evitar re-execução
+    }
+  }, [stateCallUseEffect, stateSearchRecadosWithFilters]);
+
+  //-------------------------------------------------------------------------------------
+
+  //FUNÇÃO PARA LIMPAR AS FIELDS QUE INSEREM OS RECADOS
   const handleClear = () => {
     setStateNewTitulo("");
     setStateNewTitulo("");
     setStateNewDescricao("");
-    setStateNewDataMarcada("")
+    setStateNewDataMarcada("");
     setStateNewDataDeEnvio("");
     setStateNewRemetente("");
     setStateNewDestinatario("");
@@ -228,9 +316,46 @@ export default function Recados() {
     setStateNewTipoRecado("");
   };
 
+  //-------------------------------------------------------------------------------------
+
+  //FUNÇÃO PARA LIMPAR AS FIELD QUE BUSCAM OS RECADOS
+  const handleClearSearchFields = () => {
+    setStateSearchDataMarcada("");
+    setStateSearchDataMarcadaFormatted("");
+    setStateSearchDataDeEnvio("");
+    setStateSearchDataDeEnvioFormatted("");
+    setStateSearchRemetente("");
+    setStateSearchDestinatario("");
+    setStateSearchTipoRecado("");
+  };
+
+  //-------------------------------------------------------------------------------------
+
+  //MODAL
+  const [open, setOpen] = useState(false);
+
+  // Funções para abrir e fechar o modal
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  //INÍCIO DO FRONT
   return (
     <div className="cadastro-container">
+      {/* 
+      
+  //-------------------------------------------------------------------------------------
+
+      FORM PARA INSERIR NOVOS RECADOS --- 
+      OBS: PELO FATO DA REQUISIÇÃO ESTAR SENDO CHAMADA POR UM BOTÃO POSSÍVELMENTE O USO DE UM FORM É INÚTIL 
+      */}
       <form method="POST">
+        {/* 
+      
+  //-------------------------------------------------------------------------------------
+  
+      ACCORDION QUE UNE AS FIELDS PARA INSERIR OS RECADOS
+      */}
+
         <CustomAccordion
           expanded={statePanel1IsOpen}
           onChange={handleChange1()}
@@ -276,7 +401,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewRemetente(e.target.value);
-                    console.log(e.target.value)
+                    console.log(e.target.value);
                   }}
                   type="text"
                   sx={{ width: "50%" }}
@@ -309,7 +434,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewDestinatario(e.target.value);
-                    console.log(e.target.value)
+                    console.log(e.target.value);
                   }}
                   type="text"
                   sx={{ width: "20%" }}
@@ -330,7 +455,7 @@ export default function Recados() {
                   }}
                   onChange={(e) => {
                     setStateNewTipoRecado(e.target.value);
-                    console.log(e.target.value)
+                    console.log(e.target.value);
                   }}
                   type="text"
                   sx={{ width: "20%" }}
@@ -350,20 +475,33 @@ export default function Recados() {
                 >
                   Gravar
                 </SubmitButton>
-                <BackButton
+                <ClearButton
                   variant="outlined"
                   endIcon={<CleaningServicesIcon />}
                   onClick={handleClear}
                 >
                   Limpar
-                </BackButton>
+                </ClearButton>
               </div>
             </div>
           </CustomAccordionDetails>
         </CustomAccordion>
       </form>
 
+      {/* 
+      
+  //-------------------------------------------------------------------------------------
+
+      FORM PARA BUSCAR OS RECADOS --- 
+      OBS: PELO FATO DA REQUISIÇÃO ESTAR SENDO CHAMADA POR UM BOTÃO POSSÍVELMENTE O USO DE UM FORM É INÚTIL 
+      */}
       <form method="GET">
+        {/* 
+      
+  //-------------------------------------------------------------------------------------
+
+      ACCORDION QUE UNE AS FIELDS PARA BUSCAR OS RECADOS 
+      */}
         <CustomAccordion
           expanded={statePanel2IsOpen}
           onChange={handleChange2()}
@@ -384,8 +522,8 @@ export default function Recados() {
                 <CustomTextField
                   label="Data Marcada"
                   variant="outlined"
-                  value={stateNewDataMarcada} // Formato yyyy-MM-dd
-                  onChange={handleDataMarcadaChange}
+                  value={stateSearchDataMarcada} // Formato yyyy-MM-dd
+                  onChange={handleSearchDataMarcadaChange}
                   type="date"
                   sx={{ width: "20%" }}
                   focused={true}
@@ -394,8 +532,8 @@ export default function Recados() {
                 <CustomTextField
                   label="Data de Envio"
                   variant="outlined"
-                  value={stateNewDataDeEnvio} // Formato yyyy-MM-dd
-                  onChange={handleDataDeEnvioChange}
+                  value={stateSearchDataDeEnvio} // Formato yyyy-MM-dd
+                  onChange={handleSearchDataDeEnvioChange}
                   type="date"
                   sx={{ width: "20%" }}
                   focused={true}
@@ -420,8 +558,6 @@ export default function Recados() {
                     </MenuItem>
                   ))}
                 </CustomTextField>
-              </div>
-              <div className="recados-content-middle">
                 <CustomTextField
                   label="Destinatario"
                   variant="outlined"
@@ -471,6 +607,11 @@ export default function Recados() {
                 >
                   Pesquisar
                 </SearchButton>
+                <FloatingModal
+                  open={open}
+                  handleClose={handleClose}
+                  recadosArray={stateSearchRecadosWithFilters}
+                />
               </div>
             </div>
           </CustomAccordionDetails>

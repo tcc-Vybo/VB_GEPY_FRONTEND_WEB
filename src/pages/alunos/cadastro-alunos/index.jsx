@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 import { SubmitButton } from "../../../components/buttons/submitButton/index";
-import { BackButton } from "../../../components/buttons/backButton/index";
+import { ClearButton } from "../../../components/buttons/clearButton/index";
 import { CustomTextField } from "../../../components/textFields/customTextField/index";
 import { CustomAccordion } from "../../../components/customAccordion/index";
 import { CustomAccordionSummary } from "../../../components/customAccordion/index";
@@ -670,13 +669,13 @@ export default function CadastroAlunos() {
           >
             Gravar
           </SubmitButton>
-          <BackButton
+          <ClearButton
             variant="outlined"
             endIcon={<CleaningServicesIcon />}
             onClick={handleClear}
           >
             Limpar
-          </BackButton>
+          </ClearButton>
         </div>
       </form>
     </div>
