@@ -1,0 +1,65 @@
+.cadastro-container {
+  background-color: #dedede;
+  padding: 2%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cadastro-dados-pessoais-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-middle{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-bottom{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content-bottom{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-documentos-input{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.cadastro-button-documentos{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

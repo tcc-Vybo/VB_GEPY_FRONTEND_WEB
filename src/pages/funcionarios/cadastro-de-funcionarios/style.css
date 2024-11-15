@@ -1,0 +1,83 @@
+.cadastro-container{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.cadastro-dados-pessoais-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-middle{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-pessoais-content-bottom{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-dados-profissionais-content{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-endereco-residencial-content-bottom{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cadastro-documentos-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.cadastro-responsavel-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cadastro-responsavel-content-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cadastro-responsavel-content-bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
