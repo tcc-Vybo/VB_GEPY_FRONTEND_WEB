@@ -17,6 +17,8 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 import Swal from "sweetalert2";
 
+import { format, parse } from "date-fns";
+
 const ufArray = [
   {
     value: "SP",
@@ -116,11 +118,16 @@ const orgaoExpedidor = [
   },
 ];
 
+const currentDate = new Date();
+const formatedDate = format(currentDate, "dd/MM/yyyy");
+const formatedDateForInput = format(currentDate, "yyyy-MM-dd");
+
 export default function CadastroAlunos() {
   //Dados Pessoais
   const [stateNewNomeCompleto, setStateNewNomeCompleto] = useState("");
-  const [stateNewDataNascimento, setStateNewDataNascimento] = useState("");
   const [stateNewCidadeNascimento, setStateNewCidadeNascimento] = useState("");
+  const [stateNewDataNascimento, setStateNewDataNascimento] = useState("");
+  const [stateNewDataNascimentoFormatted, setStateNewDataNascimentoFormatted] = useState("")
   const [stateNewUfNascimento, setStateNewUfNascimento] = useState("");
   const [stateNewNacionalidade, setStateNewNacionalidade] = useState("");
   const [stateNewGenero, setStateNewGenero] = useState("");
@@ -131,7 +138,7 @@ export default function CadastroAlunos() {
   //Dados Residenciais
   const [stateNewCep, setStateNewCep] = useState("");
   const [stateNewEndereco, setStateNewEndereco] = useState("");
-  const [stateNewNumero, setStateNewNumero] = useState("");
+  const [stateNewNumero, setStateNewNumero] = useState(0);
   const [stateNewComplemento, setStateNewComplemento] = useState("");
   const [stateNewBairro, setStateNewBairro] = useState("");
   const [stateNewMunicipio, setStateNewMunicipio] = useState("");
@@ -141,6 +148,7 @@ export default function CadastroAlunos() {
   const [stateNewRG, setStateNewRG] = useState("");
   const [stateNewCPF, setStateNewCPF] = useState("");
   const [stateNewDtEmissao, setStateNewDtEmissao] = useState("");
+  const [stateNewStateNewDtEmissaoFormatted, setStateNewStateNewDtEmissaoFormatted] = useState("")
   const [stateNewOrgaoExpedidor, setStateNewOrgaoExpedidor] = useState("");
 
   const [stateNewNomeResponsavel, setStateNewNomeResponsavel] = useState("");
@@ -155,10 +163,22 @@ export default function CadastroAlunos() {
   const [statePanel3IsOpen, setStatePanel3IsOpen] = useState(true);
   const [statePanel4IsOpen, setStatePanel4IsOpen] = useState(true);
 
+  const handleDataNascimentoChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDataNascimento(e.target.value);
+    setStateNewDataNascimentoFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+
+  const handleDtEmissaoChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDtEmissao(e.target.value);
+    setStateNewStateNewDtEmissaoFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+
   const objectStudentData = {
     // Dados Pessoais
     nomeCompleto: stateNewNomeCompleto,
-    dataNascimento: stateNewDataNascimento,
+    dataNascimento: stateNewDataNascimentoFormatted,
     cidadeNascimento: stateNewCidadeNascimento,
     ufNascimento: stateNewUfNascimento,
     nacionalidade: stateNewNacionalidade,
@@ -179,7 +199,7 @@ export default function CadastroAlunos() {
     // Dados Registro
     numeroRegistro: stateNewRG,
     cpf: stateNewCPF,
-    dataEmissao: stateNewDtEmissao,
+    dataEmissao: stateNewStateNewDtEmissaoFormatted,
     orgaoExpedidor: stateNewOrgaoExpedidor,
 
     // Dados do Responsável
@@ -336,10 +356,9 @@ export default function CadastroAlunos() {
                   label="Data de Nasc."
                   variant="outlined"
                   value={stateNewDataNascimento}
-                  onChange={(e) => {
-                    setStateNewDataNascimento(e.target.value);
-                  }}
-                  type="text"
+                  onChange={handleDataNascimentoChange}
+                  type="date"
+                  focused={true}
                   sx={{ width: "40%" }}
                 />
                 <CustomTextField
@@ -553,11 +572,9 @@ export default function CadastroAlunos() {
                 label="Data de Emissao"
                 variant="outlined"
                 value={stateNewDtEmissao}
-                onChange={(e) => {
-                  setStateNewDtEmissao(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
+                onChange={handleDtEmissaoChange}
+                type="date"
+                focused={true}
               />
 
               <CustomTextField

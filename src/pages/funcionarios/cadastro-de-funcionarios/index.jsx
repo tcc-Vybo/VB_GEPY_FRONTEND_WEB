@@ -17,6 +17,7 @@ import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 import Swal from "sweetalert2";
+import { format, parse } from "date-fns";
 
 const ufArray = [
   {
@@ -95,6 +96,7 @@ export default function CadastroFuncionarios() {
   //Dados Pessoais
   const [stateNewNome, setStateNewNome] = useState();
   const [stateNewDtNasc, setStateNewDtNasc] = useState();
+  const [stateNewDtNascFormatted, setStateNewDtNascFormatted] = useState();
   const [stateNewGenero, setStateNewGenero] = useState();
   const [stateNewTelefone, setStateNewTelefone] = useState();
   const [stateNewEmail, setStateNewEmail] = useState();
@@ -107,6 +109,7 @@ export default function CadastroFuncionarios() {
   const [stateNewCargo, setStateNewCargo] = useState();
   const [stateNewDepartamento, setStateNewDepartamento] = useState();
   const [stateNewDtAdmissao, setStateNewDtAdmissao] = useState();
+  const [stateNewDtAdmissaoFormatted, setStateNewDtAdmissaoFormatted] = useState();
 
   //Dados Endereço
   const [stateNewCEP, setStateNewCEP] = useState();
@@ -121,17 +124,36 @@ export default function CadastroFuncionarios() {
   const [stateNewRG, setStateNewRG] = useState();
   const [stateNewCPF, setStateNewCPF] = useState();
   const [stateNewDtEmissao, setStateNewDtEmissao] = useState();
+  const [stateNewDtEmissaoFormatted, setStateNewDtEmissaoFormatted] = useState("")
   const [stateNewOrgaoExpedidor, setStateOrgaoExpedidor] = useState();
+
+  const handleDtAdmissaoChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDtAdmissao(e.target.value);
+    setStateNewDtAdmissaoFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+  
+  const handleDtNascChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDtNasc(e.target.value);
+    setStateNewDtNascFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
+
+  const handleDtEmissaoChange = (e) => {
+    const selectedDate = parse(e.target.value, "yyyy-MM-dd", new Date());
+    setStateNewDtEmissao(e.target.value);
+    setStateNewDtEmissaoFormatted(format(selectedDate, "dd/MM/yyyy"));
+  };
 
   const objectEmployeeData = {
     nomeCompleto: stateNewNome,
-    dataNascimento: stateNewDtNasc,
+    dataNascimento: stateNewDtNascFormatted,
     genero: stateNewGenero,
     telefone: stateNewTelefone,
     email: stateNewEmail,
     cargo: stateNewCargo,
     departamento: stateNewDepartamento,
-    dataAdmissao: stateNewDtAdmissao,
+    dataAdmissao: stateNewDtAdmissaoFormatted,
     cep: stateNewCEP,
     endereco: stateNewEndereco,
     numero: stateNewNumero,
@@ -145,46 +167,56 @@ export default function CadastroFuncionarios() {
     uf: stateNewUF,
     numeroRegistro: stateNewRG,
     cpf: stateNewCPF,
-    dataEmissao: stateNewDtEmissao,
+    dataEmissao: stateNewDtEmissaoFormatted,
     orgaoExpedidor: stateNewOrgaoExpedidor,
   };
 
   const handleInsertNewEmployee = () => {
     const urlInsertNewEmployee = `https://vb-gepy-backend-web.onrender.com/funcionario`;
 
-    fetch(urlInsertNewEmployee, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(objectEmployeeData),
-    })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((data) => {
-        if (data.message === "Funcionário cadastado com sucesso!!") {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Sucesso!",
-            text: "Funcionário cadastado com sucesso!!",
-            showConfirmButton: false,
-            timer: 1800,
-          });
-        } else {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "ERRO!",
-            text: "Erro ao cadastrar funcionário!!",
-            showConfirmButton: false,
-            timer: 1800,
-          });
-        }
-        console.log("Success:", data);
+    if (!objectEmployeeData.dataNascimento) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Erro",
+        text: `Campo vazio: ${objectEmployeeData.dataNascimento}`,
+        showConfirmButton: true,
       });
+    }else{
+      fetch(urlInsertNewEmployee, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objectEmployeeData),
+      })
+        .then((response) => {
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          if (data.message === "Funcionário cadastado com sucesso!!") {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Sucesso!",
+              text: "Funcionário cadastado com sucesso!!",
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "ERRO!",
+              text: "Erro ao cadastrar funcionário!!",
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          }
+          console.log("Success:", data);
+        });
+    }
   };
 
   const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
@@ -279,10 +311,9 @@ export default function CadastroFuncionarios() {
                   label="Nascimento"
                   variant="outlined"
                   value={stateNewDtNasc}
-                  onChange={(e) => {
-                    setStateNewDtNasc(e.target.value);
-                  }}
-                  type="text"
+                  onChange={handleDtNascChange}
+                  type="date"
+                  focused={true}
                   sx={{ width: "50%" }}
                 />
                 <CustomTextField
@@ -405,11 +436,9 @@ export default function CadastroFuncionarios() {
                 label="Data de Admissão"
                 variant="outlined"
                 value={stateNewDtAdmissao}
-                onChange={(e) => {
-                  setStateNewDtAdmissao(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
+                onChange={handleDtAdmissaoChange}
+                type="date"
+                focused={true}
                 sx={{ width: "25%" }}
               />
             </div>
@@ -564,11 +593,9 @@ export default function CadastroFuncionarios() {
                 label="Data de Expedição"
                 variant="outlined"
                 value={stateNewDtEmissao}
-                onChange={(e) => {
-                  setStateNewDtEmissao(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
+                onChange={handleDtEmissaoChange}
+                type="date"
+                focused={true}
               />
 
               <CustomTextField

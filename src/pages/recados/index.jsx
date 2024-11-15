@@ -390,7 +390,6 @@ export default function Recados() {
                   type="date"
                   sx={{ width: "20%" }}
                   focused={true}
-                  format=""
                 />
                 <CustomTextField
                   label="Remetente"
