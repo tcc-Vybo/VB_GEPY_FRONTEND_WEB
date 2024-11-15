@@ -54,10 +54,10 @@ export default function Recados() {
   //STATES PARA BUSCA
   const [stateSearchDataMarcada, setStateSearchDataMarcada] = useState("");
   const [stateSearchDataMarcadaFormatted, setStateSearchDataMarcadaFormatted] =
-    useState(formatedDate);
+    useState("");
   const [stateSearchDataDeEnvio, setStateSearchDataDeEnvio] = useState("");
   const [stateSearchDataDeEnvioFormatted, setStateSearchDataDeEnvioFormatted] =
-    useState(formatedDate);
+    useState("");
   const [stateSearchRemetente, setStateSearchRemetente] = useState("");
   const [stateSearchDestinatario, setStateSearchDestinatario] = useState("");
   const [stateSearchTipoRecado, setStateSearchTipoRecado] = useState("");
