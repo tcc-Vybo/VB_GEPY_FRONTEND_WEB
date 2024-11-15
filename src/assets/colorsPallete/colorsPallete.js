@@ -14,5 +14,11 @@ export const CustomTheme = createTheme({
       dark: '#ba000d',
       contrastText: '#000',
     },
+    tertiary: {
+      light: '#81c784',       
+      main: '#4caf50',        
+      dark: '#388e3c',        
+      contrastText: '#fff',   
+    },
   },
 });
