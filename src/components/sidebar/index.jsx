@@ -95,7 +95,7 @@ export default function Sidebar() {
       <div className="sidebar-expand">
         <div className="sidebar-item">
           <NavLink
-            to="/"
+            to="/vybo/gepy"
             className={inicioActive ? 'sidebar-title active' : 'sidebar-title'}
             onClick={handleInicioClick}
           >
@@ -132,19 +132,19 @@ export default function Sidebar() {
           <div className={alunosOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
               <NavLink
-                to="/cadastro-alunos"
+                to="cadastro-alunos"
                 className="sidebar-item-sub"
               >
                 <p>Cadastro</p>
               </NavLink>
               <NavLink
-                to="/busca-alunos"
+                to="busca-alunos"
                 className="sidebar-item-sub"
               >
                 <p>Lista de Alunos</p>
               </NavLink>
               <NavLink
-                to="/alunos-turma"
+                to="alunos-turma"
                 className="sidebar-item-sub"
               >
                 <p>Alunos Por Turma</p>
@@ -177,19 +177,19 @@ export default function Sidebar() {
           <div className={funcionariosOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
               <NavLink
-                to="/cadastro-funcionarios"
+                to="cadastro-funcionarios"
                 className="sidebar-item-sub"
               >
                 <p>Cadastro</p>
               </NavLink>
               <NavLink
-                to="/busca-funcionarios"
+                to="busca-funcionarios"
                 className="sidebar-item-sub"
               >
                 <p>Lista de Funcionários</p>
               </NavLink>
               <NavLink
-                to="/professor-disciplina"
+                to="professor-disciplina"
                 className="sidebar-item-sub"
               >
                 <p>Professor Por Disciplina</p>
@@ -222,19 +222,19 @@ export default function Sidebar() {
           <div className={turmasOpen ? 'sub-area opened' : 'sub-area'}>
             <div>
               <NavLink
-                to="/cadastro-turmas"
+                to="cadastro-turmas"
                 className="sidebar-item-sub"
               >
                 <p>Cadastro</p>
               </NavLink>
               <NavLink
-                to="/busca-turmas"
+                to="busca-turmas"
                 className="sidebar-item-sub"
               >
                 <p>Busca</p>
               </NavLink>
               <NavLink
-                to="/boletim"
+                to="boletim"
                 className="sidebar-item-sub"
               >
                 <p>Boletim</p>
@@ -244,7 +244,7 @@ export default function Sidebar() {
         </div>
         <div className="sidebar-item">
           <NavLink
-            to="/recados"
+            to="recados"
             className={recadosActive ? 'sidebar-title active' : 'sidebar-title'}
             onClick={handleRecadosClick}
           >
@@ -258,7 +258,7 @@ export default function Sidebar() {
         </div>
         <div className="sidebar-item">
           <NavLink
-            to="/newsletter"
+            to="newsletter"
             className={
               newsletterActive ? 'sidebar-title active' : 'sidebar-title'
             }
@@ -275,7 +275,7 @@ export default function Sidebar() {
       </div>
       <div className="sidebar-buttons">
         <NavLink
-          to="/login"
+          to="/"
           className="link-login"
         >
           <LogOut

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginButton } from "../../components/buttons/loginButton/index";
 import { LoginTextField } from "../../components/textFields/loginTextField/index";
 
-export default function Login() {
+export default function Login( ) {
   const navigate = useNavigate();
 
   const [stateValidationEmail, setStateValidationEmail] = useState();
@@ -32,7 +32,7 @@ export default function Login() {
             showConfirmButton: false,
             timer: 1800,
           });
-          navigate("/");
+          navigate("/vybo/gepy");
         } else {
           Swal.fire({
             position: "center",
