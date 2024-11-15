@@ -19,12 +19,16 @@ import Swal from "sweetalert2";
 
 const ufArray = [
   {
-    value: "Pai",
-    label: "Pai",
+    value: "SP",
+    label: "SP",
   },
   {
-    value: "Mãe",
-    label: "Mãe",
+    value: "DF",
+    label: "DF",
+  },
+  {
+    value: "RJ",
+    label: "RJ",
   },
 ];
 

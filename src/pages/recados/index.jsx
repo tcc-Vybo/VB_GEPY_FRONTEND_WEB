@@ -19,6 +19,7 @@ import {
 } from "../../components/customAccordion/index";
 
 import { CustomTextField } from "../../components/textFields/customTextField";
+import { CustomDateTextField } from "../../components/textFields/customDateTextField"
 
 import Swal from "sweetalert2";
 
@@ -382,7 +383,7 @@ export default function Recados() {
                   sx={{ width: "60%" }}
                 />
                 {/* COMENTÁRIO */}
-                <CustomTextField
+                <CustomDateTextField
                   label="Data Marcada"
                   value={stateNewDataMarcada} // Formato yyyy-MM-dd
                   onChange={handleDataMarcadaChange}
@@ -519,7 +520,7 @@ export default function Recados() {
             <div className="recados-content">
               <div className="recados-content-top">
                 {/* COMENTÁRIO */}
-                <CustomTextField
+                <CustomDateTextField
                   label="Data Marcada"
                   variant="outlined"
                   value={stateSearchDataMarcada} // Formato yyyy-MM-dd
@@ -529,14 +530,12 @@ export default function Recados() {
                   focused={true}
                 />
                 {/* COMENTÁRIO */}
-                <CustomTextField
-                  label="Data de Envio"
+                <CustomDateTextField
                   variant="outlined"
                   value={stateSearchDataDeEnvio} // Formato yyyy-MM-dd
                   onChange={handleSearchDataDeEnvioChange}
                   type="date"
                   sx={{ width: "20%" }}
-                  focused={true}
                 />
                 <CustomTextField
                   label="Remetente"

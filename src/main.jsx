@@ -14,6 +14,8 @@ import BuscaTurmas from "./pages/turmas/busca-turma/index.jsx";
 import Boletim from "./pages/turmas/boletim/index.jsx";
 import Recados from "./pages/recados/index.jsx";
 import Newsletter from "./pages/newsletter/index.jsx";
+import AlunoPorTurma from "./pages/alunos/alunosPorTurma/index.jsx";
+import ProfessorPorDisciplina from "./pages/funcionarios/professorPorDisciplina/index.jsx"
 
 const router = createBrowserRouter([
   {
@@ -34,12 +36,20 @@ const router = createBrowserRouter([
         element: <CadastroAlunos />,
       },
       {
+        path: "/alunos-turma",
+        element: <AlunoPorTurma/>
+      },
+      {
         path: "/busca-funcionarios",
         element: <BuscaFuncionarios />,
       },
       {
         path: "/cadastro-funcionarios",
         element: <CadastroFuncionarios />,
+      },
+      {
+        path: "/professor-disciplina",
+        element: <ProfessorPorDisciplina />,
       },
       {
         path: "/cadastro-turmas",

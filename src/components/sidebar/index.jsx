@@ -141,7 +141,13 @@ export default function Sidebar() {
                 to="/busca-alunos"
                 className="sidebar-item-sub"
               >
-                <p>Busca</p>
+                <p>Lista de Alunos</p>
+              </NavLink>
+              <NavLink
+                to="/alunos-turma"
+                className="sidebar-item-sub"
+              >
+                <p>Alunos Por Turma</p>
               </NavLink>
             </div>
           </div>
@@ -180,7 +186,13 @@ export default function Sidebar() {
                 to="/busca-funcionarios"
                 className="sidebar-item-sub"
               >
-                <p>Busca</p>
+                <p>Lista de Funcionários</p>
+              </NavLink>
+              <NavLink
+                to="/professor-disciplina"
+                className="sidebar-item-sub"
+              >
+                <p>Professor Por Disciplina</p>
               </NavLink>
             </div>
           </div>
