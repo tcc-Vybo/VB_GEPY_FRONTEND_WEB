@@ -1,17 +1,22 @@
-.busca-aluno-content {
+.busca-funcionario-content {
   background-color: #dedede;
   height: 93%;
   border-radius: 10px;
   padding: 20px;
+  overflow: hidden;
 }
 
-.busca-aluno-content-top{
+.busca-funcionario-content-top{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.busca-aluno-content-midle{
-  height: 100%;
+.busca-funcionario-content-midle{
+  height: 107%;
 }
+
+
+   
+

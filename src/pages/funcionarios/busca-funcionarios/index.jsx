@@ -97,9 +97,9 @@ export default function BuscaFuncionarios() {
   };
 
   return (
-    <div className="busca-aluno-content">
+    <div className="busca-funcionario-content">
       <Box sx={{ height: "80%", width: "100%" }}>
-        <div className="busca-aluno-content-top">
+        <div className="busca-funcionario-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Funcionários
           </Typography>
@@ -111,7 +111,7 @@ export default function BuscaFuncionarios() {
             Pesquisar Por Todos Funcionarios
           </SearchButton>
         </div>
-        <div className="busca-aluno-content-midle">
+        <div className="busca-funcionario-content-midle">
           <DataGridForFuncionarios rows={stateFuncionariosArray} columns={columns} />
         </div>
       </Box>

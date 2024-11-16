@@ -530,11 +530,13 @@ export default function Recados() {
                 />
                 {/* COMENTÁRIO */}
                 <CustomDateTextField
+                  label="Data de Envio"
                   variant="outlined"
                   value={stateSearchDataDeEnvio} // Formato yyyy-MM-dd
                   onChange={handleSearchDataDeEnvioChange}
                   type="date"
                   sx={{ width: "20%" }}
+                  focused={true}
                 />
                 <CustomTextField
                   label="Remetente"

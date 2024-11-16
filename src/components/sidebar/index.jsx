@@ -192,7 +192,7 @@ export default function Sidebar() {
                 to="professor-disciplina"
                 className="sidebar-item-sub"
               >
-                <p>Professor Por Disciplina</p>
+                <p>Professores Por Disciplina</p>
               </NavLink>
             </div>
           </div>

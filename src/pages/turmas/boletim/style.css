@@ -1,99 +1,33 @@
-.boletim {
+.busca-boletim-content {
   background-color: #dedede;
-  min-height: 100%;
+  height: 93%;
   border-radius: 10px;
   padding: 20px;
+}
+
+.busca-boletim-content-top{
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.boletim-header {
+.busca-boletim-content-top-left{
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  width: 75%;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.boletim-header-input {
+.busca-boletim-content-top-right{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 52%;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.boletim-header-input input {
-  margin-right: 10px;
-}
-
-.aluno-buscado {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.boletim-area {
-  background-color: #d7a1ff;
-  color: #fff;
-  border-radius: 10px;
-}
-
-.boletim-area-header {
-  display: flex;
-  border-bottom: 2px solid #fff;
-}
-
-.boletim-area-header .disciplina,
-.boletim-area-header .notas-e-faltas,
-.boletim-area-header .situacao {
-  padding: 10px 0px;
-  width: 16.6%;
-}
-
-.boletim-area-header .situacao,
-.boletim-area-header .disciplina {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-}
-
-.notas-e-faltas,
-.situacao {
-  display: flex;
-  justify-content: space-around;
-  border-left: 2px solid #fff;
-}
-
-.boletim-area-header .nota,
-.boletim-area-header .falta,
-.disciplina,
-.boletim-linha .disciplina,
-.boletim-linha .nota,
-.boletim-linha .falta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.boletim-linha {
-  display: flex;
-}
-
-.boletim-linha .falta,
-.boletim-linha .nota {
-  width: 100%;
-}
-
-.boletim-linha .disciplina,
-.boletim-linha .nota,
-.boletim-linha .falta,
-.boletim-linha .situacao {
-  padding: 5px 0px;
-}
-
-.boletim-linha .disciplina,
-.boletim-linha .notas-e-faltas,
-.boletim-linha .situacao {
-  width: 16.6%;
-}
-
-.boletim-linha .falta {
-  border-left: 1px solid #fff;
+.busca-boletim-content-midle{
+  height: 107%;
 }
