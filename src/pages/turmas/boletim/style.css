@@ -31,3 +31,27 @@
 .busca-boletim-content-midle{
   height: 107%;
 }
+
+.boletim-modal-content{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.boletim-modal-content-top{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.boletim-modal-content-top-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 40%;
+}
+.boletim-modal-content-top-right{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 60%;
+}

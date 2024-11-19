@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 export const SubmitButton = styled(Button)(({ theme }) => ({
     color: '#6700b3',       // Cor do texto
     borderColor: '#6700b3',  // Cor da borda
-    backgroundColor: 'white',
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',  // Sombra personalizada
     height: '50px',
     '&:hover': {
