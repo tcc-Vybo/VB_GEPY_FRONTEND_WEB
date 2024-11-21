@@ -470,14 +470,14 @@ export default function Recados() {
               <div className="recados-content-bottom">
                 <SubmitButton
                   variant="outlined"
-                  endIcon={<SaveOutlinedIcon />}
+                  startIcon={<SaveOutlinedIcon />}
                   onClick={handleInsertNewRecado}
                 >
                   Gravar
                 </SubmitButton>
                 <ClearButton
                   variant="outlined"
-                  endIcon={<CleaningServicesIcon />}
+                  startIcon={<CleaningServicesIcon />}
                   onClick={handleClear}
                 >
                   Limpar
@@ -602,7 +602,7 @@ export default function Recados() {
               <div className="recados-content-bottom">
                 <SearchButton
                   variant="outlined"
-                  endIcon={<SearchIcon />}
+                  startIcon={<SearchIcon />}
                   onClick={handleSearchRecado}
                 >
                   Pesquisar

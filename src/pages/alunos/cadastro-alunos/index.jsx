@@ -685,14 +685,14 @@ export default function CadastroAlunos() {
         <div className="cadastro-button-documentos">
           <SubmitButton
             variant="outlined"
-            endIcon={<SaveOutlinedIcon />}
+            startIcon={<SaveOutlinedIcon />}
             onClick={handleInsertNewStudent}
           >
             Gravar
           </SubmitButton>
           <ClearButton
             variant="outlined"
-            endIcon={<CleaningServicesIcon />}
+            startIcon={<CleaningServicesIcon />}
             onClick={handleClear}
           >
             Limpar

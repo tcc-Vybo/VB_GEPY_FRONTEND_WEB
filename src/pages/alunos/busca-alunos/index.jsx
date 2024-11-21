@@ -105,7 +105,7 @@ export default function BuscaAlunos() {
           </Typography>
           <SearchButton
             variant="outlined"
-            endIcon={<SearchIcon />}
+            startIcon={<SearchIcon />}
             onClick={handleListAlunos}
           >
             Pesquisar Por Todos Alunos

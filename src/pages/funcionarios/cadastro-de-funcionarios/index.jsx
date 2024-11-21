@@ -622,14 +622,14 @@ export default function CadastroFuncionarios() {
         <div className="cadastro-button-documentos">
           <SubmitButton
             variant="outlined"
-            endIcon={<SaveOutlinedIcon />}
+            startIcon={<SaveOutlinedIcon />}
             onClick={handleInsertNewEmployee}
           >
             Gravar
           </SubmitButton>
           <ClearButton
             variant="outlined"
-            endIcon={<CleaningServicesIcon />}
+            startIcon={<CleaningServicesIcon />}
             onClick={handleClear}
           >
             Limpar

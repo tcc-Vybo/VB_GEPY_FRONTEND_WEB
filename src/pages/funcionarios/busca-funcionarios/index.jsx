@@ -105,7 +105,7 @@ export default function BuscaFuncionarios() {
           </Typography>
           <SearchButton
             variant="outlined"
-            endIcon={<SearchIcon />}
+            startIcon={<SearchIcon />}
             onClick={handleListFuncionarios}
           >
             Pesquisar Por Todos Funcionarios

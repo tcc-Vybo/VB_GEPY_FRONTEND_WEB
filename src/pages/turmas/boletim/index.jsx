@@ -293,21 +293,24 @@ export default function Boletim() {
         })
         .then((data) => {
           if (data.message === "Boletim registrado com sucesso!!") {
+            handleClose()
+
             Swal.fire({
               position: "center",
               icon: "success",
               text: "Boletim atualizado!!",
               showConfirmButton: false,
-              timer: 1800,
+              timer: 1800
             });
-            handleClose()
           } else {
+            handleClose()
+
             Swal.fire({
               position: "center",
               icon: "error",
               text: "Erro atualizar Boletim!!",
               showConfirmButton: false,
-              timer: 1800,
+              timer: 1800
             });
           }
           console.log("Success:", data);
@@ -375,19 +378,19 @@ export default function Boletim() {
           <div className="busca-boletim-content-top-right">
             <SearchButton
               variant="outlined"
-              endIcon={<SearchIcon />}
+              startIcon={<SearchIcon />}
               onClick={handleListBoletimOfAluno}
               sx={{ width: "70%" }}
             >
-              Pesquisar Por Boletim do Aluno
+              Pesquisar Boletim Aluno
             </SearchButton>
             <NewButton
               variant="outlined"
-              endIcon={<AddIcon />}
+              startIcon={<AddIcon />}
               onClick={handleOpenValidation}
               sx={{ width: "50%" }}
             >
-              Novo Boletim do Aluno
+              Novo Boletim
             </NewButton>
             <Modal
               open={open}
