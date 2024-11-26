@@ -9,7 +9,14 @@ import { NewButton } from "../../../components/buttons/newButton";
 import { CustomTheme } from "../../../assets/colorsPallete/colorsPallete";
 import { CustomTextField } from "../../../components/textFields/customTextField";
 
-import { Box, MenuItem, Modal, Typography } from "@mui/material";
+import {
+  Box,
+  MenuItem,
+  Modal,
+  Typography,
+  CircularProgress,
+  InputAdornment,
+} from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -23,70 +30,85 @@ export default function Boletim() {
   const [stateSearchAluno, setStateSerachAluno] = useState("");
 
   const [stateTurmaArray, setStateTurmaArray] = useState([]);
-  const tempTurmaArray = [];
+  const [stateGetTurmaLoading, setStateGetTurmaLoading] = useState(false);
 
-  const handleGetTurma = () => {
+  //ESTE LOADING
+  const handleGetTurma = async () => {
+    setStateGetTurmaLoading(true);
     const urlToListTurma = `https://vb-gepy-backend-web.onrender.com/turma`;
 
     try {
-      fetch(urlToListTurma)
-        .then((response) => {
-          console.log("Response received:", response);
+      const response = await fetch(urlToListTurma);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar turmas");
+      }
+      const data = await response.json();
 
-          return response.json();
-        })
-        .then((data) => {
-          data.map((item, index) => {
-            tempTurmaArray.push({
-              id: data[index].id,
-              nome: data[index].nome,
-            });
-          });
-          setStateTurmaArray(tempTurmaArray);
-          console.log(stateTurmaArray);
-        });
+      const updatedTurmaArray = data.map((item) => ({
+        id: item.id,
+        nome: item.nome,
+      }));
+
+      setStateTurmaArray(updatedTurmaArray); // Atualiza o estado diretamente
     } catch (err) {
-      console.log("ERRO: ", err);
+      console.error("Erro ao buscar turma:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar as turmas!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateGetTurmaLoading(false); // Desativa o loading
     }
   };
 
   const [stateIdOfTurma, setStateIdOfTurma] = useState(0);
   const [stateAlunoOfTurmaArray, setStateAlunoOfTurmaArray] = useState([]);
-  const tempAlunoOfTurmaArray = [];
+  const [stateIdOfAlunoToUpdateBoletim, setStateIdOfAlunoToUpdateBoletim] =
+    useState(0);
+  const [stateGetAlunoOfTurmaLoading, setStateGetAlunoOfTurmaLoading] =
+    useState(false);
 
-  const handleGetAlunoOfTurma = () => {
+  const handleGetAlunoOfTurma = async () => {
+    setStateGetAlunoOfTurmaLoading(true);
     const urlToListAlunoOfTurma = `https://vb-gepy-backend-web.onrender.com/aluno-turma/buscar/${stateIdOfTurma}`;
 
     try {
-      if (stateIdOfTurma === 0) {
-      } else {
-        fetch(urlToListAlunoOfTurma)
-          .then((response) => {
-            console.log("Response received:", response);
-
-            return response.json();
-          })
-          .then((data) => {
-            data.map((item, index) => {
-              tempAlunoOfTurmaArray.push({
-                id: data[index].id,
-                nome: data[index].aluno.nomeCompleto,
-              });
-            });
-            setStateAlunoOfTurmaArray(tempAlunoOfTurmaArray);
-            console.log(stateAlunoOfTurmaArray);
-          });
+      const response = await fetch(urlToListAlunoOfTurma);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar alunos");
       }
+      const data = await response.json();
+
+      const updatedAlunoOfTurmaArray = data.map((item, index) => ({
+        id: item.aluno.id,
+        nome: item.aluno.nomeCompleto,
+      }));
+      setStateIdOfAlunoToUpdateBoletim(updatedAlunoOfTurmaArray.id);
+      setStateAlunoOfTurmaArray(updatedAlunoOfTurmaArray);
+      console.log(stateAlunoOfTurmaArray);
     } catch (err) {
-      console.log("ERRO: ", err);
+      console.error("Erro ao buscar alunos:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar os alunos!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateGetAlunoOfTurmaLoading(false); // Desativa o loading
     }
   };
 
   const [stateIdOfAluno, setStateIdOfAluno] = useState(0);
   const [stateBoletimAluno, setStateBoletimAluno] = useState([]);
-  const tempBoletimAluno = [];
+  const [stateLoadingBoletim, setStateLoadingBoletim] = useState(false);
 
-  const handleListBoletimOfAluno = () => {
+  const handleListBoletimOfAluno = async () => {
+    setStateLoadingBoletim(true); // Ativa o estado de loading
     const urlToListBoletimOfAluno = `https://vb-gepy-backend-web.onrender.com/boletim/buscar/byAluno/${stateIdOfAluno}`;
 
     try {
@@ -98,37 +120,47 @@ export default function Boletim() {
           showConfirmButton: false,
           timer: 2000,
         });
-      } else {
-        fetch(urlToListBoletimOfAluno)
-          .then((response) => {
-            console.log("Response received:", response);
-
-            return response.json();
-          })
-          .then((data) => {
-            data.map((item, index) => {
-              console.log(data[index]);
-              tempBoletimAluno.push({
-                id: data[index].id,
-                disciplina: data[index].disciplina.nome,
-                notaBim1: data[index].notaPrimeiroBim,
-                notaBim2: data[index].notaSegundoBim,
-                notaBim3: data[index].notaTerceiroBim,
-                notaBim4: data[index].notaQuartoBim,
-              });
-            });
-            setStateBoletimAluno(tempBoletimAluno);
-            console.log(stateBoletimAluno);
-          });
+        return;
       }
+
+      const response = await fetch(urlToListBoletimOfAluno);
+      const data = await response.json();
+      const tempBoletimArray = [];
+
+      data.map((item, index) => {
+        tempBoletimArray.push({
+          id: item.id,
+          idDisciplina: item.disciplina.id,
+          disciplina: item.disciplina.nome,
+          notaBim1: item.notaPrimeiroBim,
+          notaBim2: item.notaSegundoBim,
+          notaBim3: item.notaTerceiroBim,
+          notaBim4: item.notaQuartoBim,
+        });
+        setStateCurrentDisciplinaId(tempBoletimArray[index].idDisciplina)
+      });
+      
+      setStateBoletimAluno(tempBoletimArray); // Atualiza os dados
+      console.log(tempBoletimArray);
     } catch (err) {
-      console.log("ERRO: ", err);
+      console.error("Erro ao buscar boletim:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar o boletim do aluno!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateLoadingBoletim(false); // Desativa o estado de loading
     }
   };
 
   //MODAL
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleOpenValidation = () => {
     if (!stateSearchTurma || !stateSearchAluno) {
@@ -246,6 +278,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
+            handleListBoletimOfAluno()
           } else {
             handleClose();
 
@@ -256,6 +289,8 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
+
+            handleListBoletimOfAluno()
           }
           console.log("Success:", data);
         });
@@ -319,6 +354,7 @@ export default function Boletim() {
             onClick={() => {
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
+              handleGetDisciplinaByBoletimId();
               console.log(params.row.id);
             }}
           >
@@ -329,21 +365,53 @@ export default function Boletim() {
     },
   ];
 
+  const handleGetDisciplinaByBoletimId = () => {
+    const urlToListBoletimOfAluno = `https://vb-gepy-backend-web.onrender.com/boletim/buscarById/${stateBoletimID}`;
+
+    try {
+      fetch(urlToListBoletimOfAluno)
+        .then((response) => {
+          console.log("Response received:", response);
+
+          return response.json();
+        })
+        .then((data) => {
+          data.map((item, index) => {
+            console.log(data);
+            tempDisciplinaArray.push({
+              id: data[index].disciplina.id,
+              disciplina: data[index].disciplina.nome,
+            });
+          });
+          setStateCurrentDisciplinaId(tempDisciplinaArray[0].id);
+          console.log(tempDisciplinaArray);
+        });
+    } catch (err) {
+      console.log("ERRO: ", err);
+    }
+  };
+
   const [stateOpenUpdateModal, setStateOpenUpdateModal] = useState(false);
-  const handleCloseUpdateModal = () => setStateOpenUpdateModal(false);
+  const handleCloseUpdateModal = () => {
+    setStateOpenUpdateModal(false)
+    handleListBoletimOfAluno()
+  };
 
   const [stateBoletimID, setStateBoletimID] = useState(0);
   const [stateNewNotaPrimeiroBim, setStateNewNotaPrimeiroBim] = useState(0);
   const [stateNewNotaSegundoBim, setStateNewNotaSegundoBim] = useState(0);
   const [stateNewNotaTerceiroBim, setStateNewNotaTerceiroBim] = useState(0);
   const [stateNewNotaQuartoBim, setStateNewNotaQuartoBim] = useState(0);
+  const [stateCurrentDisciplinaId, setStateCurrentDisciplinaId] = useState(0);
+
+  //AQUI
 
   const objectUpdateBoletimData = {
     aluno: {
       id: stateIdOfAluno,
     },
     disciplina: {
-      id: stateDisciplinaId,
+      id: stateCurrentDisciplinaId,
     },
     notaPrimeiroBim: stateNewNotaPrimeiroBim,
     faltaPrimeiroBim: 0,
@@ -384,6 +452,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
+            handleListBoletimOfAluno()
           } else {
             handleCloseUpdateModal();
 
@@ -394,6 +463,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
+            handleListBoletimOfAluno()
           }
           console.log("Success:", data);
         });
@@ -402,32 +472,41 @@ export default function Boletim() {
     }
   };
 
+ 
+
   return (
     <div className="busca-boletim-content">
       <Box sx={{ height: "80%", width: "100%" }}>
         <div className="busca-boletim-content-top">
           <div className="busca-boletim-content-top-left">
+            {/* AQUI */}
             <CustomTextField
               label="Selecione Turma"
               variant="outlined"
               select
               value={stateSearchTurma}
-              onFocus={() => {
-                handleGetTurma();
-              }}
+              onFocus={handleGetTurma}
               onChange={(e) => {
                 setStateSearchTurma(e.target.value);
                 setStateIdOfTurma(e.target.value);
               }}
               type="text"
               sx={{ width: "25%" }}
+              InputProps={{
+                endAdornment: stateGetTurmaLoading && (
+                  <InputAdornment position="end">
+                    <CircularProgress size={20} />
+                  </InputAdornment>
+                ),
+              }}
             >
-              {stateTurmaArray.map((option, index) => (
-                <MenuItem key={option.index} value={option.id}>
+              {stateTurmaArray.map((option) => (
+                <MenuItem key={option.id} value={option.id}>
                   {option.nome}
                 </MenuItem>
               ))}
             </CustomTextField>
+
             <CustomTextField
               label="Selecione o Aluno"
               variant="outlined"
@@ -442,6 +521,13 @@ export default function Boletim() {
               }}
               type="text"
               sx={{ width: "70%" }}
+              InputProps={{
+                endAdornment: stateGetAlunoOfTurmaLoading && (
+                  <InputAdornment position="end">
+                    <CircularProgress size={20} />
+                  </InputAdornment>
+                ),
+              }}
             >
               {stateIdOfTurma ? (
                 stateAlunoOfTurmaArray.map((option, index) => (
@@ -460,11 +546,19 @@ export default function Boletim() {
           <div className="busca-boletim-content-top-right">
             <SearchButton
               variant="outlined"
-              startIcon={<SearchIcon />}
+              startIcon={
+                stateLoadingBoletim ? (
+                  <CircularProgress size={20} color="inherit" />
+                ) : (
+                  <SearchIcon />
+                )
+              }
               onClick={handleListBoletimOfAluno}
               sx={{ width: "70%" }}
             >
-              Pesquisar Boletim Aluno
+              {stateLoadingBoletim
+                ? "Carregando..."
+                : "Pesquisar Boletim Aluno"}
             </SearchButton>
             <NewButton
               variant="outlined"
@@ -601,6 +695,26 @@ export default function Boletim() {
                   </Typography>
                   <div className="boletim-modal-content-top">
                     <div className="boletim-modal-content-top-right">
+                    <CustomTextField
+                        label="Selecione a Disciplina"
+                        variant="outlined"
+                        select
+                        value={stateCurrentDisciplinaId}
+                        onFocus={() => {
+                          handleGetDisciplina();
+                        }}
+                        onChange={(e) => {
+                          setStateCurrentDisciplinaId(e.target.value);
+                        }}
+                        type="text"
+                        sx={{ width: "100%" }}
+                      >
+                        {stateDisciplinaArray.map((option, index) => (
+                          <MenuItem key={option.index} value={option.id}>
+                            {option.nome}
+                          </MenuItem>
+                        ))}
+                      </CustomTextField>
                       <CustomTextField
                         label="Nota Primeiro Bimestre"
                         variant="outlined"
