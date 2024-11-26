@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import DataGridForFuncionarios from "../../../components/dataGrids/dataGridForFuncionarios/index";
 import { SearchButton } from "../../../components/buttons/searchButton";
 import { SubmitButton } from "../../../components/buttons/submitButton";
+import { BackButton } from "../../../components/buttons/backButton";
 import { NewButton } from "../../../components/buttons/newButton";
 import { CustomTheme } from "../../../assets/colorsPallete/colorsPallete";
 import { CustomTextField } from "../../../components/textFields/customTextField";
@@ -12,69 +13,10 @@ import { Box, MenuItem, Modal, Typography } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import Swal from "sweetalert2";
-
-const columns = [
-  {
-    field: "disciplina",
-    headerName: "Disciplina",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-  },
-  {
-    field: "notaBim1",
-    headerName: "Nota Bimestre 1",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-  },
-  {
-    field: "notaBim2",
-    headerName: "Nota Bimestre 2",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-  },
-  {
-    field: "notaBim3",
-    headerName: "Nota Bimestre 3",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-  },
-  {
-    field: "notaBim4",
-    headerName: "Nota Bimestre 4",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-  },
-  {
-    field: "actions",
-    headerName: "Ações",
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    flex: 1,
-    renderCell: (params) => (
-      <>
-        <IconButton
-          sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
-          onClick={() => handleEdit(params.row.id)}
-        >
-          <SaveOutlinedIcon />
-        </IconButton>
-      </>
-    ),
-  },
-];
 
 export default function Boletim() {
   const [stateSearchTurma, setStateSearchTurma] = useState("");
@@ -255,7 +197,7 @@ export default function Boletim() {
       stateNotaQuartoBim) /
     4;
   const [stateSituacao, setStateSituacao] = useState(
-    stateCalculoSituacao < 5 ? "REPROVADO" : "APROVADO"
+    stateCalculoSituacao < 5 ? 2 : 1
   );
 
   const objectBoletimData = {
@@ -273,7 +215,9 @@ export default function Boletim() {
     faltaTerceiroBim: 0,
     notaQuartoBim: stateNotaQuartoBim,
     faltaQuartoBim: 0,
-    situacao: stateSituacao,
+    situacao: {
+      id: stateSituacao,
+    },
   };
 
   const handleInsertBoletim = () => {
@@ -292,25 +236,163 @@ export default function Boletim() {
           return response.json();
         })
         .then((data) => {
-          if (data.message === "Boletim registrado com sucesso!!") {
-            handleClose()
+          if (data.message) {
+            handleClose();
 
             Swal.fire({
               position: "center",
               icon: "success",
-              text: "Boletim atualizado!!",
+              text: data.message,
               showConfirmButton: false,
-              timer: 1800
+              timer: 1800,
             });
           } else {
-            handleClose()
+            handleClose();
 
             Swal.fire({
               position: "center",
               icon: "error",
               text: "Erro atualizar Boletim!!",
               showConfirmButton: false,
-              timer: 1800
+              timer: 1800,
+            });
+          }
+          console.log("Success:", data);
+        });
+    } catch (err) {
+      console.log("ERRO: ", err);
+    }
+  };
+
+  const columns = [
+    {
+      field: "disciplina",
+      headerName: "Disciplina",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
+      field: "notaBim1",
+      headerName: "Nota Bimestre 1",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
+      field: "notaBim2",
+      headerName: "Nota Bimestre 2",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
+      field: "notaBim3",
+      headerName: "Nota Bimestre 3",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
+      field: "notaBim4",
+      headerName: "Nota Bimestre 4",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
+      field: "actions",
+      headerName: "Ações",
+      headerAlign: "center",
+      align: "center",
+      sortable: false,
+      flex: 1,
+      renderCell: (params) => (
+        <>
+          <IconButton
+            sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
+            onClick={() => {
+              setStateBoletimID(params.row.id);
+              setStateOpenUpdateModal(true);
+              console.log(params.row.id);
+            }}
+          >
+            <EditIcon />
+          </IconButton>
+        </>
+      ),
+    },
+  ];
+
+  const [stateOpenUpdateModal, setStateOpenUpdateModal] = useState(false);
+  const handleCloseUpdateModal = () => setStateOpenUpdateModal(false);
+
+  const [stateBoletimID, setStateBoletimID] = useState(0);
+  const [stateNewNotaPrimeiroBim, setStateNewNotaPrimeiroBim] = useState(0);
+  const [stateNewNotaSegundoBim, setStateNewNotaSegundoBim] = useState(0);
+  const [stateNewNotaTerceiroBim, setStateNewNotaTerceiroBim] = useState(0);
+  const [stateNewNotaQuartoBim, setStateNewNotaQuartoBim] = useState(0);
+
+  const objectUpdateBoletimData = {
+    aluno: {
+      id: stateIdOfAluno,
+    },
+    disciplina: {
+      id: stateDisciplinaId,
+    },
+    notaPrimeiroBim: stateNewNotaPrimeiroBim,
+    faltaPrimeiroBim: 0,
+    notaSegundoBim: stateNewNotaSegundoBim,
+    faltaSegundoBim: 0,
+    notaTerceiroBim: stateNewNotaTerceiroBim,
+    faltaTerceiroBim: 0,
+    notaQuartoBim: stateNewNotaQuartoBim,
+    faltaQuartoBim: 0,
+    situacao: {
+      id: stateSituacao,
+    },
+  };
+
+  const handleUpdateBoletimById = () => {
+    const urlToUpdateBoletim = `https://vb-gepy-backend-web.onrender.com/boletim/alterar/${stateBoletimID}`;
+
+    try {
+      fetch(urlToUpdateBoletim, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objectUpdateBoletimData),
+      })
+        .then((response) => {
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          if (data.message === "Boletim alterado com sucesso!!") {
+            handleCloseUpdateModal();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              text: "Boletim atualizado!!",
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          } else {
+            handleCloseUpdateModal();
+
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              text: "Erro atualizar Boletim!!",
+              showConfirmButton: false,
+              timer: 1800,
             });
           }
           console.log("Success:", data);
@@ -480,12 +562,104 @@ export default function Boletim() {
                   <div className="boletim-modal-content-bottom">
                     <SubmitButton
                       onClick={handleInsertBoletim}
-                      endIcon={<SaveOutlinedIcon />}
+                      startIcon={<SaveOutlinedIcon />}
                       sx={{ mt: 2 }}
                       variant="outlined"
                     >
                       Gravar
                     </SubmitButton>
+                    <BackButton
+                      onClick={handleClose}
+                      startIcon={<ArrowBackIcon />}
+                      sx={{ mt: 2 }}
+                      variant="outlined"
+                    >
+                      Voltar
+                    </BackButton>
+                  </div>
+                </div>
+              </Box>
+            </Modal>
+            <Modal
+              open={stateOpenUpdateModal}
+              onClose={handleCloseUpdateModal}
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              sx={{
+                backdropFilter: "blur(3px)", // Efeito de desfoque no fundo
+                backgroundColor: "rgba(0, 0, 0, 0.5)", // Fundo escurecido com opacidade
+              }}
+            >
+              <Box sx={style}>
+                <div className="boletim-modal-content">
+                  <Typography
+                    id="boletim-modal-content-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    Atualizar Boletim
+                  </Typography>
+                  <div className="boletim-modal-content-top">
+                    <div className="boletim-modal-content-top-right">
+                      <CustomTextField
+                        label="Nota Primeiro Bimestre"
+                        variant="outlined"
+                        value={stateNewNotaPrimeiroBim}
+                        onChange={(e) => {
+                          setStateNewNotaPrimeiroBim(e.target.value);
+                        }}
+                        type="number"
+                        sx={{ width: "100%" }}
+                      />
+                      <CustomTextField
+                        label="Nota Segundo Bimestre"
+                        variant="outlined"
+                        value={stateNewNotaSegundoBim}
+                        onChange={(e) => {
+                          setStateNewNotaSegundoBim(e.target.value);
+                        }}
+                        type="number"
+                        sx={{ width: "100%" }}
+                      />
+                      <CustomTextField
+                        label="Nota Terceiro Bimestre"
+                        variant="outlined"
+                        value={stateNewNotaTerceiroBim}
+                        onChange={(e) => {
+                          setStateNewNotaTerceiroBim(e.target.value);
+                        }}
+                        type="number"
+                        sx={{ width: "100%" }}
+                      />
+                      <CustomTextField
+                        label="Nota Quarto Bimestre"
+                        variant="outlined"
+                        value={stateNewNotaQuartoBim}
+                        onChange={(e) => {
+                          setStateNewNotaQuartoBim(e.target.value);
+                        }}
+                        type="number"
+                        sx={{ width: "100%" }}
+                      />
+                    </div>
+                  </div>
+                  <div className="boletim-modal-content-bottom">
+                    <SubmitButton
+                      onClick={handleUpdateBoletimById}
+                      startIcon={<SaveOutlinedIcon />}
+                      sx={{ mt: 2 }}
+                      variant="outlined"
+                    >
+                      Gravar
+                    </SubmitButton>
+                    <BackButton
+                      onClick={handleCloseUpdateModal}
+                      startIcon={<ArrowBackIcon />}
+                      sx={{ mt: 2 }}
+                      variant="outlined"
+                    >
+                      Voltar
+                    </BackButton>
                   </div>
                 </div>
               </Box>

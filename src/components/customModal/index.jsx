@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Modal, Typography, Button } from '@mui/material';
 import { BackButton } from "../buttons/backButton/index"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 // Estilos para o Modal
 const style = {
@@ -45,8 +46,9 @@ export default function FloatingModal({ open, handleClose, recadosArray }) {
         <BackButton 
         onClick={handleClose} 
         sx={{ mt: 2 }}
+        startIcon={<ArrowBackIcon />}
         variant="outlined">
-          Fechar
+          Voltar
         </BackButton>
       </Box>
     </Modal>
