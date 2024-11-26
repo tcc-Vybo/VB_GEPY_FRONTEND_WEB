@@ -137,9 +137,9 @@ export default function Boletim() {
           notaBim3: item.notaTerceiroBim,
           notaBim4: item.notaQuartoBim,
         });
-        setStateCurrentDisciplinaId(tempBoletimArray[index].idDisciplina)
+        setStateCurrentDisciplinaId(tempBoletimArray[index].idDisciplina);
       });
-      
+
       setStateBoletimAluno(tempBoletimArray); // Atualiza os dados
       console.log(tempBoletimArray);
     } catch (err) {
@@ -190,31 +190,38 @@ export default function Boletim() {
 
   const [stateDisciplinaArray, setStateDisciplinaArray] = useState([]);
   const [stateDisciplinaId, setStateDisciplinaId] = useState();
+  const [stateGetDisciplinaLoading, setStateGetDisciplinaLoading] =
+    useState(false);
   const tempDisciplinaArray = [];
 
-  const handleGetDisciplina = () => {
+  const handleGetDisciplina = async () => {
+    setStateGetDisciplinaLoading(true);
     const urlToGetDisciplina = `https://vb-gepy-backend-web.onrender.com/disciplina`;
 
     try {
-      fetch(urlToGetDisciplina)
-        .then((response) => {
-          console.log("Response received:", response);
+      const response = await fetch(urlToGetDisciplina);
+      const data = await response.json();
 
-          return response.json();
-        })
-        .then((data) => {
-          data.map((item, index) => {
-            console.log(data[index]);
-            tempDisciplinaArray.push({
-              id: data[index].id,
-              nome: data[index].nome,
-            });
-          });
-          setStateDisciplinaArray(tempDisciplinaArray);
-          console.log(stateDisciplinaArray);
+      data.map((item, index) => {
+        tempDisciplinaArray.push({
+          id: item.id,
+          nome: item.nome,
         });
+      });
+
+      setStateDisciplinaArray(tempDisciplinaArray);
+      console.log(stateDisciplinaArray);
     } catch (err) {
-      console.log("ERRO: ", err);
+      console.error("Erro ao buscar disciplinas:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar disciplinas!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateGetDisciplinaLoading(false); // Desativa o estado de loading
     }
   };
 
@@ -278,7 +285,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
-            handleListBoletimOfAluno()
+            handleListBoletimOfAluno();
           } else {
             handleClose();
 
@@ -290,7 +297,7 @@ export default function Boletim() {
               timer: 1800,
             });
 
-            handleListBoletimOfAluno()
+            handleListBoletimOfAluno();
           }
           console.log("Success:", data);
         });
@@ -352,9 +359,10 @@ export default function Boletim() {
           <IconButton
             sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
             onClick={() => {
+              handleFillModalWithRowData(params.row)
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
-              handleGetDisciplinaByBoletimId();
+              handleGeCurrentBoletim()
               console.log(params.row.id);
             }}
           >
@@ -365,36 +373,16 @@ export default function Boletim() {
     },
   ];
 
-  const handleGetDisciplinaByBoletimId = () => {
-    const urlToListBoletimOfAluno = `https://vb-gepy-backend-web.onrender.com/boletim/buscarById/${stateBoletimID}`;
+  const [stateGetCurrentBoletim, setStateGetCurrentBoletim] = useState(false)
 
-    try {
-      fetch(urlToListBoletimOfAluno)
-        .then((response) => {
-          console.log("Response received:", response);
-
-          return response.json();
-        })
-        .then((data) => {
-          data.map((item, index) => {
-            console.log(data);
-            tempDisciplinaArray.push({
-              id: data[index].disciplina.id,
-              disciplina: data[index].disciplina.nome,
-            });
-          });
-          setStateCurrentDisciplinaId(tempDisciplinaArray[0].id);
-          console.log(tempDisciplinaArray);
-        });
-    } catch (err) {
-      console.log("ERRO: ", err);
-    }
-  };
+  const handleGeCurrentBoletim = async () => {
+    
+  }
 
   const [stateOpenUpdateModal, setStateOpenUpdateModal] = useState(false);
   const handleCloseUpdateModal = () => {
-    setStateOpenUpdateModal(false)
-    handleListBoletimOfAluno()
+    setStateOpenUpdateModal(false);
+    handleListBoletimOfAluno();
   };
 
   const [stateBoletimID, setStateBoletimID] = useState(0);
@@ -452,7 +440,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
-            handleListBoletimOfAluno()
+            handleListBoletimOfAluno();
           } else {
             handleCloseUpdateModal();
 
@@ -463,7 +451,7 @@ export default function Boletim() {
               showConfirmButton: false,
               timer: 1800,
             });
-            handleListBoletimOfAluno()
+            handleListBoletimOfAluno();
           }
           console.log("Success:", data);
         });
@@ -472,7 +460,15 @@ export default function Boletim() {
     }
   };
 
- 
+  const handleFillModalWithRowData = (row) => {
+    setStateNewNotaPrimeiroBim(row.notaBim1);
+    setStateNewNotaSegundoBim(row.notaBim2);
+    setStateNewNotaTerceiroBim(row.notaBim3);
+    setStateNewNotaQuartoBim(row.notaBim4);
+    setStateCurrentDisciplinaId(row.idDisciplina); // Disciplina associada
+    setStateBoletimID(row.id); // ID do boletim para identificar a edição
+    setStateOpenUpdateModal(true); // Abre o modal de edição
+  };
 
   return (
     <div className="busca-boletim-content">
@@ -494,8 +490,8 @@ export default function Boletim() {
               sx={{ width: "25%" }}
               InputProps={{
                 endAdornment: stateGetTurmaLoading && (
-                  <InputAdornment position="end">
-                    <CircularProgress size={20} />
+                  <InputAdornment position="start">
+                    <CircularProgress sx={{ marginRight: "10px" }} size={20} />
                   </InputAdornment>
                 ),
               }}
@@ -523,8 +519,8 @@ export default function Boletim() {
               sx={{ width: "70%" }}
               InputProps={{
                 endAdornment: stateGetAlunoOfTurmaLoading && (
-                  <InputAdornment position="end">
-                    <CircularProgress size={20} />
+                  <InputAdornment position="start">
+                    <CircularProgress sx={{ marginRight: "10px" }} size={20} />
                   </InputAdornment>
                 ),
               }}
@@ -674,6 +670,8 @@ export default function Boletim() {
                 </div>
               </Box>
             </Modal>
+
+            {/* ESTE MODAL */}
             <Modal
               open={stateOpenUpdateModal}
               onClose={handleCloseUpdateModal}
@@ -694,8 +692,8 @@ export default function Boletim() {
                     Atualizar Boletim
                   </Typography>
                   <div className="boletim-modal-content-top">
-                    <div className="boletim-modal-content-top-right">
-                    <CustomTextField
+                    <div className="boletim-modal-content-top-left">
+                      <CustomTextField
                         label="Selecione a Disciplina"
                         variant="outlined"
                         select
@@ -708,6 +706,16 @@ export default function Boletim() {
                         }}
                         type="text"
                         sx={{ width: "100%" }}
+                        InputProps={{
+                          endAdornment: stateGetDisciplinaLoading && (
+                            <InputAdornment position="start">
+                              <CircularProgress
+                                sx={{ marginRight: "10px" }}
+                                size={20}
+                              />
+                            </InputAdornment>
+                          ),
+                        }}
                       >
                         {stateDisciplinaArray.map((option, index) => (
                           <MenuItem key={option.index} value={option.id}>
@@ -715,6 +723,8 @@ export default function Boletim() {
                           </MenuItem>
                         ))}
                       </CustomTextField>
+                    </div>
+                    <div className="boletim-modal-content-top-right">
                       <CustomTextField
                         label="Nota Primeiro Bimestre"
                         variant="outlined"
@@ -780,6 +790,7 @@ export default function Boletim() {
             </Modal>
           </div>
         </div>
+        {/* DATA GRID */}
         <div className="busca-boletim-content-midle">
           <DataGridForFuncionarios rows={stateBoletimAluno} columns={columns} />
         </div>
