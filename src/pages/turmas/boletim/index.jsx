@@ -362,7 +362,6 @@ export default function Boletim() {
               handleFillModalWithRowData(params.row)
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
-              handleGeCurrentBoletim()
               console.log(params.row.id);
             }}
           >
@@ -372,12 +371,6 @@ export default function Boletim() {
       ),
     },
   ];
-
-  const [stateGetCurrentBoletim, setStateGetCurrentBoletim] = useState(false)
-
-  const handleGeCurrentBoletim = async () => {
-    
-  }
 
   const [stateOpenUpdateModal, setStateOpenUpdateModal] = useState(false);
   const handleCloseUpdateModal = () => {

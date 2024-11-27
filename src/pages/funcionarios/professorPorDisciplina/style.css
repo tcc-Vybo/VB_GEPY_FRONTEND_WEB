@@ -1,0 +1,64 @@
+.professor-por-disciplina-content {
+    background-color: #dedede;
+    height: 93%;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .professor-por-disciplina-content-top{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .professor-por-disciplina-content-top-left{
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .professor-por-disciplina-content-top-right{
+    display: flex;
+    flex-direction: row;
+    width: 52%;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .professor-por-disciplina-content-midle{
+    height: 107%;
+  }
+  
+  .professor-por-disciplina-modal-content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .professor-por-disciplina-modal-content-top{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .professor-por-disciplina-modal-content-bottom{
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+  }
+  
+  .professor-por-disciplina-modal-content-top-left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+  }
+  .professor-por-disciplina-modal-content-top-right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+  }

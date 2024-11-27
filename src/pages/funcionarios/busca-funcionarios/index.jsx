@@ -1,10 +1,10 @@
-import "./style.css";
+import "./styles.css";
 import React, { useState } from "react";
 
 import DataGridForFuncionarios from "../../../components/dataGrids/dataGridForFuncionarios/index";
 import { SearchButton } from "../../../components/buttons/searchButton";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { IconButton } from "@mui/material";
@@ -48,13 +48,14 @@ const columns = [
     flex: 1,
     renderCell: (params) => (
       <>
+      <Tooltip>
         <IconButton
-          sx={{ color: CustomTheme.palette.primary.main }}
+          sx={{ color: CustomTheme.palette.tertiary.main }}
           onClick={() => handleEdit(params.row.id)}
         >
           <EditIcon />
         </IconButton>
-
+      </Tooltip>
         <IconButton
           sx={{ color: CustomTheme.palette.secondary.main }}
           onClick={() => handleDelete(params.row.id)}
@@ -85,7 +86,7 @@ export default function BuscaFuncionarios() {
             tempFuncionariosArray.push({
               id: data[index].id,
               nomeFuncionario: data[index].nomeCompleto,
-              cargo: data[index].cargo,
+              cargo: data[index].cargo.nome,
             });
           });
           setStateFuncionariosArray(tempFuncionariosArray);
