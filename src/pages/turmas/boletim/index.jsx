@@ -694,6 +694,7 @@ export default function Boletim() {
                         onFocus={() => {
                           handleGetDisciplina();
                         }}
+                        disabled={true}
                         onChange={(e) => {
                           setStateCurrentDisciplinaId(e.target.value);
                         }}

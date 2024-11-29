@@ -1,62 +1,23 @@
-.busca-turmas {
+.busca-turma-content {
   background-color: #dedede;
-  height: 100%;
+  height: 93%;
   border-radius: 10px;
   padding: 20px;
-}
-.busca-turmas-header {
-  display: flex;
-  gap: 20px;
+  overflow: hidden;
 }
 
-.display-turmas {
+.busca-turma-content-top{
   display: flex;
   flex-direction: column;
-  background-color: #d7a1ff;
-  margin-top: 15px;
-  border-radius: 10px;
-  padding-bottom: 30px;
-  color: white;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.display-turmas .aluno,
-.responsavel-turma,
-.necessidades,
-.editar {
-  display: flex;
-  align-items: center;
-  padding-left: 2%;
+.busca-turma-content-midle{
   height: 100%;
 }
 
-.busca-turmas-linha {
-  display: flex;
-  min-width: 100%;
-  height: 30px;
-  border-bottom: 2px solid white;
-  padding-right: 3%;
-}
 
-.display-turmas .aluno {
-  width: 30%;
-}
+   
 
-.display-turmas .responsavel-turma {
-  width: 30%;
-}
 
-.display-turmas .necessidades {
-  width: 30%;
-}
-
-.display-turmas .aluno,
-.acoes,
-.responsavel-turma,
-.necessidades {
-  border-right: 2px solid white;
-}
-
-.editar {
-  width: 10%;
-  justify-content: center;
-}

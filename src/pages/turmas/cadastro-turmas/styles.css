@@ -1,0 +1,19 @@
+.busca-recado-content {
+    background-color: #dedede;
+    height: 93%;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .busca-recado-content-top{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .busca-recado-content-midle{
+    height: 100%;
+  }
+  

@@ -16,7 +16,7 @@ import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import ListAltIcon from "@mui/icons-material/ListAlt";
 
 import DataGridForDisciplinas from "../../../components/dataGrids/dataGridForDisciplinas/index";
 import { CustomTheme } from "../../../assets/colorsPallete/colorsPallete";
@@ -25,6 +25,7 @@ import { SubmitButton } from "../../../components/buttons/submitButton";
 import { BackButton } from "../../../components/buttons/backButton";
 import { SearchButton } from "../../../components/buttons/searchButton";
 import Swal from "sweetalert2";
+import DataGridForFuncionarios from "../../../components/dataGrids/dataGridForFuncionarios";
 
 export default function ProfessorPorDisciplina() {
   const columns = [
@@ -94,11 +95,14 @@ export default function ProfessorPorDisciplina() {
             arrow
           >
             <IconButton
-              sx={{ color: CustomTheme.palette.secondary.main, outline: "none" }}
+              sx={{
+                color: CustomTheme.palette.secondary.main,
+                outline: "none",
+              }}
               onClick={() => {
-                handleFillModalWithRowData(params.row);
-                setStateBoletimID(params.row.id);
-                setStateOpenUpdateModal(true);
+                //handleFillModalWithRowData(params.row);
+                handleGetProfessorOfDisciplina()
+                setStateDisciplinaId(params.row.id)
                 console.log(params.row.id);
               }}
             >
@@ -107,6 +111,25 @@ export default function ProfessorPorDisciplina() {
           </Tooltip>
         </>
       ),
+    },
+  ];
+
+  const columnsForProfessorPorDisciplina = [
+    {
+      field: "id",
+      headerName: "ID",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+    },
+    {
+      field: "nome",
+      headerName: "Nome",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 4,
     },
   ];
 
@@ -204,12 +227,12 @@ export default function ProfessorPorDisciplina() {
 
   const objectProfessorPorDisciplinaData = {
     professor: {
-      id: stateFuncionarioId
+      id: stateFuncionarioId,
     },
     disciplina: {
-      id: stateDisciplinaId
-    }
-  }
+      id: stateDisciplinaId,
+    },
+  };
 
   const handleInsertProfessorPorDisciplina = async () => {
     setStateInsertNewLinkLoading(true);
@@ -222,32 +245,36 @@ export default function ProfessorPorDisciplina() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(objectProfessorPorDisciplinaData),
-      }).then((response) => {
-        return response.json()
-      }).then((data) => {
-        console.log(data)
-        if(data.message === "Professor associado a disciplina com sucesso!"){
-          handleCloseModal();
-  
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            text: data.message,
-            showConfirmButton: false,
-            timer: 1800,
-          });
-        }else{
-          handleCloseModal();
-  
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            text: data.message,
-            showConfirmButton: false,
-            timer: 1800,
-          });
-        }
       })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          if (
+            data.message === "Professor associado a disciplina com sucesso!"
+          ) {
+            handleCloseModal();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              text: data.message,
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          } else {
+            handleCloseModal();
+
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              text: data.message,
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          }
+        });
     } catch (err) {
       console.error("Erro ao buscar Funcionarios:", err);
       Swal.fire({
@@ -259,6 +286,48 @@ export default function ProfessorPorDisciplina() {
       });
     } finally {
       setStateInsertNewLinkLoading(false); // Desativa o estado de loading
+    }
+  };
+  const [stateOpenListModal, setStateOpenListModal] = useState(false);
+  const handleCloseListModal = () => {
+    setStateOpenListModal(false);
+  };
+  const [stateGetAllProfessorLoading, setStateGetAllProfessorLoading] =
+    useState(false);
+  const tempProfessorDisciplinaArray = [];
+  const [stateProfessorDisciplinaArray, setStateProfessorDisciplinaArray] =
+    useState([]);
+
+  const handleGetProfessorOfDisciplina = async () => {
+    setStateOpenListModal(true);
+    setStateGetAllProfessorLoading(true);
+    const urlToGetFuncionario = `https://vb-gepy-backend-web.onrender.com/professor-disciplina/buscar/${stateDisciplinaId}`;
+
+    try {
+      await fetch(urlToGetFuncionario)
+      .then((response) => {
+        return response.json()
+      }).then((data) => {
+        data.map((item, index) => {
+          tempProfessorDisciplinaArray.push({
+            id: item.id,
+            nome: item.professor.nomeCompleto,
+          });
+        });
+      });
+      setStateProfessorDisciplinaArray(tempProfessorDisciplinaArray);
+      console.log(stateProfessorDisciplinaArray);
+    } catch (err) {
+      console.error("Erro ao buscar Funcionarios:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar Funcionarios!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateGetAllProfessorLoading(false); // Desativa o estado de loading
     }
   };
 
@@ -286,120 +355,200 @@ export default function ProfessorPorDisciplina() {
               : "Pesquisar Disciplinas"}
           </SearchButton>
         </div>
-        
+
         <Modal
-            open={stateOpenModal}
-            onClose={handleCloseModal}
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            sx={{
-              backdropFilter: "blur(3px)", // Efeito de desfoque no fundo
-              backgroundColor: "rgba(0, 0, 0, 0.5)", // Fundo escurecido com opacidade
-            }}
-          >
-            <Box sx={style}>
-              <div className="professor-por-disciplina-modal-content">
-                <Typography
-                  id="professor-por-disciplina-modal-content-title"
-                  variant="h6"
-                  component="h2"
-                >
-                  Selecione o Professor a ser vinculado
-                </Typography>
-                <div className="professor-por-disciplina-modal-content-top">
-                  <div className="professor-por-disciplina-modal-content-top-left">
-                    <CustomTextField
-                        disabled={true}
-                        label="Selecione a Disciplina"
-                        variant="outlined"
-                        select
-                        value={stateDisciplinaId}
-                        onFocus={() => {
-                          handleGetDisciplina();
-                        }}
-                        onChange={(e) => {
-                          setStateDisciplinaId(e.target.value);
-                        }}
-                        type="text"
-                        sx={{ width: "100%" }}
-                        InputProps={{
-                          endAdornment: stateGetDisciplinaLoading && (
-                            <InputAdornment position="start">
-                              <CircularProgress
-                                sx={{ marginRight: "10px" }}
-                                size={20}
-                              />
-                            </InputAdornment>
-                          ),
-                        }}
-                      >
-                        {stateDisciplinaArray.map((option, index) => (
-                          <MenuItem key={option.index} value={option.id}>
-                            {option.nome}
-                          </MenuItem>
-                        ))}
-                      </CustomTextField>
-                  </div>
-                  <div className="professor-por-disciplina-modal-content-top-right">
+          open={stateOpenModal}
+          onClose={handleCloseModal}
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          sx={{
+            backdropFilter: "blur(3px)", // Efeito de desfoque no fundo
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Fundo escurecido com opacidade
+          }}
+        >
+          <Box sx={style}>
+            <div className="professor-por-disciplina-modal-content">
+              <Typography
+                id="professor-por-disciplina-modal-content-title"
+                variant="h6"
+                component="h2"
+              >
+                Selecione o Professor a ser vinculado
+              </Typography>
+              <div className="professor-por-disciplina-modal-content-top">
+                <div className="professor-por-disciplina-modal-content-top-left">
                   <CustomTextField
-                      label="Selecione o Funcionario"
-                      variant="outlined"
-                      select
-                      value={stateFuncionarioId}
-                      onFocus={() => {
-                        handleGetFuncionario();
-                      }}
-                      onChange={(e) => {
-                        setStateFuncionarioId(e.target.value);
-                      }}
-                      type="text"
-                      sx={{ width: "100%" }}
-                      InputProps={{
-                        endAdornment: stateGetFuncionarioLoading && (
-                          <InputAdornment position="start">
-                            <CircularProgress
-                              sx={{ marginRight: "10px" }}
-                              size={20}
-                            />
-                          </InputAdornment>
-                        ),
-                      }}
-                    >
-                      {stateFuncionarioArray.map((option, index) => (
-                        <MenuItem key={option.index} value={option.id}>
-                          {option.nome}
-                        </MenuItem>
-                      ))}
-                    </CustomTextField>
-                  </div>
+                    disabled={true}
+                    label="Selecione a Disciplina"
+                    variant="outlined"
+                    select
+                    value={stateDisciplinaId}
+                    onFocus={() => {
+                      handleGetDisciplina();
+                    }}
+                    onChange={(e) => {
+                      setStateDisciplinaId(e.target.value);
+                    }}
+                    type="text"
+                    sx={{ width: "100%" }}
+                    InputProps={{
+                      endAdornment: stateGetDisciplinaLoading && (
+                        <InputAdornment position="start">
+                          <CircularProgress
+                            sx={{ marginRight: "10px" }}
+                            size={20}
+                          />
+                        </InputAdornment>
+                      ),
+                    }}
+                  >
+                    {stateDisciplinaArray.map((option, index) => (
+                      <MenuItem key={option.index} value={option.id}>
+                        {option.nome}
+                      </MenuItem>
+                    ))}
+                  </CustomTextField>
                 </div>
-                <div className="professor-por-disciplina-modal-content-bottom">
-                  <SubmitButton
-                    onClick={handleInsertProfessorPorDisciplina}
-                    sx={{ mt: 2 }}
+                <div className="professor-por-disciplina-modal-content-top-right">
+                  <CustomTextField
+                    label="Selecione o Funcionario"
                     variant="outlined"
-                    startIcon={
-                      stateInsertNewLinkLoading ? (
-                        <CircularProgress size={20} color="inherit" />
-                      ) : (
-                        <SearchIcon />
-                      )
-                    }
+                    select
+                    value={stateFuncionarioId}
+                    onFocus={() => {
+                      handleGetFuncionario();
+                    }}
+                    onChange={(e) => {
+                      setStateFuncionarioId(e.target.value);
+                    }}
+                    type="text"
+                    sx={{ width: "100%" }}
+                    InputProps={{
+                      endAdornment: stateGetFuncionarioLoading && (
+                        <InputAdornment position="start">
+                          <CircularProgress
+                            sx={{ marginRight: "10px" }}
+                            size={20}
+                          />
+                        </InputAdornment>
+                      ),
+                    }}
                   >
-                    {stateInsertNewLinkLoading ? "Carregando" : "Gravar"}
-                  </SubmitButton>
-                  <BackButton
-                    onClick={handleCloseModal}
-                    startIcon={<ArrowBackIcon />}
-                    sx={{ mt: 2 }}
-                    variant="outlined"
-                  >
-                    Voltar
-                  </BackButton>
+                    {stateFuncionarioArray.map((option, index) => (
+                      <MenuItem key={option.index} value={option.id}>
+                        {option.nome}
+                      </MenuItem>
+                    ))}
+                  </CustomTextField>
                 </div>
               </div>
-            </Box>
-          </Modal>
+              <div className="professor-por-disciplina-modal-content-bottom">
+                <SubmitButton
+                  onClick={handleInsertProfessorPorDisciplina}
+                  sx={{ mt: 2 }}
+                  variant="outlined"
+                  startIcon={
+                    stateInsertNewLinkLoading ? (
+                      <CircularProgress size={20} color="inherit" />
+                    ) : (
+                      <SearchIcon />
+                    )
+                  }
+                >
+                  {stateInsertNewLinkLoading ? "Carregando" : "Gravar"}
+                </SubmitButton>
+                <BackButton
+                  onClick={handleCloseModal}
+                  startIcon={<ArrowBackIcon />}
+                  sx={{ mt: 2 }}
+                  variant="outlined"
+                >
+                  Voltar
+                </BackButton>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+
+        <Modal
+          open={stateOpenListModal}
+          onClose={handleCloseListModal}
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          sx={{
+            backdropFilter: "blur(3px)", // Efeito de desfoque no fundo
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Fundo escurecido com opacidade
+          }}
+        >
+          <Box sx={style}>
+            <div className="professor-por-disciplina-modal-content">
+              <Typography
+                id="professor-por-disciplina-modal-content-title"
+                variant="h6"
+                component="h2"
+              >
+                Professores vinculados a Disciplina
+              </Typography>
+              <div className="professor-por-disciplina-modal-content-top">
+                <div className="professor-por-disciplina-modal-content-top-left">
+                  <CustomTextField
+                    disabled={true}
+                    label="Selecione a Disciplina"
+                    variant="outlined"
+                    select
+                    value={stateDisciplinaId}
+                    onFocus={() => {
+                      handleGetDisciplina();
+                    }}
+                    onChange={(e) => {
+                      setStateDisciplinaId(e.target.value);
+                    }}
+                    type="text"
+                    sx={{ width: "100%" }}
+                    InputProps={{
+                      endAdornment: stateGetDisciplinaLoading && (
+                        <InputAdornment position="start">
+                          <CircularProgress
+                            sx={{ marginRight: "10px" }}
+                            size={20}
+                          />
+                        </InputAdornment>
+                      ),
+                    }}
+                  >
+                    {stateDisciplinaArray.map((option, index) => (
+                      <MenuItem key={option.index} value={option.id}>
+                        {option.nome}
+                      </MenuItem>
+                    ))}
+                  </CustomTextField>
+                </div>
+                <div className="professor-por-disciplina-modal-content-top-right">
+                  <DataGridForFuncionarios
+                    rows={stateProfessorDisciplinaArray}
+                    columns={columnsForProfessorPorDisciplina}
+                  />
+                </div>
+              </div>
+              <div className="professor-por-disciplina-modal-content-bottom">
+                <BackButton
+                  onClick={handleCloseListModal}
+                  sx={{ mt: 2 }}
+                  variant="outlined"
+                  startIcon={
+                    stateGetAllProfessorLoading ? (
+                      <CircularProgress size={20} color="inherit" />
+                    ) : (
+                      <ArrowBackIcon />
+                    )
+                  }
+                >
+                  {stateGetAllProfessorLoading ? "Carregando" : "Voltar"}
+                </BackButton>
+              </div>
+            </div>
+          </Box>
+        </Modal>
         <div className="professor-por-disciplina-content-midle">
           <DataGridForDisciplinas
             rows={stateDisciplinaArray}
