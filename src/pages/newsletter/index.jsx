@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import { MenuItem, Typography } from "@mui/material";
+import { CircularProgress, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -20,13 +20,13 @@ import { CustomTextField } from "../../components/textFields/customTextField";
 import { CustomDateTextField } from "../../components/textFields/customDateTextField"
 
 import Swal from "sweetalert2";
+import { SaveOutlined } from "@mui/icons-material";
 
 export default function NewsLetter() {
   const [stateNewTitulo, setStateNewTitulo] = useState("");
-  const [stateNewDescricao, setStateNewDescricao] = useState("");
-  const [stateNewSubtitulo, setStateNewSubtitulo] = useState("");
+  const [stateNewImageUrl, setStateNewImageUrl] = useState("");
   const [stateNewTexto, setStateNewTexto] = useState("");
-  const [stateNewTipoRecado, setStateNewTipoRecado] = useState("");
+  const [stateNewSubtitulo, setStateNewSubtitulo] = useState("");
 
   const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
 
@@ -37,8 +37,64 @@ export default function NewsLetter() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleClear = () => {
-    
+  const objectNewsLetterData = {
+    titulo: stateNewTitulo,
+    subtitulo: stateNewSubtitulo,
+    texto: stateNewTexto,
+    imagemUrl: stateNewImageUrl
+  }
+
+  const [stateInsertNewsLetterLoading, setStateInsertNewsLetterLoading] = useState(false)
+
+  const handleInsertNewsLetter = async () => {
+    setStateInsertNewsLetterLoading(true);
+    const urlToInsertNewsLetter = `https://vb-gepy-backend-web.onrender.com/news`;
+
+    try {
+      await fetch(urlToInsertNewsLetter, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objectNewsLetterData),
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (
+          data.message === "Notícia postada com sucesso!!"
+        ) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            text: data.message,
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            text: "Erro ao postar notícia!!",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        }
+      })
+    } catch (err) {
+      console.error("Erro ao buscar Funcionarios:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar Funcionarios!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }finally {
+      setStateInsertNewsLetterLoading(false); // Desativa o estado de loading
+    }
   }
   return (
     <div className="cadastro-container">
@@ -84,17 +140,7 @@ export default function NewsLetter() {
                 />
               </div>
               <div className="newsletter-content-middle">
-                <CustomTextField
-                  label="Descrição"
-                  variant="outlined"
-                  value={stateNewDescricao}
-                  onChange={(e) => {
-                    setStateNewDescricao(e.target.value);
-                  }}
-                  type="text"
-                  sx={{ width: "60%" }}
-                />
-                <CustomTextField
+              <CustomTextField
                   label="Texto"
                   variant="outlined"
                   value={stateNewTexto}
@@ -106,16 +152,34 @@ export default function NewsLetter() {
                     console.log(e.target.value);
                   }}
                   type="text"
+                  sx={{ width: "60%" }}
+                />
+                <CustomTextField
+                  label="URL da Imagem"
+                  variant="outlined"
+                  value={stateNewImageUrl}
+                  onChange={(e) => {
+                    setStateNewImageUrl(e.target.value);
+                  }}
+                  type="text"
                   sx={{ width: "40%" }}
                 />
+                
               </div>
               <div className="newsletter-content-middle">
                 <SubmitButton
                   variant="outlined"
-                  startIcon={<SaveOutlinedIcon />}
                   sx={{width: "100%"}}
+                  onClick={handleInsertNewsLetter}
+                  startIcon={
+                    stateInsertNewsLetterLoading ? (
+                      <CircularProgress size={20} color="inherit" />
+                    ) : (
+                      <SaveOutlined />
+                    )
+                  }
                 >
-                  Gravar
+                  {stateInsertNewsLetterLoading ? "Carregando" : "Gravar"}
                 </SubmitButton>
               </div>
             </div>
