@@ -134,6 +134,7 @@ export default function CadastroAlunos() {
   const [stateNewCorRaca, setStateNewCorRaca] = useState("");
   const [stateNewNecessidades, setStateNewNecessidades] = useState("");
   const [stateNewTelefoneAluno, setStateNewTelefoneAluno] = useState("");
+  const [stateNewEmailAluno, setStateNewEmailAluno] = useState("");
 
   //Dados Residenciais
   const [stateNewCep, setStateNewCep] = useState("");
@@ -186,6 +187,7 @@ export default function CadastroAlunos() {
     corRaca: stateNewCorRaca,
     necessidades: stateNewNecessidades,
     telefoneAluno: stateNewTelefoneAluno,
+    emailAluno: stateNewEmailAluno,
 
     // Dados Residenciais
     cep: stateNewCep,
@@ -330,6 +332,16 @@ export default function CadastroAlunos() {
                   value={stateNewNecessidades}
                   onChange={(e) => {
                     setStateNewNecessidades(e.target.value);
+                  }}
+                  type="text"
+                  sx={{ width: "50%" }}
+                />
+                <CustomTextField
+                  label="Email"
+                  variant="outlined"
+                  value={stateNewEmailAluno}
+                  onChange={(e) => {
+                    setStateNewEmailAluno(e.target.value);
                   }}
                   type="text"
                   sx={{ width: "50%" }}
