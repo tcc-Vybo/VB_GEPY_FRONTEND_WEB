@@ -70,7 +70,7 @@ export default function ProfessorPorDisciplina() {
               <AddIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip
+          {/* <Tooltip
             title="Editar disciplina"
             enterDelay={500}
             leaveDelay={200}
@@ -108,7 +108,7 @@ export default function ProfessorPorDisciplina() {
             >
               <ListAltIcon />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
         </>
       ),
     },

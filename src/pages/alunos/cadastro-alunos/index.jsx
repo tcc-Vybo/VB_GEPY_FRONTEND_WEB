@@ -587,6 +587,7 @@ export default function CadastroAlunos() {
                 onChange={handleDtEmissaoChange}
                 type="date"
                 focused={true}
+                sx={{ width: "40%" }}
               />
 
               <CustomTextField
@@ -594,7 +595,7 @@ export default function CadastroAlunos() {
                 variant="outlined"
                 value={stateNewOrgaoExpedidor}
                 select
-                sx={{ width: 200 }}
+                sx={{ width: "40%" }}
                 onChange={(e) => {
                   setStateNewOrgaoExpedidor(e.target.value);
                   console.log(e.target.value);
