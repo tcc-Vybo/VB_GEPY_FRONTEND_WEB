@@ -269,7 +269,7 @@ export default function Recados() {
 
   const tempSearchRecadosWithFilters = [];
   const handleSearchRecado = () => {
-    const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
+    const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar-filtros?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
 
     try {
       fetch(urlSearchRecados)

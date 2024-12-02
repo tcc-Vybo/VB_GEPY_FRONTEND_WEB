@@ -39,31 +39,31 @@ const columns = [
     align: "center",
     flex: 3
   },
-  {
-    field: "actions",
-    headerName: "Ações",
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    flex: 1,
-    renderCell: (params) => (
-      <>
-        <IconButton
-          sx={{ color: CustomTheme.palette.primary.main }}
-          onClick={() => handleEdit(params.row.id)}
-        >
-          <EditIcon />
-        </IconButton>
+  // {
+  //   field: "actions",
+  //   headerName: "Ações",
+  //   headerAlign: "center",
+  //   align: "center",
+  //   sortable: false,
+  //   flex: 1,
+  //   renderCell: (params) => (
+  //     <>
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.primary.main }}
+  //         onClick={() => handleEdit(params.row.id)}
+  //       >
+  //         <EditIcon />
+  //       </IconButton>
 
-        <IconButton
-          sx={{ color: CustomTheme.palette.secondary.main }}
-          onClick={() => handleDelete(params.row.id)}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </>
-    ),
-  },
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.secondary.main }}
+  //         onClick={() => handleDelete(params.row.id)}
+  //       >
+  //         <DeleteIcon />
+  //       </IconButton>
+  //     </>
+  //   ),
+  // },
 ];
 
 export default function BuscaAlunos() {

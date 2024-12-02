@@ -32,32 +32,32 @@ const columns = [
     align: "center",
     flex: 4
   },
-  {
-    field: "actions",
-    headerName: "Ações",
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    flex: 1,
-    renderCell: (params) => (
-      <>
-      <Tooltip>
-        <IconButton
-          sx={{ color: CustomTheme.palette.tertiary.main }}
-          onClick={() => handleEdit(params.row.id)}
-        >
-          <EditIcon />
-        </IconButton>
-      </Tooltip>
-        <IconButton
-          sx={{ color: CustomTheme.palette.secondary.main }}
-          onClick={() => handleDelete(params.row.id)}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </>
-    ),
-  },
+  // {
+  //   field: "actions",
+  //   headerName: "Ações",
+  //   headerAlign: "center",
+  //   align: "center",
+  //   sortable: false,
+  //   flex: 1,
+  //   renderCell: (params) => (
+  //     <>
+  //     <Tooltip>
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.tertiary.main }}
+  //         onClick={() => handleEdit(params.row.id)}
+  //       >
+  //         <EditIcon />
+  //       </IconButton>
+  //     </Tooltip>
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.secondary.main }}
+  //         onClick={() => handleDelete(params.row.id)}
+  //       >
+  //         <DeleteIcon />
+  //       </IconButton>
+  //     </>
+  //   ),
+  // },
 ];
 
 export default function BuscaTurmas() {

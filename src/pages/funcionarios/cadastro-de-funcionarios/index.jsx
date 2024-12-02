@@ -10,7 +10,7 @@ import { CustomAccordionSummary } from "../../../components/customAccordion/inde
 import { CustomAccordionDetails } from "../../../components/customAccordion/index";
 
 import MenuItem from "@mui/material/MenuItem";
-import { Typography } from "@mui/material";
+import { CircularProgress, InputAdornment, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
@@ -151,7 +151,9 @@ export default function CadastroFuncionarios() {
     genero: stateNewGenero,
     telefone: stateNewTelefone,
     email: stateNewEmail,
-    cargo: stateNewCargo,
+    cargo: {
+      id: stateNewCargo
+    },
     departamento: stateNewDepartamento,
     dataAdmissao: stateNewDtAdmissaoFormatted,
     cep: stateNewCEP,
@@ -218,6 +220,40 @@ export default function CadastroFuncionarios() {
         });
     }
   };
+
+  const [stateCargoArray, setStateCargoArray] = useState([])
+  const [stateGetCardoLoading, setStateGetCardoLoading] =
+  useState(false);
+  const handleGetCargo = async () => {
+    setStateGetCardoLoading(true);
+    const urlToListCargo = `https://vb-gepy-backend-web.onrender.com/cargo`;
+
+    try {
+      const response = await fetch(urlToListCargo);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar cargos");
+      }
+      const data = await response.json();
+
+      const updatedCargoArray = data.map((item, index) => ({
+        id: item.id,
+        nome: item.nome,
+      }));
+      setStateCargoArray(updatedCargoArray);
+      console.log(stateCargoArray);
+    } catch (err) {
+      console.error("Erro ao buscar Cargos:", err);
+      Swal.fire({
+        position: "top-right",
+        icon: "error",
+        text: "Erro ao buscar Cargos!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setStateGetCardoLoading(false); // Desativa o loading
+    }
+  }
 
   const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
   const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true);
@@ -411,16 +447,31 @@ export default function CadastroFuncionarios() {
           <CustomAccordionDetails>
             <div className="cadastro-dados-profissionais-content">
               <CustomTextField
-                label="Cargo"
-                variant="outlined"
-                value={stateNewCargo}
-                onChange={(e) => {
-                  setStateNewCargo(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-                sx={{ width: "50%" }}
-              />
+                  label="Cargo"
+                  variant="outlined"
+                  select
+                  value={stateNewCargo}
+                  onFocus={() => {
+                    handleGetCargo();
+                  }}
+                  onChange={(e) => {
+                    setStateNewCargo(e.target.value);
+                  }}
+                  sx={{ width: "50%" }}
+                  InputProps={{
+                    endAdornment: stateGetCardoLoading && (
+                      <InputAdornment position="start">
+                        <CircularProgress sx={{ marginRight: "10px" }} size={20} />
+                      </InputAdornment>
+                    ),
+                  }}
+                >
+                  {stateCargoArray.map((option) => (
+                    <MenuItem key={option.id} value={option.id}>
+                      {option.nome}
+                    </MenuItem>
+                  ))}
+                </CustomTextField>
               <CustomTextField
                 label="Departamento"
                 variant="outlined"
@@ -596,6 +647,7 @@ export default function CadastroFuncionarios() {
                 onChange={handleDtEmissaoChange}
                 type="date"
                 focused={true}
+                sx={{ width: "30%" }}
               />
 
               <CustomTextField
@@ -603,7 +655,7 @@ export default function CadastroFuncionarios() {
                 variant="outlined"
                 value={stateNewOrgaoExpedidor}
                 select
-                sx={{ width: 200 }}
+                sx={{ width: "20%" }}
                 onChange={(e) => {
                   setStateOrgaoExpedidor(e.target.value);
                   console.log(e.target.value);

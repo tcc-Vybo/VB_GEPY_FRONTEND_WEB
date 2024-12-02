@@ -35,7 +35,6 @@ export default function FloatingModal({ open, handleClose, recadosArray }) {
         </Typography>
         {recadosArray ? recadosArray.map((item, index) => (
           <Typography key={index} id="modal-description" sx={{ mt: 2 }}>
-            {`Id: ${item.id}`}
             {`Titulo: ${item.titulo}`}
           </Typography>
         )) : 
