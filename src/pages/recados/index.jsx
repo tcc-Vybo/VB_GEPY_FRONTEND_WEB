@@ -243,7 +243,7 @@ export default function Recados() {
             position: "center",
             icon: "success",
             title: "Sucesso!",
-            text: "Aluno cadastado com sucesso!!",
+            text: "Recado postado com sucesso!",
             showConfirmButton: false,
             timer: 1800,
           });
