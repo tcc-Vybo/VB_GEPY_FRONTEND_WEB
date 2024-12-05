@@ -105,12 +105,6 @@ export default function CadastroFuncionarios() {
   const [stateNewNacionalidade, setStateNewNacionalidade] = useState();
   const [stateNewCorRaca, setStateNewCorRaca] = useState();
 
-  //Dados Profissionais
-  const [stateNewCargo, setStateNewCargo] = useState();
-  const [stateNewDepartamento, setStateNewDepartamento] = useState();
-  const [stateNewDtAdmissao, setStateNewDtAdmissao] = useState();
-  const [stateNewDtAdmissaoFormatted, setStateNewDtAdmissaoFormatted] = useState();
-
   //Dados Endereço
   const [stateNewCEP, setStateNewCEP] = useState();
   const [stateNewEndereco, setStateNewEndereco] = useState();
@@ -151,11 +145,6 @@ export default function CadastroFuncionarios() {
     genero: stateNewGenero,
     telefone: stateNewTelefone,
     email: stateNewEmail,
-    cargo: {
-      id: stateNewCargo
-    },
-    departamento: stateNewDepartamento,
-    dataAdmissao: stateNewDtAdmissaoFormatted,
     cep: stateNewCEP,
     endereco: stateNewEndereco,
     numero: stateNewNumero,
@@ -220,40 +209,6 @@ export default function CadastroFuncionarios() {
         });
     }
   };
-
-  const [stateCargoArray, setStateCargoArray] = useState([])
-  const [stateGetCardoLoading, setStateGetCardoLoading] =
-  useState(false);
-  const handleGetCargo = async () => {
-    setStateGetCardoLoading(true);
-    const urlToListCargo = `https://vb-gepy-backend-web.onrender.com/cargo`;
-
-    try {
-      const response = await fetch(urlToListCargo);
-      if (!response.ok) {
-        throw new Error("Erro ao buscar cargos");
-      }
-      const data = await response.json();
-
-      const updatedCargoArray = data.map((item, index) => ({
-        id: item.id,
-        nome: item.nome,
-      }));
-      setStateCargoArray(updatedCargoArray);
-      console.log(stateCargoArray);
-    } catch (err) {
-      console.error("Erro ao buscar Cargos:", err);
-      Swal.fire({
-        position: "top-right",
-        icon: "error",
-        text: "Erro ao buscar Cargos!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    } finally {
-      setStateGetCardoLoading(false); // Desativa o loading
-    }
-  }
 
   const [statePanel1IsOpen, setStatePanel1IsOpen] = useState(true);
   const [statePanel2IsOpen, setStatePanel2IsOpen] = useState(true);
@@ -427,71 +382,6 @@ export default function CadastroFuncionarios() {
                   ))}
                 </CustomTextField>
               </div>
-            </div>
-          </CustomAccordionDetails>
-        </CustomAccordion>
-
-        <CustomAccordion
-          expanded={statePanel2IsOpen}
-          onChange={handleChange2()}
-        >
-          <CustomAccordionSummary
-            expandIcon={
-              statePanel2IsOpen === true ? <RemoveIcon /> : <AddIcon />
-            }
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>{"Dados Profissionais"}</Typography>
-          </CustomAccordionSummary>
-          <CustomAccordionDetails>
-            <div className="cadastro-dados-profissionais-content">
-              <CustomTextField
-                  label="Cargo"
-                  variant="outlined"
-                  select
-                  value={stateNewCargo}
-                  onFocus={() => {
-                    handleGetCargo();
-                  }}
-                  onChange={(e) => {
-                    setStateNewCargo(e.target.value);
-                  }}
-                  sx={{ width: "50%" }}
-                  InputProps={{
-                    endAdornment: stateGetCardoLoading && (
-                      <InputAdornment position="start">
-                        <CircularProgress sx={{ marginRight: "10px" }} size={20} />
-                      </InputAdornment>
-                    ),
-                  }}
-                >
-                  {stateCargoArray.map((option) => (
-                    <MenuItem key={option.id} value={option.id}>
-                      {option.nome}
-                    </MenuItem>
-                  ))}
-                </CustomTextField>
-              <CustomTextField
-                label="Departamento"
-                variant="outlined"
-                value={stateNewDepartamento}
-                onChange={(e) => {
-                  setStateNewDepartamento(e.target.value);
-                  console.log(e.target.value);
-                }}
-                type="text"
-                sx={{ width: "25%" }}
-              />
-              <CustomTextField
-                label="Data de Admissão"
-                variant="outlined"
-                value={stateNewDtAdmissao}
-                onChange={handleDtAdmissaoChange}
-                type="date"
-                focused={true}
-                sx={{ width: "25%" }}
-              />
             </div>
           </CustomAccordionDetails>
         </CustomAccordion>

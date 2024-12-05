@@ -70,7 +70,7 @@ export default function ProfessorPorDisciplina() {
               <AddIcon />
             </IconButton>
           </Tooltip>
-          {/* <Tooltip
+          <Tooltip
             title="Editar disciplina"
             enterDelay={500}
             leaveDelay={200}
@@ -102,13 +102,14 @@ export default function ProfessorPorDisciplina() {
               onClick={() => {
                 //handleFillModalWithRowData(params.row);
                 handleGetProfessorOfDisciplina()
+                handleGetdisciplina()
                 setStateDisciplinaId(params.row.id)
                 console.log(params.row.id);
               }}
             >
               <ListAltIcon />
             </IconButton>
-          </Tooltip> */}
+          </Tooltip>
         </>
       ),
     },

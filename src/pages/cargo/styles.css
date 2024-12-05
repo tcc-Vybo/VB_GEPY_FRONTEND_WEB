@@ -1,0 +1,17 @@
+.cargo-content {
+    background-color: #dedede;
+    height: 93%;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .cargo-content-top{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .cargo-content-midle{
+    height: 100%;
+  }

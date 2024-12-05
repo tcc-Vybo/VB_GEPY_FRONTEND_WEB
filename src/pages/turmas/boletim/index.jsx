@@ -359,6 +359,7 @@ export default function Boletim() {
           <IconButton
             sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
             onClick={() => {
+              handleGetDisciplina()
               handleFillModalWithRowData(params.row)
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
@@ -691,9 +692,6 @@ export default function Boletim() {
                         variant="outlined"
                         select
                         value={stateCurrentDisciplinaId}
-                        onFocus={() => {
-                          handleGetDisciplina();
-                        }}
                         disabled={true}
                         onChange={(e) => {
                           setStateCurrentDisciplinaId(e.target.value);

@@ -31,14 +31,6 @@ const columns = [
     align: "center",
     flex: 4
   },
-  {
-    field: "cargo",
-    headerName: "Cargo",
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-    align: "center",
-    flex: 3
-  },
   // {
   //   field: "actions",
   //   headerName: "Ações",
@@ -86,7 +78,6 @@ export default function BuscaFuncionarios() {
             tempFuncionariosArray.push({
               id: data[index].id,
               nomeFuncionario: data[index].nomeCompleto,
-              cargo: data[index].cargo.nome,
             });
           });
           setStateFuncionariosArray(tempFuncionariosArray);

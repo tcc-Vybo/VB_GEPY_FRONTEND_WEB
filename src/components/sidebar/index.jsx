@@ -7,6 +7,7 @@ import {
   NotebookTabs,
   User,
   Users,
+  Package
 } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -18,6 +19,8 @@ export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
   const [funcionariosOpen, setFuncionariosOpen] = useState(false);
   const [turmasOpen, setTurmasOpen] = useState(false);
+  const [maisModulosOpen, setMaisModulosOpen] = useState(false);
+
   const [inicioActive, setInicioActive] = useState(false);
   const [recadosActive, setRecadosActive] = useState(false);
   const [newsletterActive, setNewsletterActive] = useState(false);
@@ -32,6 +35,7 @@ export default function Sidebar() {
     setAlunosOpen(false);
     setFuncionariosOpen(false);
     setTurmasOpen(false);
+    setMaisModulosOpen(false)
   };
 
   const handleInicioClick = () => {
@@ -62,6 +66,9 @@ export default function Sidebar() {
     if (funcionariosOpen) {
       setFuncionariosOpen(alunosOpen);
     }
+    if(maisModulosOpen) {
+      setMaisModulosOpen(alunosOpen)
+    }
 
     setAlunosOpen(!alunosOpen);
   };
@@ -73,6 +80,9 @@ export default function Sidebar() {
     if (turmasOpen) {
       setTurmasOpen(funcionariosOpen);
     }
+    if(maisModulosOpen) {
+      setMaisModulosOpen(funcionariosOpen)
+    }
     setFuncionariosOpen(!funcionariosOpen);
   };
 
@@ -83,14 +93,29 @@ export default function Sidebar() {
     if (funcionariosOpen) {
       setFuncionariosOpen(turmasOpen);
     }
+    if(maisModulosOpen) {
+      setMaisModulosOpen(turmasOpen)
+    }
     setTurmasOpen(!turmasOpen);
   };
+
+  const handleMaisModulosClick = () => {
+    if (alunosOpen) {
+      setAlunosOpen(maisModulosOpen);
+    }
+    if (funcionariosOpen) {
+      setFuncionariosOpen(maisModulosOpen);
+    }
+    if (turmasOpen) {
+      setTurmasOpen(maisModulosOpen);
+    }
+    setMaisModulosOpen(!maisModulosOpen)
+  }
 
   return (
     <div className="sidebar-parent">
       <div className="logged-user">
-        <ProfilePictureUploader />
-        <p>Diretora Xaxa</p>
+        <p>Usuário Administrador</p>
       </div>
       <div className="sidebar-expand">
         <div className="sidebar-item">
@@ -167,7 +192,7 @@ export default function Sidebar() {
               color="#6700B3"
               strokeWidth={2}
             />
-            <p>Funcionários</p>
+            <p>Servidor</p>
             <img
               className="toggle-btn"
               src={Chevron}
@@ -238,6 +263,51 @@ export default function Sidebar() {
                 className="sidebar-item-sub"
               >
                 <p>Boletim</p>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+        <div
+          className="sidebar-item"
+          onClick={handleOpen}
+        >
+          <div
+            className={
+              maisModulosOpen ? 'sidebar-title opened active' : 'sidebar-title'
+            }
+            onClick={handleMaisModulosClick}
+          >
+            <Package
+              size={20}
+              color="#6700B3"
+              strokeWidth={2}
+            />
+            <p>Mais Módulos</p>
+            <img
+              className="toggle-btn"
+              src={Chevron}
+              alt=""
+            />
+          </div>
+          <div className={maisModulosOpen ? 'sub-area opened' : 'sub-area'}>
+            <div>
+              <NavLink
+                to="disciplina"
+                className="sidebar-item-sub"
+              >
+                <p>Disciplina</p>
+              </NavLink>
+              <NavLink
+                to="cargo"
+                className="sidebar-item-sub"
+              >
+                <p>Cargo</p>
+              </NavLink>
+              <NavLink
+                to="tipo-recado"
+                className="sidebar-item-sub"
+              >
+                <p>Tipo de Recado</p>
               </NavLink>
             </div>
           </div>
