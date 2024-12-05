@@ -1,15 +1,12 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../../components/sidebar";
 import "./styles.css";
 import { Box, Typography } from "@mui/material";
-import { SearchButton } from "../../components/buttons/searchButton";
-
+import { SearchButton } from "../../../components/buttons/searchButton";
+import DataGridForTipoRecado from "../../../components/dataGrids/dataGridForTipoRecado";
 import SearchIcon from "@mui/icons-material/Search";
-import DataGridForDisciplina from "../../components/dataGrids/dataGridForDisciplina";
 import { useState } from "react";
-export default function Disciplina() {
-  const [stateDisciplinaArray, setStateDisciplinaArray] = useState([]);
-  const tempDisciplinaArray = [];
+export default function TipoRecado() {
+  const [stateTipoRecadoArray, setStateTipoRecadoArray] = useState([]);
+  const tempTipoRecadoArray = [];
 
   const columns = [
     {
@@ -30,11 +27,11 @@ export default function Disciplina() {
     },
   ];
 
-  const handleListDisciplina = () => {
-    const urlToListDisciplina = `https://vb-gepy-backend-web.onrender.com/disciplina`;
+  const handleListTipoRecado = () => {
+    const urlToListTipoRecado = `https://vb-gepy-backend-web.onrender.com/tipo-recado`;
 
     try {
-      fetch(urlToListDisciplina)
+      fetch(urlToListTipoRecado)
         .then((response) => {
           console.log("Response received:", response);
 
@@ -42,13 +39,13 @@ export default function Disciplina() {
         })
         .then((data) => {
           data.map((item, index) => {
-            tempDisciplinaArray.push({
+            tempTipoRecadoArray.push({
               id: data[index].id,
               nome: data[index].nome,
             });
           });
-          setStateDisciplinaArray(tempDisciplinaArray);
-          console.log(stateDisciplinaArray);
+          setStateTipoRecadoArray(tempTipoRecadoArray);
+          console.log(stateTipoRecadoArray);
         });
     } catch (err) {
       console.log("ERRO: ", err);
@@ -56,22 +53,22 @@ export default function Disciplina() {
   };
 
   return (
-    <div className="disciplina-content">
+    <div className="tipo-recado-content">
       <Box sx={{ height: "80%", width: "100%" }}>
-        <div className="disciplina-content-top">
+        <div className="tipo-recado-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
-            Lista de Disciplina
+            Lista de Tipos de Recado
           </Typography>
           <SearchButton
             variant="outlined"
             startIcon={<SearchIcon />}
-            onClick={handleListDisciplina}
+            onClick={handleListTipoRecado}
           >
-            Pesquisar Por Todos Disciplina
+            Pesquisar Por Todos Tipos de Recado
           </SearchButton>
         </div>
-        <div className="disciplina-content-midle">
-          <DataGridForDisciplina rows={stateDisciplinaArray} columns={columns} />
+        <div className="tipo-recado-content-midle">
+          <DataGridForTipoRecado rows={stateTipoRecadoArray} columns={columns} />
         </div>
       </Box>
     </div>

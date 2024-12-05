@@ -80,7 +80,7 @@ export default function CadastroTurma() {
   };
 
   return (
-    <div className="cadastro-container">
+    <div className="cadastro-turma-content">
       <form method="POST">
         <CustomAccordion
           expanded={statePanel1IsOpen}
@@ -96,8 +96,8 @@ export default function CadastroTurma() {
             <Typography>{"Inserir Turma"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="busca-recado-content">
-              <div className="busca-recado-content-top">
+            <div className="cadastro-turma-content">
+              <div className="cadastro-turma-content-top">
                 <CustomTextField
                   label="Nome"
                   value={stateNewNome}
@@ -108,7 +108,7 @@ export default function CadastroTurma() {
                   sx={{ width: "60%" }}
                 />
               </div>
-              <div className="busca-recado-content-top">
+              <div className="cadastro-turma-content-top">
               <SubmitButton
                   onClick={handleInsertTurma}
                   sx={{ mt: 2 }}

@@ -268,9 +268,9 @@ export default function BuscaTurmas() {
     }
   };
   return (
-    <div className="busca-turma-content">
-      <Box sx={{ height: "70%", width: "100%" }}>
-        <div className="busca-turma-content-top">
+    <div className="busca-aluno-turma-content">
+      <Box sx={{ height: "78%", width: "100%" }}>
+        <div className="busca-aluno-turma-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Vincular alunos as turmas
           </Typography>
@@ -403,7 +403,7 @@ export default function BuscaTurmas() {
             </div>
           </Box>
         </Modal>
-        <div className="busca-turma-content-midle">
+        <div className="busca-aluno-turma-content-midle">
           <DataGridForTurmas rows={stateTurmasArray} columns={columns} />
         </div>
       </Box>

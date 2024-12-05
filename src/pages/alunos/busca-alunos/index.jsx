@@ -97,9 +97,9 @@ export default function BuscaAlunos() {
   };
 
   return (
-    <div className="busca-aluno-content">
-      <Box sx={{ height: "160%", width: "100%" }}>
-        <div className="busca-aluno-content-top">
+    <div className="buscar-alunos-content">
+      <Box sx={{ height: "85%", width: "100%" }}>
+        <div className="buscar-alunos-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Alunos
           </Typography>
@@ -111,7 +111,7 @@ export default function BuscaAlunos() {
             Pesquisar Por Todos Alunos
           </SearchButton>
         </div>
-        <div className="busca-aluno-content-midle">
+        <div className="buscar-alunos-content-midle">
           <DataGridForAlunos rows={stateAlunosArray} columns={columns} />
         </div>
       </Box>

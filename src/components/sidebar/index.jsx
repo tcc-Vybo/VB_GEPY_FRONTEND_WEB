@@ -192,7 +192,7 @@ export default function Sidebar() {
               color="#6700B3"
               strokeWidth={2}
             />
-            <p>Servidor</p>
+            <p>Servidores</p>
             <img
               className="toggle-btn"
               src={Chevron}
@@ -211,7 +211,7 @@ export default function Sidebar() {
                 to="busca-funcionarios"
                 className="sidebar-item-sub"
               >
-                <p>Lista de Funcionários</p>
+                <p>Lista de Servidores</p>
               </NavLink>
               <NavLink
                 to="professor-disciplina"
@@ -308,6 +308,12 @@ export default function Sidebar() {
                 className="sidebar-item-sub"
               >
                 <p>Tipo de Recado</p>
+              </NavLink>
+              <NavLink
+                to="perfil-servidor"
+                className="sidebar-item-sub"
+              >
+                <p>Perfil Para Servidores</p>
               </NavLink>
             </div>
           </div>

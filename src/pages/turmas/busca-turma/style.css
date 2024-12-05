@@ -1,19 +1,19 @@
-.busca-turma-content {
+.buscar-turmas-content {
   background-color: #dedede;
-  height: 93%;
+  height: 95%;
   border-radius: 10px;
   padding: 20px;
   overflow: hidden;
 }
 
-.busca-turma-content-top{
+.buscar-turmas-content-top{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.busca-turma-content-midle{
+.buscar-turmas-content-midle{
   height: 100%;
 }
 

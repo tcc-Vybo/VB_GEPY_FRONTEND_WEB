@@ -97,7 +97,7 @@ export default function NewsLetter() {
     }
   }
   return (
-    <div className="cadastro-container">
+    <div className="newsletter-content-parent">
       <form method="POST">
         <CustomAccordion
           expanded={statePanel1IsOpen}
@@ -113,7 +113,7 @@ export default function NewsLetter() {
             <Typography>{"Inserir Recado"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="newsletter-content">
+            <div className="newsletter-content-children">
               <div className="newsletter-content-top">
                 <CustomTextField
                   label="Título"

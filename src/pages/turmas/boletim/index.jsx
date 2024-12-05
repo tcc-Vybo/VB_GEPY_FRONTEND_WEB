@@ -136,6 +136,7 @@ export default function Boletim() {
           notaBim2: item.notaSegundoBim,
           notaBim3: item.notaTerceiroBim,
           notaBim4: item.notaQuartoBim,
+          situacao: item.situacao.nome
         });
         setStateCurrentDisciplinaId(tempBoletimArray[index].idDisciplina);
       });
@@ -235,9 +236,7 @@ export default function Boletim() {
       stateNotaTerceiroBim +
       stateNotaQuartoBim) /
     4;
-  const [stateSituacao, setStateSituacao] = useState(
-    stateCalculoSituacao < 5 ? 2 : 1
-  );
+  const [stateSituacao, setStateSituacao] = useState(3);
 
   const objectBoletimData = {
     aluno: {
@@ -348,6 +347,14 @@ export default function Boletim() {
       flex: 2,
     },
     {
+      field: "situacao",
+      headerName: "Situação",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 2,
+    },
+    {
       field: "actions",
       headerName: "Ações",
       headerAlign: "center",
@@ -363,6 +370,7 @@ export default function Boletim() {
               handleFillModalWithRowData(params.row)
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
+              handleCalculoSituacao()
               console.log(params.row.id);
             }}
           >
@@ -386,7 +394,15 @@ export default function Boletim() {
   const [stateNewNotaQuartoBim, setStateNewNotaQuartoBim] = useState(0);
   const [stateCurrentDisciplinaId, setStateCurrentDisciplinaId] = useState(0);
 
-  //AQUI
+  const [stateNewSituacao, setStateNewSituacao] = useState(0)
+
+  const handleCalculoSituacao = () => {
+    if(stateCalculoSituacao < 5){
+      setStateNewSituacao(1)
+    }else {
+      setStateNewSituacao(2)
+    }
+  }
 
   const objectUpdateBoletimData = {
     aluno: {
@@ -404,7 +420,7 @@ export default function Boletim() {
     notaQuartoBim: stateNewNotaQuartoBim,
     faltaQuartoBim: 0,
     situacao: {
-      id: stateSituacao,
+      id: stateNewSituacao,
     },
   };
 

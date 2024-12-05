@@ -16,9 +16,10 @@ import Recados from "./pages/recados/index.jsx";
 import Newsletter from "./pages/newsletter/index.jsx";
 import AlunoPorTurma from "./pages/alunos/alunosPorTurma/index.jsx";
 import ProfessorPorDisciplina from "./pages/funcionarios/professorPorDisciplina/index.jsx";
-import Disciplina from "./pages/disciplina/index.jsx"
-import Cargo from "./pages/cargo/index.jsx"
-import TipoRecado from "./pages/tipoRecado/index.jsx"
+import Disciplina from "./pages/mais-modulos/disciplina/index.jsx"
+import Cargo from "./pages/mais-modulos/cargo/index.jsx"
+import TipoRecado from "./pages/mais-modulos/tipoRecado/index.jsx"
+import PerfilPorServidor from "./pages/mais-modulos/perfil/index.jsx"
 
 function App() {
   const router = createBrowserRouter([
@@ -42,6 +43,7 @@ function App() {
         { path: "disciplina", element: <Disciplina /> },
         { path: "cargo", element: <Cargo /> },
         { path: "tipo-recado", element: <TipoRecado /> },
+        { path: "perfil-servidor", element: <PerfilPorServidor /> },
         { path: "boletim", element: <Boletim /> },
         { path: "recados", element: <Recados /> },
         { path: "newsletter", element: <Newsletter /> },

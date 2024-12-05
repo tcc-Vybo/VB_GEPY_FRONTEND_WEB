@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../../components/sidebar";
 import "./styles.css";
 import { Box, Typography } from "@mui/material";
-import { SearchButton } from "../../components/buttons/searchButton";
+import { SearchButton } from "../../../components/buttons/searchButton";
 import SearchIcon from "@mui/icons-material/Search";
-import DataGridForCargo from "../../components/dataGrids/dataGridForCargo";
+import DataGridForCargo from "../../../components/dataGrids/dataGridForCargo";
 import { useState } from "react";
 
 export default function Cargo() {
@@ -57,7 +57,7 @@ export default function Cargo() {
 
   return (
     <div className="cargo-content">
-      <Box sx={{ height: "80%", width: "100%" }}>
+      <Box sx={{ height: "85%", width: "100%" }}>
         <div className="cargo-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Cargo

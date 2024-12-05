@@ -96,9 +96,9 @@ export default function BuscaTurmas() {
     }
   };
   return (
-    <div className="busca-turma-content">
-      <Box sx={{ height: "80%", width: "100%" }}>
-        <div className="busca-turma-content-top">
+    <div className="buscar-turmas-content">
+      <Box sx={{ height: "85%", width: "100%" }}>
+        <div className="buscar-turmas-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Turmas
           </Typography>
@@ -119,7 +119,7 @@ export default function BuscaTurmas() {
               : "Pesquisar Por turmas"}
           </SearchButton>
         </div>
-        <div className="busca-turma-content-midle">
+        <div className="buscar-turmas-content-midle">
           <DataGridForTurmas rows={stateTurmasArray} columns={columns} />
         </div>
       </Box>

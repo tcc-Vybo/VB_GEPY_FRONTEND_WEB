@@ -1,31 +1,25 @@
-.cadastro-container {
+.newsletter-content-parent {
   background-color: #dedede;
-  padding: 2%;
+  height: 95%;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+  padding: 20px;
+  overflow: hidden;
 }
 
-.newsletter-content {
+.newsletter-content-children {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }
 
-.newsletter-content-top {
+.newsletter-content-top{
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.newsletter-content-middle {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.newsletter-content-bottom {
+.newsletter-content-middle{
   display: flex;
   flex-direction: row;
   gap: 10px;
