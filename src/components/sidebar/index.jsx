@@ -12,9 +12,9 @@ import {
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Chevron from "../../assets/chevron-right.svg";
-import ProfilePictureUploader from "../profile-image";
 import "./style.css";
 import { UserContext } from "../../contexts/UserContext";
+import LogoGepy from "../../assets/Logo.png";
 
 export default function Sidebar() {
   const [alunosOpen, setAlunosOpen] = useState(false);
@@ -275,6 +275,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar-parent">
       <div className="logged-user">
+      <img className="logo-size" src={LogoGepy} />
         <p>{nomeFuncionario}</p>
       </div>
       <div className="sidebar-expand">

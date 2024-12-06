@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { LoginButton } from "../../components/buttons/loginButton/index";
 import { LoginTextField } from "../../components/textFields/loginTextField/index";
 import { UserContext } from "../../contexts/UserContext";
-
-import LoginIcon from '@mui/icons-material/Login';
 import { Tooltip } from "@mui/material";
 
 export default function Login() {

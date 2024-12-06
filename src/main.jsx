@@ -3,6 +3,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import Home from "./pages/home/index.jsx";
+import Dashboard from "./pages/home/dashboard/index.jsx";
 import Login from "./pages/login/index.jsx";
 import ErrorPage from "./pages/error/index.jsx";
 import BuscaAlunos from "./pages/alunos/busca-alunos/index.jsx";
@@ -34,21 +35,33 @@ function App() {
       path: "/vybo/gepy",
       element: <Home />,
       children: [
-        { path: "busca-alunos", element: <BuscaAlunos /> },
-        { path: "cadastro-alunos", element: <CadastroAlunos /> },
-        { path: "alunos-turma", element: <AlunoPorTurma /> },
-        { path: "busca-funcionarios", element: <BuscaFuncionarios /> },
-        { path: "cadastro-funcionarios", element: <CadastroFuncionarios /> },
-        { path: "professor-disciplina", element: <ProfessorPorDisciplina /> },
-        { path: "cadastro-turmas", element: <CadastroTurmas /> },
-        { path: "busca-turmas", element: <BuscaTurmas /> },
-        { path: "disciplina", element: <Disciplina /> },
-        { path: "cargo", element: <Cargo /> },
-        { path: "tipo-recado", element: <TipoRecado /> },
-        { path: "perfil-servidor", element: <PerfilPorServidor /> },
-        { path: "boletim", element: <Boletim /> },
-        { path: "recados", element: <Recados /> },
-        { path: "newsletter", element: <Newsletter /> },
+        {
+          path: "", // Rota raiz
+          element: <Dashboard />,
+          children: [
+            { path: "busca-alunos", element: <BuscaAlunos /> },
+            { path: "cadastro-alunos", element: <CadastroAlunos /> },
+            { path: "alunos-turma", element: <AlunoPorTurma /> },
+            { path: "busca-funcionarios", element: <BuscaFuncionarios /> },
+            {
+              path: "cadastro-funcionarios",
+              element: <CadastroFuncionarios />,
+            },
+            {
+              path: "professor-disciplina",
+              element: <ProfessorPorDisciplina />,
+            },
+            { path: "cadastro-turmas", element: <CadastroTurmas /> },
+            { path: "busca-turmas", element: <BuscaTurmas /> },
+            { path: "disciplina", element: <Disciplina /> },
+            { path: "cargo", element: <Cargo /> },
+            { path: "tipo-recado", element: <TipoRecado /> },
+            { path: "perfil-servidor", element: <PerfilPorServidor /> },
+            { path: "boletim", element: <Boletim /> },
+            { path: "recados", element: <Recados /> },
+            { path: "newsletter", element: <Newsletter /> },
+          ],
+        },
       ],
     },
   ]);
@@ -57,7 +70,6 @@ function App() {
     <UserContext>
       <RouterProvider router={router} />
     </UserContext>
-      
   );
 }
 const root = createRoot(document.getElementById("root"));
