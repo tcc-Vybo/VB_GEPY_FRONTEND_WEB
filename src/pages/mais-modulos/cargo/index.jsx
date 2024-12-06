@@ -57,7 +57,7 @@ export default function Cargo() {
 
   return (
     <div className="cargo-content">
-      <Box sx={{ height: "85%", width: "100%" }}>
+      <Box sx={{ height: "80%", width: "100%" }}>
         <div className="cargo-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Cargo

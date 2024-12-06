@@ -269,7 +269,7 @@ export default function BuscaTurmas() {
   };
   return (
     <div className="busca-aluno-turma-content">
-      <Box sx={{ height: "78%", width: "100%" }}>
+      <Box sx={{ height: "70%", width: "100%" }}>
         <div className="busca-aluno-turma-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Vincular alunos as turmas
