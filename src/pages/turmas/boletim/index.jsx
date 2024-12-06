@@ -136,7 +136,7 @@ export default function Boletim() {
           notaBim2: item.notaSegundoBim,
           notaBim3: item.notaTerceiroBim,
           notaBim4: item.notaQuartoBim,
-          situacao: item.situacao.nome
+          situacao: item.situacao.nome,
         });
         setStateCurrentDisciplinaId(tempBoletimArray[index].idDisciplina);
       });
@@ -230,12 +230,7 @@ export default function Boletim() {
   const [stateNotaSegundoBim, setStateNotaSegundoBim] = useState(0);
   const [stateNotaTerceiroBim, setStateNotaTerceiroBim] = useState(0);
   const [stateNotaQuartoBim, setStateNotaQuartoBim] = useState(0);
-  const stateCalculoSituacao =
-    (stateNotaPrimeiroBim +
-      stateNotaSegundoBim +
-      stateNotaTerceiroBim +
-      stateNotaQuartoBim) /
-    4;
+
   const [stateSituacao, setStateSituacao] = useState(3);
 
   const objectBoletimData = {
@@ -366,11 +361,11 @@ export default function Boletim() {
           <IconButton
             sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
             onClick={() => {
-              handleGetDisciplina()
-              handleFillModalWithRowData(params.row)
+              handleGetDisciplina();
+              handleFillModalWithRowData(params.row);
               setStateBoletimID(params.row.id);
               setStateOpenUpdateModal(true);
-              handleCalculoSituacao()
+              handleCalculoSituacao();
               console.log(params.row.id);
             }}
           >
@@ -394,15 +389,7 @@ export default function Boletim() {
   const [stateNewNotaQuartoBim, setStateNewNotaQuartoBim] = useState(0);
   const [stateCurrentDisciplinaId, setStateCurrentDisciplinaId] = useState(0);
 
-  const [stateNewSituacao, setStateNewSituacao] = useState(0)
-
-  const handleCalculoSituacao = () => {
-    if(stateCalculoSituacao < 5){
-      setStateNewSituacao(1)
-    }else {
-      setStateNewSituacao(2)
-    }
-  }
+  const [stateNewSituacao, setStateNewSituacao] = useState(0);
 
   const objectUpdateBoletimData = {
     aluno: {
@@ -470,6 +457,21 @@ export default function Boletim() {
     }
   };
 
+  const stateCalculoSituacao =
+    (stateNewNotaPrimeiroBim +
+      stateNewNotaSegundoBim +
+      stateNewNotaTerceiroBim +
+      stateNewNotaQuartoBim) /
+    4;
+
+  const handleCalculoSituacao = () => {
+    if (stateCalculoSituacao < 5) {
+      setStateNewSituacao(2);
+    } else {
+      setStateNewSituacao(1);
+    }
+  };
+
   const handleFillModalWithRowData = (row) => {
     setStateNewNotaPrimeiroBim(row.notaBim1);
     setStateNewNotaSegundoBim(row.notaBim2);
@@ -479,6 +481,8 @@ export default function Boletim() {
     setStateBoletimID(row.id); // ID do boletim para identificar a edição
     setStateOpenUpdateModal(true); // Abre o modal de edição
   };
+
+  console.log(stateCalculoSituacao);
 
   return (
     <div className="busca-boletim-content">

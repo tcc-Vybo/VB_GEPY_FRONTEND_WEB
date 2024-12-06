@@ -1,29 +1,71 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./loginStyle.css";
 import LogoGepy from "../../assets/Logo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { LoginButton } from "../../components/buttons/loginButton/index";
 import { LoginTextField } from "../../components/textFields/loginTextField/index";
+import { UserContext } from "../../contexts/UserContext";
 
-export default function Login( ) {
+import LoginIcon from '@mui/icons-material/Login';
+import { Tooltip } from "@mui/material";
+
+export default function Login() {
   const navigate = useNavigate();
 
   const [stateValidationEmail, setStateValidationEmail] = useState();
   const [stateValidationCPF, setStateValidationCPF] = useState();
 
-  const [statePermission, setStatePermission] = useState();
+  const { funcionarioId ,setFuncionarioId, setCargoId, setNomeFuncionario } = useContext(UserContext);
 
-  const [stateLoged, setStateLoged] = useState(false);
+  const [stateLoginLoading, setStateLoginLoading] = useState(false)
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    setStateLoginLoading(true)
     const urlToGetEmployee = `https://vb-gepy-backend-web.onrender.com/funcionario/login/${stateValidationCPF}/${stateValidationEmail}`;
     const tempArray = [];
     try {
-      fetch(urlToGetEmployee).then((response) => {
-        console.log("Response received:", response);
+      const response = await fetch(urlToGetEmployee);
+      const data = await response.json();
+  
+      if (data && data.id) {
+        const nomeFuncionarioSplit = data.nomeCompleto.split(" ");
+        const nomeFuncionatioSlice = nomeFuncionarioSplit.slice(0, 2).join(" ");
+        setNomeFuncionario(nomeFuncionatioSlice);
+        setFuncionarioId(data.id);
+  
+        // Passa o ID do funcionário diretamente para a próxima função
+        await handGetPerfilVinculo(data.id);
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "ERRO!",
+          text: "Funcionário não encontrado!",
+          showConfirmButton: false,
+          timer: 1800,
+        });
+      }
+    } catch (err) {
+      console.error("Erro ao realizar login:", err);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "ERRO!",
+        text: "Erro ao realizar login!",
+        showConfirmButton: false,
+        timer: 1800,
+      });
+    }
+  };
 
-        if (response.ok === true) {
+  const handGetPerfilVinculo = async (funcionarioIdToSearch) => {
+    const urlToGetCargo = `https://vb-gepy-backend-web.onrender.com/perfil-vinculo/buscarVinculoByFuncionario/${funcionarioIdToSearch}`;
+    const tempArray = [];
+    try {
+      await fetch(urlToGetCargo).then((response) => {
+        console.log("Response received:", response);
+        if (response.status === 200) {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -43,11 +85,17 @@ export default function Login( ) {
             timer: 1800,
           });
         }
-
         return response.json();
+      }).then((data) => {
+        setCargoId(data[0].cargo.id)
+        console.log(data[0].cargo)
+        console.log(data[0].cargo.id)
+        console.log(data[0].cargo.nome)
       });
     } catch (err) {
       console.log("ERRO: ", err);
+    }finally{
+      setStateLoginLoading(false)
     }
   };
 
@@ -65,7 +113,7 @@ export default function Login( ) {
               type="text"
               label="Usuário"
               variant="outlined"
-              sx={{width: '50%', borderRadius: '20px'}}
+              sx={{ width: "50%", borderRadius: "20px" }}
               onChange={(text) => {
                 console.log(text.target.value);
                 setStateValidationEmail(text.target.value);
@@ -75,13 +123,20 @@ export default function Login( ) {
               type="password"
               label="Senha"
               variant="outlined"
-              sx={{width: '50%'}}
+              sx={{ width: "50%" }}
               onChange={(text) => {
                 console.log(text.target.value);
                 setStateValidationCPF(text.target.value);
               }}
             />
+            <Tooltip
+            title="Sua senha é o seu CPF"
+            enterDelay={200}
+            leaveDelay={200}
+            arrow
+          >
             <span className="span-form-login">Esqueceu sua senha?</span>
+          </Tooltip>
             <LoginButton
               variant="outlined"
               sx={{ width: "35%" }}

@@ -110,7 +110,7 @@ export default function NewsLetter() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>{"Inserir Recado"}</Typography>
+            <Typography>{"Inserir Nova Notícia"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
             <div className="newsletter-content-children">

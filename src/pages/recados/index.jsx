@@ -341,7 +341,7 @@ export default function Recados() {
 
   //INÍCIO DO FRONT
   return (
-    <div className="cadastro-container">
+    <div className="recados-content">
       {/* 
       
   //-------------------------------------------------------------------------------------
@@ -371,8 +371,8 @@ export default function Recados() {
             <Typography>{"Inserir Recado"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="recados-content">
-              <div className="recados-content-top">
+            <div className="recados-insert-content">
+              <div className="recados-insert-content-top">
                 <CustomTextField
                   label="Título"
                   value={stateNewTitulo}
@@ -413,7 +413,7 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-middle">
+              <div className="recados-insert-content-middle">
                 <CustomTextField
                   label="Descrição"
                   variant="outlined"
@@ -467,7 +467,7 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-bottom">
+              <div className="recados-insert-content-bottom">
                 <SubmitButton
                   variant="outlined"
                   startIcon={<SaveOutlinedIcon />}
@@ -516,8 +516,8 @@ export default function Recados() {
             <Typography>{"Buscar Recados"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="recados-content">
-              <div className="recados-content-top">
+            <div className="recados-search-content">
+              <div className="recados-search-content-top">
                 {/* COMENTÁRIO */}
                 <CustomDateTextField
                   label="Data Marcada"
@@ -599,7 +599,7 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-bottom">
+              <div className="recados-search-content-bottom">
                 <SearchButton
                   variant="outlined"
                   startIcon={<SearchIcon />}
