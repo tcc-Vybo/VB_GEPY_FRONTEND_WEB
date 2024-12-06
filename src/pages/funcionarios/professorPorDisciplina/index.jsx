@@ -28,92 +28,7 @@ import Swal from "sweetalert2";
 import DataGridForFuncionarios from "../../../components/dataGrids/dataGridForFuncionarios";
 
 export default function ProfessorPorDisciplina() {
-  const columns = [
-    {
-      field: "id",
-      headerName: "ID",
-      headerClassName: "super-app-theme--header",
-      headerAlign: "center",
-      align: "center",
-      flex: 1,
-    },
-    {
-      field: "nome",
-      headerName: "Disciplina",
-      headerClassName: "super-app-theme--header",
-      headerAlign: "center",
-      align: "center",
-      flex: 4,
-    },
-    {
-      field: "actions",
-      headerName: "Ações",
-      headerAlign: "center",
-      align: "center",
-      sortable: false,
-      flex: 1,
-      renderCell: (params) => (
-        <>
-          <Tooltip
-            title="Vincular professor a disciplina"
-            enterDelay={500}
-            leaveDelay={200}
-            arrow
-          >
-            <IconButton
-              sx={{ color: CustomTheme.palette.primary.light }}
-              onClick={() => {
-                setStateOpenModal(true);
-                setStateDisciplinaId(params.row.id);
-              }}
-            >
-              <AddIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip
-            title="Editar disciplina"
-            enterDelay={500}
-            leaveDelay={200}
-            arrow
-          >
-            <IconButton
-              sx={{ color: CustomTheme.palette.tertiary.main, outline: "none" }}
-              onClick={() => {
-                handleFillModalWithRowData(params.row);
-                setStateBoletimID(params.row.id);
-                setStateOpenUpdateModal(true);
-                console.log(params.row.id);
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip
-            title="Listar professores vinculados a turma"
-            enterDelay={500}
-            leaveDelay={200}
-            arrow
-          >
-            <IconButton
-              sx={{
-                color: CustomTheme.palette.secondary.main,
-                outline: "none",
-              }}
-              onClick={() => {
-                //handleFillModalWithRowData(params.row);
-                handleGetProfessorOfDisciplina()
-                handleGetdisciplina()
-                setStateDisciplinaId(params.row.id)
-                console.log(params.row.id);
-              }}
-            >
-              <ListAltIcon />
-            </IconButton>
-          </Tooltip>
-        </>
-      ),
-    },
-  ];
+  
 
   const columnsForProfessorPorDisciplina = [
     {
@@ -309,13 +224,14 @@ export default function ProfessorPorDisciplina() {
       .then((response) => {
         return response.json()
       }).then((data) => {
+        // Ajuste conforme a estrutura real
         data.map((item, index) => {
           tempProfessorDisciplinaArray.push({
             id: item.id,
             nome: item.professor.nomeCompleto,
           });
         });
-      });
+      });      
       setStateProfessorDisciplinaArray(tempProfessorDisciplinaArray);
       console.log(stateProfessorDisciplinaArray);
     } catch (err) {
@@ -331,6 +247,75 @@ export default function ProfessorPorDisciplina() {
       setStateGetAllProfessorLoading(false); // Desativa o estado de loading
     }
   };
+
+  const columns = [
+    {
+      field: "id",
+      headerName: "ID",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+    },
+    {
+      field: "nome",
+      headerName: "Disciplina",
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      flex: 4,
+    },
+    {
+      field: "actions",
+      headerName: "Ações",
+      headerAlign: "center",
+      align: "center",
+      sortable: false,
+      flex: 1,
+      renderCell: (params) => (
+        <>
+          <Tooltip
+            title="Vincular professor a disciplina"
+            enterDelay={500}
+            leaveDelay={200}
+            arrow
+          >
+            <IconButton
+              sx={{ color: CustomTheme.palette.primary.light }}
+              onClick={() => {
+                setStateOpenModal(true);
+                setStateDisciplinaId(params.row.id);
+              }}
+            >
+              <AddIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip
+            title="Listar professores vinculados a turma"
+            enterDelay={500}
+            leaveDelay={200}
+            arrow
+          >
+            <IconButton
+              sx={{
+                color: CustomTheme.palette.secondary.main,
+                outline: "none",
+              }}
+              onClick={() => {
+                //handleFillModalWithRowData(params.row);
+                handleGetProfessorOfDisciplina()
+                handleGetDisciplina()
+                setStateDisciplinaId(params.row.id)
+                console.log(params.row.id);
+              }}
+            >
+              <ListAltIcon />
+            </IconButton>
+          </Tooltip>
+        </>
+      ),
+    },
+  ];
 
   return (
     <div className="professor-por-disciplina-content">
