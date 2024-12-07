@@ -266,34 +266,66 @@ export default function Recados() {
   //REQUISIÇÃO PARA BUSCAR OS RECADOS
 
   const [stateCallUseEffect, setStateCallUseEffect] = useState(false);
+  const [letters, setLetters] = useState([]);
+  const tempLettersArray = []
 
   const tempSearchRecadosWithFilters = [];
   const handleSearchRecado = () => {
     const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar-filtros?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
-
+  
     try {
       fetch(urlSearchRecados)
         .then((response) => {
           console.log("Response received:", response);
-
           return response.json();
         })
         .then((data) => {
-          data.map((item, index) => {
+          console.log(data);
+  
+          // Cria os arrays temporários
+          const tempLettersArray = [];
+          const tempSearchRecadosWithFilters = [];
+  
+          data.forEach((item, index) => {
+            // Divide o nome do remetente em letras
+            const remetenteNomeWordsSplit = item.remetente.nomeCompleto.split(" ");
+            const remetenteNomeWordsSlice = remetenteNomeWordsSplit
+              .slice(0, 2)
+              .join(" ");
+            const remetenteNomeLetterSplit = item.remetente.nomeCompleto.split("");
+  
+            // Adiciona as letras iniciais ao array temporário
+            const initialLetter = remetenteNomeLetterSplit[0] || ""; // Verifica se existe a primeira letra
+            tempLettersArray.push(initialLetter);
+  
+            // Cria o objeto do recado com os dados processados
             tempSearchRecadosWithFilters.push({
-              id: data[index].id,
-              titulo: data[index].titulo,
+              id: item.id,
+              titulo: item.titulo,
+              dataDeEnvio: item.dataDeEnvio,
+              dataMarcada: item.data,
+              descricao: item.descricao,
+              destinatario: item.destinatario.nome,
+              hora: item.hora,
+              tipoRecado: item.tipoRecado.nome,
+              remetenteCompleto: remetenteNomeWordsSlice,
+              remetenteInicial: initialLetter, // Usa diretamente a letra inicial aqui
             });
           });
-          setStateSearchRecadosWithFilters(tempSearchRecadosWithFilters);
-          console.log(stateSearchRecadosWithFilters);
-          handleClearSearchFields();
-          setStateCallUseEffect(true);
+  
+          // Atualiza os estados com os arrays processados
+          setLetters(tempLettersArray); // Atualiza o estado das letras
+          setStateSearchRecadosWithFilters(tempSearchRecadosWithFilters); // Atualiza os recados
+          console.log(tempSearchRecadosWithFilters);
+  
+          handleClearSearchFields(); // Limpa os campos de busca
+          setStateCallUseEffect(true); // Chama o modal
         });
     } catch (err) {
       console.log("ERRO: ", err);
     }
   };
+  
 
   useEffect(() => {
     if (stateCallUseEffect && stateSearchRecadosWithFilters.length > 0) {
