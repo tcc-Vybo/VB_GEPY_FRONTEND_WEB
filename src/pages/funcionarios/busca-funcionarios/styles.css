@@ -1,17 +1,18 @@
-.busca-aluno-content {
+.buscar-funcionarios-content {
   background-color: #dedede;
-  height: 93%;
+  height: 95%;
   border-radius: 10px;
   padding: 20px;
+  overflow: hidden;
 }
 
-.busca-aluno-content-top{
+.buscar-funcionarios-content-top{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.busca-aluno-content-midle{
+.buscar-funcionarios-content-midle{
   height: 100%;
 }

@@ -80,6 +80,10 @@
   margin: 15px;
 }
 
+.span-form-login:hover {
+  cursor: pointer;
+}
+
 .button-form-login {
   color: white;
   width: 200px;

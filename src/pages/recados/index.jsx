@@ -243,7 +243,7 @@ export default function Recados() {
             position: "center",
             icon: "success",
             title: "Sucesso!",
-            text: "Aluno cadastado com sucesso!!",
+            text: "Recado postado com sucesso!",
             showConfirmButton: false,
             timer: 1800,
           });
@@ -266,34 +266,66 @@ export default function Recados() {
   //REQUISIÇÃO PARA BUSCAR OS RECADOS
 
   const [stateCallUseEffect, setStateCallUseEffect] = useState(false);
+  const [letters, setLetters] = useState([]);
+  const tempLettersArray = []
 
   const tempSearchRecadosWithFilters = [];
   const handleSearchRecado = () => {
-    const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
-
+    const urlSearchRecados = `https://vb-gepy-backend-web.onrender.com/recado-turma/buscar-filtros?dataMarcada=${stateSearchDataMarcadaFormatted}&dataDeEnvio=${stateSearchDataDeEnvioFormatted}&remetente=${stateSearchRemetente}&destinatario=${stateSearchDestinatario}&tipoRecado=${stateSearchTipoRecado}`;
+  
     try {
       fetch(urlSearchRecados)
         .then((response) => {
           console.log("Response received:", response);
-
           return response.json();
         })
         .then((data) => {
-          data.map((item, index) => {
+          console.log(data);
+  
+          // Cria os arrays temporários
+          const tempLettersArray = [];
+          const tempSearchRecadosWithFilters = [];
+  
+          data.forEach((item, index) => {
+            // Divide o nome do remetente em letras
+            const remetenteNomeWordsSplit = item.remetente.nomeCompleto.split(" ");
+            const remetenteNomeWordsSlice = remetenteNomeWordsSplit
+              .slice(0, 2)
+              .join(" ");
+            const remetenteNomeLetterSplit = item.remetente.nomeCompleto.split("");
+  
+            // Adiciona as letras iniciais ao array temporário
+            const initialLetter = remetenteNomeLetterSplit[0] || ""; // Verifica se existe a primeira letra
+            tempLettersArray.push(initialLetter);
+  
+            // Cria o objeto do recado com os dados processados
             tempSearchRecadosWithFilters.push({
-              id: data[index].id,
-              titulo: data[index].titulo,
+              id: item.id,
+              titulo: item.titulo,
+              dataDeEnvio: item.dataDeEnvio,
+              dataMarcada: item.data,
+              descricao: item.descricao,
+              destinatario: item.destinatario.nome,
+              hora: item.hora,
+              tipoRecado: item.tipoRecado.nome,
+              remetenteCompleto: remetenteNomeWordsSlice,
+              remetenteInicial: initialLetter, // Usa diretamente a letra inicial aqui
             });
           });
-          setStateSearchRecadosWithFilters(tempSearchRecadosWithFilters);
-          console.log(stateSearchRecadosWithFilters);
-          handleClearSearchFields();
-          setStateCallUseEffect(true);
+  
+          // Atualiza os estados com os arrays processados
+          setLetters(tempLettersArray); // Atualiza o estado das letras
+          setStateSearchRecadosWithFilters(tempSearchRecadosWithFilters); // Atualiza os recados
+          console.log(tempSearchRecadosWithFilters);
+  
+          handleClearSearchFields(); // Limpa os campos de busca
+          setStateCallUseEffect(true); // Chama o modal
         });
     } catch (err) {
       console.log("ERRO: ", err);
     }
   };
+  
 
   useEffect(() => {
     if (stateCallUseEffect && stateSearchRecadosWithFilters.length > 0) {
@@ -341,7 +373,7 @@ export default function Recados() {
 
   //INÍCIO DO FRONT
   return (
-    <div className="cadastro-container">
+    <div className="recados-content">
       {/* 
       
   //-------------------------------------------------------------------------------------
@@ -371,8 +403,8 @@ export default function Recados() {
             <Typography>{"Inserir Recado"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="recados-content">
-              <div className="recados-content-top">
+            <div className="recados-insert-content">
+              <div className="recados-insert-content-top">
                 <CustomTextField
                   label="Título"
                   value={stateNewTitulo}
@@ -390,7 +422,6 @@ export default function Recados() {
                   type="date"
                   sx={{ width: "20%" }}
                   focused={true}
-                  format=""
                 />
                 <CustomTextField
                   label="Remetente"
@@ -414,7 +445,7 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-middle">
+              <div className="recados-insert-content-middle">
                 <CustomTextField
                   label="Descrição"
                   variant="outlined"
@@ -468,17 +499,17 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-bottom">
+              <div className="recados-insert-content-bottom">
                 <SubmitButton
                   variant="outlined"
-                  endIcon={<SaveOutlinedIcon />}
+                  startIcon={<SaveOutlinedIcon />}
                   onClick={handleInsertNewRecado}
                 >
                   Gravar
                 </SubmitButton>
                 <ClearButton
                   variant="outlined"
-                  endIcon={<CleaningServicesIcon />}
+                  startIcon={<CleaningServicesIcon />}
                   onClick={handleClear}
                 >
                   Limpar
@@ -517,8 +548,8 @@ export default function Recados() {
             <Typography>{"Buscar Recados"}</Typography>
           </CustomAccordionSummary>
           <CustomAccordionDetails>
-            <div className="recados-content">
-              <div className="recados-content-top">
+            <div className="recados-search-content">
+              <div className="recados-search-content-top">
                 {/* COMENTÁRIO */}
                 <CustomDateTextField
                   label="Data Marcada"
@@ -531,11 +562,13 @@ export default function Recados() {
                 />
                 {/* COMENTÁRIO */}
                 <CustomDateTextField
+                  label="Data de Envio"
                   variant="outlined"
                   value={stateSearchDataDeEnvio} // Formato yyyy-MM-dd
                   onChange={handleSearchDataDeEnvioChange}
                   type="date"
                   sx={{ width: "20%" }}
+                  focused={true}
                 />
                 <CustomTextField
                   label="Remetente"
@@ -598,10 +631,10 @@ export default function Recados() {
                   ))}
                 </CustomTextField>
               </div>
-              <div className="recados-content-bottom">
+              <div className="recados-search-content-bottom">
                 <SearchButton
                   variant="outlined"
-                  endIcon={<SearchIcon />}
+                  startIcon={<SearchIcon />}
                   onClick={handleSearchRecado}
                 >
                   Pesquisar

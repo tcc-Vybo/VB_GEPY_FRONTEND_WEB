@@ -39,31 +39,31 @@ const columns = [
     align: "center",
     flex: 3
   },
-  {
-    field: "actions",
-    headerName: "Ações",
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    flex: 1,
-    renderCell: (params) => (
-      <>
-        <IconButton
-          sx={{ color: CustomTheme.palette.primary.main }}
-          onClick={() => handleEdit(params.row.id)}
-        >
-          <EditIcon />
-        </IconButton>
+  // {
+  //   field: "actions",
+  //   headerName: "Ações",
+  //   headerAlign: "center",
+  //   align: "center",
+  //   sortable: false,
+  //   flex: 1,
+  //   renderCell: (params) => (
+  //     <>
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.primary.main }}
+  //         onClick={() => handleEdit(params.row.id)}
+  //       >
+  //         <EditIcon />
+  //       </IconButton>
 
-        <IconButton
-          sx={{ color: CustomTheme.palette.secondary.main }}
-          onClick={() => handleDelete(params.row.id)}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </>
-    ),
-  },
+  //       <IconButton
+  //         sx={{ color: CustomTheme.palette.secondary.main }}
+  //         onClick={() => handleDelete(params.row.id)}
+  //       >
+  //         <DeleteIcon />
+  //       </IconButton>
+  //     </>
+  //   ),
+  // },
 ];
 
 export default function BuscaAlunos() {
@@ -97,21 +97,21 @@ export default function BuscaAlunos() {
   };
 
   return (
-    <div className="busca-aluno-content">
+    <div className="buscar-alunos-content">
       <Box sx={{ height: "80%", width: "100%" }}>
-        <div className="busca-aluno-content-top">
+        <div className="buscar-alunos-content-top">
           <Typography id="modal-title" variant="h6" component="h2">
             Lista de Alunos
           </Typography>
           <SearchButton
             variant="outlined"
-            endIcon={<SearchIcon />}
+            startIcon={<SearchIcon />}
             onClick={handleListAlunos}
           >
             Pesquisar Por Todos Alunos
           </SearchButton>
         </div>
-        <div className="busca-aluno-content-midle">
+        <div className="buscar-alunos-content-midle">
           <DataGridForAlunos rows={stateAlunosArray} columns={columns} />
         </div>
       </Box>

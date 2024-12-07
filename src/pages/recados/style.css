@@ -1,31 +1,50 @@
-.cadastro-container {
+.recados-content {
   background-color: #dedede;
   padding: 2%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  gap: 10px
 }
 
-.recados-content {
+.recados-insert-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.recados-content-top {
+.recados-insert-content-top {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.recados-content-middle {
+.recados-insert-content-middle {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.recados-content-bottom {
+.recados-insert-content-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+.recados-search-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recados-search-content-top {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.recados-search-content-bottom {
   display: flex;
   flex-direction: row;
   gap: 10px;

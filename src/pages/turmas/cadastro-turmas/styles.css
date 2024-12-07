@@ -1,17 +1,19 @@
-.busca-aluno-turma-content {
+.cadastro-turma-content {
     background-color: #dedede;
     height: 93%;
     border-radius: 10px;
     padding: 20px;
+    overflow: hidden;
   }
   
-  .busca-aluno-turma-content-top{
+  .cadastro-turma-content-top{
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 16px;
   }
   
-  .busca-aluno-turma-content-midle{
+  .cadastro-turma-content-midle{
     height: 100%;
   }
+  

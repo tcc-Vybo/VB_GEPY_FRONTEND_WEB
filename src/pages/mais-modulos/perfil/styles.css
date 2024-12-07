@@ -1,17 +1,17 @@
-.busca-aluno-turma-content {
+.perfil-servidor-content {
     background-color: #dedede;
     height: 93%;
     border-radius: 10px;
     padding: 20px;
   }
   
-  .busca-aluno-turma-content-top{
+  .perfil-servidor-content-top{
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 16px;
   }
   
-  .busca-aluno-turma-content-midle{
+  .perfil-servidor-content-midle{
     height: 100%;
   }

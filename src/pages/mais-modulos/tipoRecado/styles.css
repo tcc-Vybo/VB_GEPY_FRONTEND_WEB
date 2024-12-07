@@ -1,17 +1,17 @@
-.busca-aluno-turma-content {
+.tipo-recado-content {
     background-color: #dedede;
     height: 93%;
     border-radius: 10px;
     padding: 20px;
   }
   
-  .busca-aluno-turma-content-top{
+  .tipo-recado-content-top{
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 16px;
   }
   
-  .busca-aluno-turma-content-midle{
+  .tipo-recado-content-midle{
     height: 100%;
   }

@@ -1,17 +1,17 @@
-.busca-aluno-content {
+.buscar-alunos-content {
   background-color: #dedede;
   height: 93%;
   border-radius: 10px;
   padding: 20px;
 }
 
-.busca-aluno-content-top{
+.buscar-alunos-content-top{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.busca-aluno-content-midle{
+.buscar-alunos-content-midle{
   height: 100%;
 }
